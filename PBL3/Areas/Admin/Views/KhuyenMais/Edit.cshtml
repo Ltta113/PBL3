@@ -1,0 +1,100 @@
+﻿@model PBL3.Models.KhuyenMai
+
+@{
+    ViewBag.Title = "Cập nhật khuyến mãi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cập nhật khuyến mãi</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>KhuyenMai</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID_KM)
+
+        <div class="form-group">
+            <div class=" col-md-2">
+                <label for="ngaybatdau">Ngày bắt đầu</label>
+            </div>
+            <div class="col-md-3">
+                <input class="form-control" name="BatDauKM" value="@Html.Raw(ViewBag.Start.ToString("yyyy-MM-dd HH:mm").Replace(' ','T'))" type="datetime-local" />
+                @Html.ValidationMessageFor(model => model.BatDauKM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class=" col-md-2">
+                <label for="ngayketthuc">Ngày kết thúc</label>
+            </div>
+            <div class="col-md-3">
+                  
+                <input class="form-control" name="KetThucKM" value="@Html.Raw(ViewBag.End.ToString("yyyy-MM-dd HH:mm").Replace(' ','T'))" type="datetime-local" />
+                @Html.ValidationMessageFor(model => model.KetThucKM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class=" col-md-2">
+                <label for="noidung">Nội dung</label>
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.NoiDungKM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NoiDungKM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class=" col-md-2">
+                <label for="loai">Loại</label>
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownList("LoaiKM", new SelectList(new List<Object>
+           {
+               new {value = 0, text ="Giảm trực tiếp"},
+               new {value = 1, text ="Theo phần trăm"},
+           },
+           "value",
+           "text",
+           Model.LoaiKM
+           ), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LoaiKM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class=" col-md-2">
+                <label for="status">Trạng thái</label>
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownList("Status",
+               new SelectList(
+                      new List<Object>{
+                           new { value = 0 , text = "Đã xóa"  },
+                           new { value = 1 , text = "Tồn tại" },
+                        },
+                      "value",
+                      "text",
+                       Model.Status
+               ), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 text-right">
+                <button type="submit" value="Save" class="btn btn-sm btn-success"><i class="fa-light fa-floppy-disk"></i> Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="form-group">
+    <div class="col-md-offset-2 ">
+        <button type="button" name="back" class="btn btn-success btn-md" onclick="location.href='/Admin/KhuyenMais/Index'">Quay lại</button>
+    </div>
+</div>
