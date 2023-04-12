@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PBL3.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Danh sách hóa đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên khách hàng
+        </th>
+        <th>
+            Ngày lập hóa đơn
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayBan)
+        </td>
+        <td>
+            @if(item.Status == 0)
+                {
+                    <div>Chưa xác nhận</div>
+            }
+            else
+                {
+                    <div>Đã xác nhận</div>
+                }
+        </td>
+        <td>
+            <a href="/Admin/ChiTietHoaDons/Index/@item.ID_HoaDon" class="btn btn-sm btn-info"> <i class="fa-sharp fa-solid fa-circle-info"></i></a>
+            <a href="/Admin/HoaDons/Confirm/@item.ID_HoaDon" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-check"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

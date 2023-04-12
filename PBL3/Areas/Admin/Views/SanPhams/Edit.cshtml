@@ -7,7 +7,7 @@
 
 <h2>Thay đổi sản phẩm</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "SanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID_SP)
-
+        @Html.HiddenFor(model => model.Anh)
         <div class="form-group">
             <label>Danh mục<span class="text-danger">(*)</span></label>
             <div class="col-md-3 ">
@@ -82,9 +82,10 @@
         </div>
 
         <div class="form-group">
-            <label>Ảnh<span class="text-danger">(*)</span></label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Anh, new { htmlAttributes = new { @class = "form-control" } })
+            <label>Img<span class="text-danger">(*)</span></label>
+            <div class="col-md-3">
+                <img src="~/Anh/@Model.Anh" style="height:200px;width:200px;margin:10px" />
+                <input type="file" id="uploadhinh" name="uploadhinh" accept="image/*" value="C:/Users/LENOVO/OneDrive - The University of Technology/Desktop/PBL3.1/PBL3/PBL3/Anh/@Model.Anh" />
                 @Html.ValidationMessageFor(model => model.Anh, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -107,13 +108,17 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+            <div class="form-group">
+                <p>
+                    <button type="submit" value="Save" class="btn btn-sm btn-success"><i class="fa-light fa-floppy-disk"></i> Lưu thay đổi</button>
+
+
+                    <button type="button" name="back" class="btn btn-success btn-md" onclick="location.href='/Admin/SanPhams/Index'">Quay lại</button>
+                </p>   
+            
         </div>
     </div>
+        </div>
 }
 
-<div>
-    <button type="button" name="back" class="btn btn-success btn-md" onclick="location.href='/Admin/SanPhams/Index'">Quay lại</button>
-</div>
+

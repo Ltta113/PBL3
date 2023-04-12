@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace PBL3.Areas.Admin.Controllers
 {
-    public class SanPhamsController : Controller
+    public class SanPhamsController : LoginManagerController
     {
         private CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
@@ -55,7 +55,11 @@ namespace PBL3.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(uploadhinh != null || uploadhinh.ContentLength >0)
+                if (uploadhinh == null)
+                {
+                    sanPham.Anh = "";
+                }    
+                else if(uploadhinh != null || uploadhinh.ContentLength >0)
                 {
                     string hinh = uploadhinh.FileName.ToString();
                     sanPham.Anh = hinh;
@@ -86,6 +90,7 @@ namespace PBL3.Areas.Admin.Controllers
             }
             ViewBag.ID_Danhmuc = new SelectList(db.DanhMucSPs, "ID_Danhmuc", "TenDanhMuc", sanPham.ID_Danhmuc);
             ViewBag.ID_KM = new SelectList(db.KhuyenMais, "ID_KM", "NoiDungKM", sanPham.ID_KM);
+            ViewBag.Anh = sanPham.Anh;
             return View(sanPham);
         }
 
@@ -94,8 +99,17 @@ namespace PBL3.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_SP,ID_Danhmuc,TenSP,ID_KM,SoLuong,GiaBan,NhanHieuSP,MauSP,MoTaSP,Anh,Status")] SanPham sanPham)
+        public ActionResult Edit([Bind(Include = "ID_SP,ID_Danhmuc,TenSP,ID_KM,SoLuong,GiaBan,NhanHieuSP,MauSP,MoTaSP,Anh,Status")] SanPham sanPham, HttpPostedFileBase uploadhinh)
         {
+            if (uploadhinh == null)
+            {
+                sanPham.Anh = sanPham.Anh;
+            }
+            else if (uploadhinh != null || uploadhinh.ContentLength > 0)
+            {
+                string hinh = uploadhinh.FileName.ToString();
+                sanPham.Anh = hinh;
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(sanPham).State = EntityState.Modified;
@@ -106,7 +120,22 @@ namespace PBL3.Areas.Admin.Controllers
             ViewBag.ID_KM = new SelectList(db.KhuyenMais, "ID_KM", "NoiDungKM", sanPham.ID_KM);
             return View(sanPham);
         }
-
+        public ActionResult Trash(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            SanPham sanPham = db.SanPhams.Find(id);
+            if (sanPham == null)
+            {
+                return RedirectToAction("Index");
+            }
+            sanPham.Status = 0;
+            db.Entry(sanPham).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {

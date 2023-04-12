@@ -33,7 +33,6 @@ namespace PBL3.Models
         public string NhanHieuSP { get; set; }
         public string MauSP { get; set; }
         public string MoTaSP { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
         public string Anh { get; set; }
         public Nullable<int> Status { get; set; }
     
