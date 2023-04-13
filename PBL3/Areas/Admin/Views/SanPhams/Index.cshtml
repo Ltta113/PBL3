@@ -10,6 +10,18 @@
 <p>
     <div class="col-md-offset-2 text-right">
         <a href="/Admin/SanPhams/Create" class="btn btn-sm btn-info"> <i class="fa-solid fa-plus"></i> Thêm mới</a>
+
+    </div>
+    <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        @using (Html.BeginForm("Index", "SanPhams", FormMethod.Get))
+        {
+
+            <div class="input-group">
+                <input class="form-control" type="text" name="Searchtxt" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="Searchtxt" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+
+        }
     </div>
 </p>
 <table class="table">
@@ -47,47 +59,48 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaBan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NhanHieuSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MauSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoTaSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Anh)
-        </td>
-        <td>
-            @if (item.Status == 0)
-            {<div>Đã xóa</div> }
-            else
-            {<div>Tồn tại</div>}
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DanhMucSP.TenDanhMuc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KhuyenMai.NoiDungKM)
-        </td>
-        <td>
-            <a href="/Admin/SanPhams/Edit/@item.ID_SP" class="btn btn-sm btn-info"> <i class="fa-solid fa-pen-to-square"></i></a>
-            <a href="/Admin/SanPhams/Details/@item.ID_SP" class="btn btn-sm btn-info"> <i class="fa-sharp fa-solid fa-circle-info"></i></a>
-            <a href="/Admin/SanPhams/Trash/@item.ID_SP" class="btn btn-sm btn-danger "><i class="fa-solid fa-trash"></i></a>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaBan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NhanHieuSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MauSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTaSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anh)
+            </td>
+            <td>
+                @if (item.Status == 0)
+                {<div>Đã xóa</div> }
+                else
+                {<div>Tồn tại</div>}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DanhMucSP.TenDanhMuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhuyenMai.NoiDungKM)
+            </td>
+            <td>
+                <a href="/Admin/SanPhams/Edit/@item.ID_SP" class="btn btn-sm btn-info"> <i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="/Admin/SanPhams/Details/@item.ID_SP" class="btn btn-sm btn-info"> <i class="fa-sharp fa-solid fa-circle-info"></i></a>
+                <a href="/Admin/SanPhams/Trash/@item.ID_SP" class="btn btn-sm btn-danger "><i class="fa-solid fa-trash"></i></a>
+            </td>
+        </tr>
+    }
 
 </table>

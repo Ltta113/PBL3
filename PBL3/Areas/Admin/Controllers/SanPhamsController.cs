@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using PBL3.Models;
 using System.IO;
 using System.Web.Mvc;
+using System.Xml.Linq;
 
 namespace PBL3.Areas.Admin.Controllers
 {
@@ -17,10 +18,20 @@ namespace PBL3.Areas.Admin.Controllers
         private CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: Admin/SanPhams
-        public ActionResult Index()
+        public ActionResult Index(string Searchtxt)
         {
-            var sanPhams = db.SanPhams.Include(s => s.DanhMucSP).Include(s => s.KhuyenMai);
-            return View(sanPhams.ToList());
+            
+            if (Searchtxt == null)
+            {
+                var sanPhams = db.SanPhams.Include(s => s.DanhMucSP).Include(s => s.KhuyenMai);
+                return View(sanPhams.ToList());
+            }
+            else
+            {
+                var sanPham = db.SanPhams.Where(p => p.TenSP.Contains(Searchtxt));
+                return View(sanPham.ToList());
+            }
+            
         }
 
         // GET: Admin/SanPhams/Details/5
@@ -136,7 +147,7 @@ namespace PBL3.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)
