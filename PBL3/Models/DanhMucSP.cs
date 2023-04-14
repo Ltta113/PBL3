@@ -20,8 +20,9 @@ namespace PBL3.Models
         {
             this.SanPhams = new HashSet<SanPham>();
         }
+    
         public int ID_Danhmuc { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+        [Required(ErrorMessage = "Không được để trống")]
         public string TenDanhMuc { get; set; }
         public Nullable<int> Status { get; set; }
     

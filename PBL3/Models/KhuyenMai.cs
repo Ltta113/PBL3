@@ -12,6 +12,7 @@ namespace PBL3.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Runtime.CompilerServices;
 
     public partial class KhuyenMai
     {
@@ -22,13 +23,13 @@ namespace PBL3.Models
         }
     
         public int ID_KM { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+        [Required(ErrorMessage = "Không được để trống")]
         public Nullable<System.DateTime> BatDauKM { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+        [Required(ErrorMessage = "Không được để trống")]
         public Nullable<System.DateTime> KetThucKM { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+        [Required(ErrorMessage = "Không được để trống")]
         public string NoiDungKM { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+        [Required(ErrorMessage = "Không được để trống")]
         public Nullable<int> LoaiKM { get; set; }
         public Nullable<int> Status { get; set; }
     

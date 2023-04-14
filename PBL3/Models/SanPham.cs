@@ -23,12 +23,14 @@ namespace PBL3.Models
         }
     
         public int ID_SP { get; set; }
+        [Required(ErrorMessage = "Không được để trống")]
         public Nullable<int> ID_Danhmuc { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+        [Required(ErrorMessage = "Không được để trống")]
         public string TenSP { get; set; }
+        [Required(ErrorMessage = "Không được để trống")]
         public Nullable<int> ID_KM { get; set; }
         public Nullable<int> SoLuong { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+        [Required(ErrorMessage = "Không được để trống")]
         public Nullable<int> GiaBan { get; set; }
         public string NhanHieuSP { get; set; }
         public string MauSP { get; set; }

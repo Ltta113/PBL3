@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using PBL3.Models;
+using PBL3.Models.Model_View;
+
+namespace PBL3.Controllers
+{
+    public class DangNhapDangKyController : Controller
+    {
+        private CuaHangDienMayEntities db = new CuaHangDienMayEntities();
+        // GET: DangKy
+        public ActionResult DangKy()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DangKy(DangKy dangky)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var check = db.Accounts.Where(p => p.Username == dangky.Username).FirstOrDefault();
+                if (check == null)
+                {
+                    Account account = new Account();
+                    account.Username = dangky.Username;
+                    account.Password = dangky.Password;
+                    account.Quyen = 1;
+                    db.Accounts.Add(account);
+                    db.SaveChanges();
+                    User user = new User();
+                    var newuser = db.Accounts.Where(p => p.Username == dangky.Username).FirstOrDefault();
+                    user.ID_User = newuser.ID_Account;
+                    user.Ten = dangky.Ten;
+                    user.NgaySinh = dangky.NgaySinh;
+                    user.SDT = dangky.SDT;
+                    user.DiaChi = dangky.DiaChi;
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    return View();
+                }
+                else
+                {
+                    ViewBag.Error = "<p class='text-danger'> " + "  Tên đăng nhập đã tồn tại, mời nhập lại" + "</p>";
+                    return View();
+                }
+            }
+
+            else
+            {
+                ViewBag.Error = "<p class='text-danger'> " + "  Lỗi dữ liệu" + "</p>";
+                return View();
+            }
+
+        }
+
+    }
+}

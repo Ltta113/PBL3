@@ -23,15 +23,14 @@ namespace PBL3.Models
         }
     
         public int ID_User { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+        //[Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
         public string Ten { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+        //[Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
         public Nullable<System.DateTime> NgaySinh { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+       //[Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
         public string DiaChi { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
+        //[Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
         public Nullable<bool> GioiTinh { get; set; }
-        [Required(ErrorMessage = "Không được bỏ trống tên danh mục")]
         public string SDT { get; set; }
     
         public virtual Account Account { get; set; }

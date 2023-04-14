@@ -1,0 +1,86 @@
+﻿@model PBL3.Models.Model_View.DangKy
+
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đăng ký tài khoản</h2>
+
+@using (Html.BeginForm("DangKy","DangNhapDangKy",FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <div class="form-group">
+            <p>@Html.Raw(ViewBag.Error) </p>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-md-6">
+            <label>Tên đăng nhập<span class="text-danger">(*)</span></label>
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6">
+            <label>Mật khẩu<span class="text-danger">(*)</span></label>
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", type = "password" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6">
+            <label>Nhập lại mật khẩu<span class="text-danger">(*)</span></label>
+            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirm Password", type="password" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6">
+            <label>Tên người dùng<span class="text-danger">(*)</span></label>
+            @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên người dùng" } })
+            @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6">
+            <label>Ngày sinh<span class="text-danger">(*)</span></label>
+            @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control", placeholder = "Ngày sinh", type = "date" } })
+            @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6">
+            <label>Địa chỉ</label>
+            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control", placeholder = "Địa chỉ" } })
+            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6">
+            <label>Giới tính<span class="text-danger">(*)</span></label>
+            @Html.DropDownList("GioiTinh", new SelectList(new List<Object>
+           {
+               new {value = false, text ="Nữ"},
+               new {value = true, text ="Nam"},
+           },
+           "value",
+           "text"
+           ), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6">
+            <label>SDT</label>
+            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", placeholder = "Số điện thoại" } })
+            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+        </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
