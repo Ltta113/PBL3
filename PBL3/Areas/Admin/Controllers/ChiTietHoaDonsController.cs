@@ -12,7 +12,7 @@ namespace PBL3.Areas.Admin.Controllers
 {
     public class ChiTietHoaDonsController : Controller
     {
-        private CuaHangDienMayEntities db = new CuaHangDienMayEntities();
+        private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: Admin/ChiTietHoaDons
         public ActionResult Index(int? id )

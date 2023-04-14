@@ -10,39 +10,42 @@ namespace PBL3.Areas.Admin.Controllers
     public class HomePageController : Controller
     {
         // GET: Admin/HomePage
-        CuaHangDienMayEntities db = new CuaHangDienMayEntities();
+        private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult Login()
         {
+            if (Session["UserName"].Equals("") == false)
+            {
+                Response.Redirect("~/Admin/HomePage");
+            }
             return View();
         }
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
-            string name = username;
-            string pass = password;
+
             Account acc = db.Accounts.FirstOrDefault(x => x.Username == username && x.Quyen == 0);
             string err = "";
             if (acc != null)
             {
-                if (acc.Password.Replace(" ", "") == pass)
+                if (acc.Password.Replace(" ", "") == password)
                 {
-                    Session["UserName"] = name;
-                    Session["Password"] = pass;
-                    Session["Quyen"] = "0";
+                    Session["UserName"] = acc.Username;
+                    Session["Password"] = acc.Password;
+                    Session["Quyen"] = acc.Quyen;
                     Session["ID_Account"] = acc.ID_Account.ToString();
                     Response.Redirect("~/Admin/HomePage");
                 }
-                else err = "Mật khẩu không hợp lệ";
+                else ViewBag.Error = "<p class='text-danger'> " + "Mật khẩu không hợp lệ" + "</p>";
             }
             else
             {
-                err = "Tên đăng nhập không hợp lệ";
+                ViewBag.Error = "<p class='text-danger'> " + "Tên đăng nhập không hợp lệ" + "</p>";
             }
-            ViewBag.Error = "<p class='text-danger'> " + err + "</p>";
+            
             return View();
         }
         public ActionResult Logout()

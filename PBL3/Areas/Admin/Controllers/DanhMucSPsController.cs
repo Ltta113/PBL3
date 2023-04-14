@@ -13,7 +13,7 @@ namespace PBL3.Areas.Admin.Controllers
 {
     public class DanhMucSPsController : LoginManagerController
     {
-        private CuaHangDienMayEntities db = new CuaHangDienMayEntities();
+        private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: Admin/DanhMucSPs
         public ActionResult Index()

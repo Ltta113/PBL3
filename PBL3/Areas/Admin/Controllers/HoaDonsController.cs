@@ -12,7 +12,7 @@ namespace PBL3.Areas.Admin.Controllers
 {
     public class HoaDonsController : Controller
     {
-        private CuaHangDienMayEntities db = new CuaHangDienMayEntities();
+        private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: Admin/HoaDons
         public ActionResult Index()

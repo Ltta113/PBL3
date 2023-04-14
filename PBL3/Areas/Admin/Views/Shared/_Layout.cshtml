@@ -30,13 +30,13 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><hr class="dropdown-divider" /></li>
-                    @if (System.Web.HttpContext.Current.Session["UserName"].Equals(""))
+                    @if (System.Web.HttpContext.Current.Session["UserName"].Equals("") == true)
                     {
-                        <li><a class="dropdown-item" href="/Admin/HomePage/Logout">Đăng nhập</a></li>
+                        <li><a class="dropdown-item" href="/Admin/HomePage/Login">Đăng nhập</a></li>
                     }
                     else
                     {
-                        <li><a class="dropdown-item" href="/Admin/HomePage/Login">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" href="/Admin/HomePage/Logout">Đăng xuất</a></li>
                     }
                 </ul>
             </li>
