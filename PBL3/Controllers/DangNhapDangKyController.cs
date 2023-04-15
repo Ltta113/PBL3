@@ -46,7 +46,8 @@ namespace PBL3.Controllers
                     user.DiaChi = dangky.DiaChi;
                     db.Users.Add(user);
                     db.SaveChanges();
-                    Response.Redirect("~/Home/Index");
+
+                    Response.Redirect("~/DangNhapDangKy/DangNhap");
                 }
                 else
                 {
@@ -60,6 +61,7 @@ namespace PBL3.Controllers
                 ViewBag.Error = "<p class='text-danger'> " + "  Lỗi dữ liệu" + "</p>";
                 return View();
             }
+            return View();
 
         }
         public ActionResult DangNhap()
