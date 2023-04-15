@@ -46,7 +46,7 @@ namespace PBL3.Controllers
                     user.DiaChi = dangky.DiaChi;
                     db.Users.Add(user);
                     db.SaveChanges();
-                    return View();
+                    Response.Redirect("~/Home/Index");
                 }
                 else
                 {
