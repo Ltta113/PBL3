@@ -195,6 +195,18 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Front-Prototype\assets\css\base.css" />
+    <Content Include="Front-Prototype\assets\css\main.css" />
+    <Content Include="Front-Prototype\assets\css\sb-admin-2.css" />
+    <Content Include="Front-Prototype\assets\img\discount %281%29.png" />
+    <Content Include="Front-Prototype\assets\img\login_img.png" />
+    <Content Include="Front-Prototype\assets\img\Logo.png" />
+    <Content Include="Front-Prototype\assets\img\logo2.png" />
+    <Content Include="Front-Prototype\assets\img\register_img.png" />
+    <Content Include="Front-Prototype\assets\img\x-circle.png" />
+    <Content Include="Front-Prototype\index.html" />
+    <Content Include="Front-Prototype\login.html" />
+    <Content Include="Front-Prototype\register.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\PBL3.Context.tt">
@@ -237,6 +249,7 @@
     <Content Include="Areas\Admin\Views\HoaDons\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietHoaDons\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietHoaDons\Index.cshtml" />
+    <Content Include="Front-Prototype\assets\fonts\Quicksand-VariableFont_wght.ttf" />
     <None Include="Scripts\jquery-3.6.4.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.4.js" />
     <Content Include="Scripts\jquery-3.6.4.min.js" />
