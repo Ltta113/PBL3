@@ -28,17 +28,17 @@ namespace PBL3.Controllers
             if (ModelState.IsValid)
             {
 
-                var check = db.Accounts.Where(p => p.Username == dangky.Username).FirstOrDefault();
+                var check = db.Accounts.Where(p => p.Username == dangky.Username.Replace(" ","")).FirstOrDefault();
                 if (check == null)
                 {
                     Account account = new Account();
-                    account.Username = dangky.Username;
+                    account.Username = dangky.Username.Replace(" ", "");
                     account.Password = dangky.Password;
                     account.Quyen = 1;
                     db.Accounts.Add(account);
                     db.SaveChanges();
                     User user = new User();
-                    var newuser = db.Accounts.Where(p => p.Username == dangky.Username).FirstOrDefault();
+                    var newuser = db.Accounts.Where(p => p.Username == dangky.Username.Replace(" ", "")).FirstOrDefault();
                     user.ID_User = newuser.ID_Account;
                     user.Ten = dangky.Ten;
                     user.NgaySinh = dangky.NgaySinh;

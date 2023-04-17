@@ -24,6 +24,7 @@ namespace PBL3.Models.Model_View
         public bool GioiTinh { get; set; }
         [MaxLength(10, ErrorMessage = "Số điện thoại không đúng")]
         [MinLength(10, ErrorMessage = "Số điện thoại không đúng")]
+        [Phone(ErrorMessage = "Số điện thoại không đúng")]
         public string SDT { get; set; }
     }
 }
