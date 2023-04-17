@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,12 +32,12 @@
                 <div class="header__button">
                     @if (System.Web.HttpContext.Current.Session["UserName"].Equals(""))
                     {
-                        <a href="/DangNhapDangKy/DangNhap" class="btn btn--sign-in">Đăng nhập</a>
-                        <a href="/DangNhapDangKy/DangKy" class="btn btn--register">Đăng ký</a>
+                        <a href="~/dang-nhap" class="btn btn--sign-in">Đăng nhập</a>
+                        <a href="~/dang-ky" class="btn btn--register">Đăng ký</a>
                     }
                     else
                     {
-                        <a href="/DangNhapDangKy/DangXuat" class="btn btn--register">Đăng xuất</a>
+                        <a href="~/dang-xuat" class="btn btn--register">Đăng xuất</a>
                     }
 
                 </div>
@@ -48,15 +49,16 @@
                         <i class="  fa-solid fa-angle-down"></i>
                     </div>
                     <ul class="category-menu">
+
                         <li class="category-menu__items">Tất cả sản phẩm</li>
-                        <li class="category-menu__items">Tivi</li>
-                        <li class="category-menu__items">Tủ lạnh</li>
-                        <li class="category-menu__items">Máy lạnh</li>
-                        <li class="category-menu__items">Đồ gia dụng</li>
-                        <li class="category-menu__items">Loa</li>
-                        <li class="category-menu__items">Máy giặt</li>
-                        <li class="category-menu__items">Máy lọc nước</li>
-                        <li class="category-menu__items">Tủ đông</li>
+                        @{ 
+                            List<String> list = (List<String>)System.Web.HttpContext.Current.Session["ListDanhMuc"];
+                        }
+                        @foreach (String listDanhMuc in list)
+                        {
+                            <li class="category-menu__items">@listDanhMuc</li>
+                        }
+
                     </ul>
                 </div>
 
@@ -120,15 +122,10 @@
             <div class="footer__category">
                 <span class="category-header">Danh mục sản phẩm</span>
                 <ul class="category">
-                    <li class="category-item">Tivi</li>
-                    <li class="category-item">Tủ lạnh</li>
-                    <li class="category-item">Máy giặt</li>
-                    <li class="category-item">Máy lạnh</li>
-
-                    <li class="category-item">Loa</li>
-                    <li class="category-item">Máy lọc nước</li>
-                    <li class="category-item">Đồ gia dụng</li>
-                    <li class="category-item">Tủ đông</li>
+                    @foreach (String listDanhMuc in list)
+                    {
+                        <li class="category-menu__items">@listDanhMuc</li>
+                    }
                 </ul>
             </div>
         </footer>

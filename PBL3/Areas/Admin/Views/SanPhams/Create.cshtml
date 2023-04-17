@@ -9,7 +9,7 @@
 
 @using (Html.BeginForm("Create","SanPhams",FormMethod.Post,new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
+    
 
     <div class="form-horizontal">
 
@@ -42,7 +42,7 @@
         <div class="form-group">
             <label>Số lượng<span class="text-danger">(*)</span></label>
             <div class="col-md-3">
-                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", @Value = 0 } })
+                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control",type ="number", @Value = 0 } })
                 @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
             </div>
         </div>

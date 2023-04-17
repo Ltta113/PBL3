@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PBL3.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,7 @@ namespace PBL3
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -23,6 +25,13 @@ namespace PBL3
             Session["Password"] = "";
             Session["Quyen"] = "";
             Session["ID_Account"] = "";
+            List<String> list = new List<String>();
+            foreach(var lin in db.DanhMucSPs.ToList())
+            {
+                list.Add(lin.TenDanhMuc);
+            }    
+
+            Session["ListDanhMuc"] = list;
 
         }
     }
