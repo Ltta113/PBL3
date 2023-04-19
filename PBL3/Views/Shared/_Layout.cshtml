@@ -51,13 +51,13 @@
                     </div>
                     <ul class="category-menu">
 
-                        <li class="category-menu__items">Tất cả sản phẩm</li>
+                        <li class="category-menu__items">@Html.ActionLink("Tất cả sản phẩm", "Index", "DanhSachSanPhams", new { @DanhMucsp = "" }, null)</li>
                         @{
                             List<String> list = (List<String>)System.Web.HttpContext.Current.Session["ListDanhMuc"];
                         }
                         @foreach (String listDanhMuc in list)
                         {
-                            <li class="category-menu__items">@listDanhMuc</li>
+                            <li class="category-menu__items">@Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, null)</li>
                         }
 
                     </ul>
@@ -130,7 +130,7 @@
                     if (check <= 6)
 
                     {
-                        <li class="category-item">@listDanhMuc</li>
+                        <li class="category-item">@Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, null)</li>
                     }
                     //check++;
                 }

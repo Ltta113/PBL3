@@ -139,6 +139,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
     <Compile Include="Controllers\DangNhapDangKyController.cs" />
+    <Compile Include="Controllers\DanhSachSanPhamsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -294,6 +295,8 @@
     <Content Include="Views\DangNhapDangKy\DangKy.cshtml" />
     <Content Include="Views\DangNhapDangKy\DangNhap.cshtml" />
     <Content Include="Views\DangNhapDangKy\DoiMatKhau.cshtml" />
+    <Content Include="Views\DanhSachSanPhams\Details.cshtml" />
+    <Content Include="Views\DanhSachSanPhams\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

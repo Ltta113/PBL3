@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<PBL3.Models.SanPham>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -18,9 +18,25 @@
     @foreach (String listDanhMuc in list)
     {
         <div class="category-box">
-            <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 100%; width: 100%;">
+            @{
+                var listAnh = @Model.Where(p => p.DanhMucSP.TenDanhMuc == listDanhMuc).FirstOrDefault();
+            }
+            @if (listAnh == null)
+            {
+                <a href="@Url.Action("Index", "DanhSachSanPhams",new { @DanhMucsp = listDanhMuc }, null)">
+                    <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 100%; width: 100%;">
+                </a>
+
+            }
+            else
+            {
+                <a href="@Url.Action("Index", "DanhSachSanPhams",new { @DanhMucsp = listDanhMuc }, null)">
+                    <img src="~/Anh/@listAnh.Anh" alt="" style="height: 100%; width: 100%;">
+                </a>
+            }
+
             <div class="category-box--label">
-                <h4>@listDanhMuc</h4>
+                <h4>@Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, null)</h4>
                 <i class="fa-solid fa-chevron-right" style="padding: 15px; transition: .5s;"></i>
             </div>
         </div>
