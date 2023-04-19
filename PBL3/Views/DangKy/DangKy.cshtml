@@ -1,0 +1,62 @@
+﻿@model PBL3.Models.Model_View.DangKy
+
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đăng ký tài khoản</h2>
+
+@using(Html.BeginForm("DangKy", "DangNhapDangKy", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div>Tên đăng nhập</div>
+            @Html.TextBoxFor(dk => dk.Username, new { placeholder = "Username", @class = "form-control" })
+            @Html.ValidationMessageFor(dk => dk.Username)
+        </div>
+        <div class="col-md-6">
+            <div>Mật khẩu</div>
+            @Html.TextBoxFor(dk => dk.Password, new { placeholder = "Password", @class = "form-control" })
+            @Html.ValidationMessageFor(dk => dk.Password)
+        </div>
+        <div class="col-md-6">
+            <div>Nhập lại mật khẩu</div>
+            @Html.TextBoxFor(dk => dk.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control" })
+            @Html.ValidationMessageFor(dk => dk.ConfirmPassword)
+        </div>
+        <div class="col-md-6">
+            <div>Tên người dùng</div>
+            @Html.TextBoxFor(dk => dk.Ten, new { placeholder = "Tên người dùng", @class = "form-control" })
+            @Html.ValidationMessageFor(dk => dk.Ten)
+        </div>
+        <div class="col-md-6">
+            <div>Ngày sinh</div>
+            @Html.TextBoxFor(dk => dk.NgaySinh, new { placeholder = "Ngày sinh", @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(dk => dk.NgaySinh)
+        </div>
+        <div class="col-md-6">
+            <div>Địa chỉ</div>
+            @Html.TextBoxFor(dk => dk.DiaChi, new { placeholder = "Địa chỉ", @class = "form-control" })
+            @Html.ValidationMessageFor(dk => dk.DiaChi)
+        </div>
+        <div class="col-md-6">
+            <div>Giới tính</div>
+            @Html.DropDownList("GioiTinh", new SelectList(new List<Object>
+           {
+               new {value = 0, text ="Nữ"},
+               new {value = 1, text ="Nam"},
+           },
+           "value",
+           "text"
+           ), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(dk => dk.GioiTinh)
+        </div>
+        <div class="col-md-6">
+            <div>Số điện thoại</div>
+            @Html.TextBoxFor(dk => dk.SDT, new { placeholder = "Số điện thoại", @class = "form-control" })
+            @Html.ValidationMessageFor(dk => dk.SDT)
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Đăng ký</button> 
+}

@@ -38,6 +38,12 @@ namespace PBL3.Areas.Admin.Controllers
                 danhMucSP.Status = 1;
                 db.DanhMucSPs.Add(danhMucSP);
                 db.SaveChanges();
+                List<String> list = new List<String>();
+                foreach (var lin in db.DanhMucSPs.Where(p => p.Status == 1).ToList())
+                {
+                    list.Add(lin.TenDanhMuc);
+                }
+                Session["ListDanhMuc"] = list;
                 return RedirectToAction("Index");
             }
 
@@ -70,6 +76,12 @@ namespace PBL3.Areas.Admin.Controllers
             {
                 db.Entry(danhMucSP).State = EntityState.Modified;
                 db.SaveChanges();
+                List<String> list = new List<String>();
+                foreach (var lin in db.DanhMucSPs.Where(p => p.Status == 1).ToList())
+                {
+                    list.Add(lin.TenDanhMuc);
+                }
+                Session["ListDanhMuc"] = list;
                 return RedirectToAction("Index");
             }
             return View(danhMucSP);
@@ -88,6 +100,12 @@ namespace PBL3.Areas.Admin.Controllers
             danhMucSP.Status = 0;
             db.Entry(danhMucSP).State = EntityState.Modified;
             db.SaveChanges();
+            List<String> list = new List<String>();
+            foreach (var lin in db.DanhMucSPs.Where(p => p.Status == 1).ToList())
+            {
+                list.Add(lin.TenDanhMuc);
+            }
+            Session["ListDanhMuc"] = list;
             return RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)

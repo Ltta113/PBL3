@@ -12,6 +12,7 @@
     <link href="~/Content/base.css" rel="stylesheet" />
     <link href="~/Content/main.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/fonts/Quicksand-VariableFont_wght.ttf" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
@@ -51,7 +52,7 @@
                     <ul class="category-menu">
 
                         <li class="category-menu__items">Tất cả sản phẩm</li>
-                        @{ 
+                        @{
                             List<String> list = (List<String>)System.Web.HttpContext.Current.Session["ListDanhMuc"];
                         }
                         @foreach (String listDanhMuc in list)
@@ -91,11 +92,11 @@
             </nav>
         </header>
     </div>
-    <div class="container body-content">
+    <div class="container body-content" style="margin-top : 100px;">
         @RenderBody()
-    </div>
-    <div class="main">
+
         <footer class="footer">
+
             <div class="footer-logo">
                 <div class="footer__logo">
                     <img src="~/Anh/img/logo2.png" alt="Logo">
@@ -121,13 +122,20 @@
             </div>
             <div class="footer__category">
                 <span class="category-header">Danh mục sản phẩm</span>
-                <ul class="category">
+                <ul class="category"> 
+                    @{ int check = 1;}
                     @foreach (String listDanhMuc in list)
                     {
+                        if (check <= 6)
+
+                        {
                         <li class="category-menu__items">@listDanhMuc</li>
+                        }
+                        check++;
                     }
                 </ul>
             </div>
+
         </footer>
     </div>
 </body>
