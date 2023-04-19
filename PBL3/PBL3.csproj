@@ -187,7 +187,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Anh\img\Banner.png" />
     <Content Include="Anh\img\discount %281%29.png" />
+    <Content Include="Anh\img\home_ad_1.jpg" />
+    <Content Include="Anh\img\home_ad_2.png" />
+    <Content Include="Anh\img\home_ad_3.jpg" />
     <Content Include="Anh\img\login_img.png" />
     <Content Include="Anh\img\Logo.png" />
     <Content Include="Anh\img\logo2.png" />

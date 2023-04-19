@@ -94,49 +94,57 @@
     </div>
     <div class="container body-content" style="margin-top : 100px;">
         @RenderBody()
-
-        <footer class="footer">
-
-            <div class="footer-logo">
-                <div class="footer__logo">
-                    <img src="~/Anh/img/logo2.png" alt="Logo">
-                </div>
-                <div class="footer__contact">
-                    <div class="footer__contact-icon" style="padding-right: 5px;">
-                        <i class="fa-solid fa-location-dot fa-lg"></i>
-                    </div>
-                    54 Nguyễn Lương Bằng, Hòa Khánh Bắc, <br> Liên Chiểu, TP. Đà Nẵng
-                </div>
-                <div class="footer__contact">
-                    <div class="footer__contact-icon">
-                        <i class="fa-solid fa-phone fa-lg"></i>
-                    </div>
-                    (+84) 236 3842 308
-                </div>
-                <div class="footer__contact">
-                    <div class="footer__contact-icon">
-                        <i class="fa-solid fa-envelope fa-lg"></i>
-                    </div>
-                    electronicsshop@gmail.com
-                </div>
-            </div>
-            <div class="footer__category">
-                <span class="category-header">Danh mục sản phẩm</span>
-                <ul class="category"> 
-                    @{ int check = 1;}
-                    @foreach (String listDanhMuc in list)
-                    {
-                        if (check <= 6)
-
-                        {
-                        <li class="category-menu__items">@listDanhMuc</li>
-                        }
-                        check++;
-                    }
-                </ul>
-            </div>
-
-        </footer>
     </div>
+
+    <footer class="footer">
+
+        <div class="footer-logo">
+            <div class="footer__logo">
+                <img src="~/Anh/img/logo2.png" alt="Logo">
+            </div>
+            <div class="footer__contact">
+                <div class="footer__contact-icon" style="padding-right: 5px;">
+                    <i class="fa-solid fa-location-dot fa-lg"></i>
+                </div>
+                54 Nguyễn Lương Bằng, Hòa Khánh Bắc, <br> Liên Chiểu, TP. Đà Nẵng
+            </div>
+            <div class="footer__contact">
+                <div class="footer__contact-icon">
+                    <i class="fa-solid fa-phone fa-lg"></i>
+                </div>
+                (+84) 236 3842 308
+            </div>
+            <div class="footer__contact">
+                <div class="footer__contact-icon">
+                    <i class="fa-solid fa-envelope fa-lg"></i>
+                </div>
+                electronicsshop@gmail.com
+            </div>
+        </div>
+        <div class="footer__category">
+            <span class="category-header">DANH MỤC SẢN PHẨM</span>
+            <ul class="category">
+                @{ int check = 1;}
+                @foreach (String listDanhMuc in list)
+                {
+                    if (check <= 6)
+
+                    {
+                        <li class="category-item">@listDanhMuc</li>
+                    }
+                    //check++;
+                }
+            </ul>
+        </div>
+        <div class="footer__menu">
+            <span class="category-header">VỀ CHÚNG TÔI</span>
+            <ul class="category">
+                <li class="category-item">Trang chủ</li>
+                <li class="category-item">Giới thiệu</li>
+                <li class="category-item">Khuyến mãi</li>
+                <li class="category-item">Liên hệ</li>
+            </ul>
+        </div>
+    </footer>   
 </body>
 </html>

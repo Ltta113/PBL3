@@ -1,31 +1,42 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div id="slider">
+    <figure>
+        <img src="~/Anh/img/home_ad_1.jpg">
+        <img src="~/Anh/img/home_ad_2.png">
+        <img src="~/Anh/img/home_ad_3.jpg">
+    </figure>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+<h1>DANH MỤC SẢN PHẨM</h1>
+<div class="container__category">
+    @{
+        List<String> list = (List<String>)System.Web.HttpContext.Current.Session["ListDanhMuc"];
+    }
+    @foreach (String listDanhMuc in list)
+    {
+        <div class="category-box">
+            <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 100%; width: 100%;">
+            <div class="category-box--label">
+                <h4>@listDanhMuc</h4>
+                <i class="fa-solid fa-chevron-right" style="padding: 15px; transition: .5s;"></i>
+            </div>
+        </div>
+    }
+</div>
+<div class="container__about">
+    <img src="~/Anh/img/Banner.png" alt="" style="cursor: default;width: calc(100% - 240px); margin: 0 120px; height: 400px; ">
+    <div class="container__about-label">
+        <h2 style="color: #76128a;">CÔNG TY CỔ PHẦN ELECTRONICS SHOP</h2>
+        <h4 style="color: #2d7cd6; font-style: italic; line-height: 2rem;">
+            Chuyên cung cấp các thiết bị điện gia dụng với nhiều mẫu mã
+            <br>
+            khác nhau, chất lượng cao với giá cả hợp lí. Trải qua hơn 10 năm
+            <br>
+            xây dựng và phát triển,....
+        </h4>
+        <div class="btn btn--more">Tìm hiểu thêm</div>
     </div>
 </div>
