@@ -1,0 +1,64 @@
+﻿@model PBL3.Models.Model_View.GioHangs
+
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>XemGioHang</h2>
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Giá bán</th>
+                <th>Trạng thái</th>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                double total = 0.0;
+                if (item.NoiDungKhuyenMai < 100)
+                {
+                    total = Convert.ToDouble((item.SanPhamGioHang.GiaBan - (item.NoiDungKhuyenMai/100) * item.SanPhamGioHang.GiaBan) * item.SoLuong);
+                }
+                else
+                {
+                    total = Convert.ToDouble((item.SanPhamGioHang.GiaBan - item.NoiDungKhuyenMai) * item.SoLuong);
+                }
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.SanPhamGioHang.TenSP)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("ThayDoiSL", "GioHangs"))
+                        {
+                        <input type="hidden" value="@item.SanPhamGioHang.ID_SP" name="idSanPham" />
+                        <input type="number" value="@item.SoLuong" name="SoLuongSanPham" min="0" max="@item.SanPhamGioHang.SoLuong" />
+                        <button type="submit" class="btn btn-success" > Thay đổi số lượng </button>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Status)
+                    </td>
+                    <td>
+                        <a href="~/GioHangs/XoaSanPham/@item.SanPhamGioHang.ID_SP">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Tổng tiền = @Model.TongTien()</td>
+            </tr>
+        </tfoot>
+    </table>
+}
+

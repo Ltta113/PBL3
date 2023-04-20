@@ -85,6 +85,25 @@ namespace PBL3.Controllers
                     Session["Password"] = acc.Password;
                     Session["Quyen"] = acc.Quyen;
                     Session["ID_Account"] = acc.ID_Account.ToString();
+                    GioHangs giohang = Session["GioHang"] as GioHangs;
+                    if (giohang == null || Session["GioHang"] == null)
+                    {
+                        giohang = new GioHangs();
+                        Session["GioHang"] = giohang;
+
+                    }
+                    var sanphams = db.GioHangs.Where(x => x.ID_GioHang == acc.ID_Account);
+                    if (sanphams != null)
+                    {
+                        foreach (var item in sanphams)
+                        {
+                            var sp = db.SanPhams.FirstOrDefault(x => x.ID_SP == item.ID_SP);
+                            int soluong = Convert.ToInt32(item.SoLuong);
+                            giohang.ThemVaoGio(sp,soluong);
+
+                        }
+                        Session["GioHang"] = giohang;
+                    }
                     Response.Redirect("~/Home/Index");
                 }
                 else ViewBag.Error = "<p class='text-danger'> " + "Mật khẩu không hợp lệ" + "</p>";
@@ -131,6 +150,7 @@ namespace PBL3.Controllers
             Session["Password"] = "";
             Session["Quyen"] = "";
             Session["ID_Account"] = "";
+            Session["GioHang"] = null;
             Response.Redirect("~/Home/Index");
             return null;
         }

@@ -1,4 +1,5 @@
 ﻿using PBL3.Models;
+using PBL3.Models.Model_View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,8 @@ namespace PBL3
             }    
 
             Session["ListDanhMuc"] = list;
-
+            
+            
         }
     }
 }

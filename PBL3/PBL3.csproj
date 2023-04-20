@@ -140,6 +140,7 @@
     <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
     <Compile Include="Controllers\DangNhapDangKyController.cs" />
     <Compile Include="Controllers\DanhSachSanPhamsController.cs" />
+    <Compile Include="Controllers\GioHangsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -164,6 +165,7 @@
     </Compile>
     <Compile Include="Models\Model_View\DangKy.cs" />
     <Compile Include="Models\Model_View\DoiMatKhau.cs" />
+    <Compile Include="Models\Model_View\SPGioHang.cs" />
     <Compile Include="Models\PBL3.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -297,6 +299,7 @@
     <Content Include="Views\DangNhapDangKy\DoiMatKhau.cshtml" />
     <Content Include="Views\DanhSachSanPhams\Details.cshtml" />
     <Content Include="Views\DanhSachSanPhams\Index.cshtml" />
+    <Content Include="Views\GioHangs\XemGioHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
