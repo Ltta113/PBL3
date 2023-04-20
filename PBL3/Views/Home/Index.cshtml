@@ -36,7 +36,7 @@
             }
 
             <div class="category-box--label">
-                <h4>@Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, null)</h4>
+                @Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, new { @class = "h4" })
                 <i class="fa-solid fa-chevron-right" style="padding: 15px; transition: .5s;"></i>
             </div>
         </div>

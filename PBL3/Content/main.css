@@ -3,7 +3,10 @@
     background-color: white;
     
 }
-
+a{
+    text-decoration: none;
+    color: black;
+}
 .header-search{
     display: flex;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -134,20 +137,26 @@ a{
     display: block;
     transition-duration: .5s;
 }
-.category-menu__items{
+.category-menu__items {
     background-color: #EFF9FF;
     margin-left: 0;
     width: 100%;
     color: black;
     padding: 5px 10px;
     opacity: 1;
+    width: 100%;
+    white-space: nowrap;
+    border: 1px solid #359DD9
 }
-.category-menu__items:hover{
+.category-menu__items:hover {
     background-color: rgb(53, 157, 217);
     cursor: pointer;
+}
+.category-menu__items:hover a {
     color: white;
 }
-.header__navbar-list{
+
+.header__navbar-list {
     list-style: none;
     margin-left: 120px;
 }
@@ -165,8 +174,52 @@ a{
     color: #F0BB59;
     margin-right: 5px;
 }
-
-
+.header__user {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+.profile, .cart, .log-out {
+    color: #F0BB59;
+    padding: 15px 0 15px 30px;
+    position: relative;
+    height: 100%
+}
+.name {
+    color: #359DD9;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 15px 0 15px 30px;
+}
+.profile:hover .profile--menu{
+    display:block
+}
+.profile--menu {
+    list-style: none;
+    position: absolute;
+    left: -5px;
+    padding-left: 0;
+    width: auto;
+    top: 100%;
+    margin-top: 0;
+    opacity: 1;
+    white-space: nowrap;
+    z-index: 3;
+    background-color: #EFF9FF;
+    display: none;
+}
+.profile--menu-item {
+    border: 1px solid #359DD9;
+    margin-left: 0;
+    width: 100%;
+    color: black;
+    padding: 5px 10px;
+}
+.profile--menu-item:hover{
+    background-color: rgba(53, 157, 217, 1);
+    cursor: pointer;
+    color: white;
+}
 #slider {
     overflow: hidden;
 }
@@ -268,16 +321,18 @@ h2 {
     font-style: italic;
 }
 
-h4 {
+.h4 {
     margin: 0;
     padding: 7px;
     font-size: 20px;
     flex: 1;
     cursor: default;
+    color: white;
+    font-weight: bold
 }
 
 .container__about {
-    height: 650px;
+    height: 600px;
     position: relative;
 }
 
@@ -338,11 +393,10 @@ h4 {
 }
 .category-item{
     padding-right: 80px;
-    cursor: pointer;
     transition: .2s ease;
     line-height: 1.8rem;
 }
-.category-item:hover{
+.category-item a:hover{
     color: #359DD9;
 }
 .footer__menu {

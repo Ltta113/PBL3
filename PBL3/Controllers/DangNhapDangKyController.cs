@@ -77,6 +77,7 @@ namespace PBL3.Controllers
         {
 
             Account acc = db.Accounts.FirstOrDefault(x => x.Username == username && x.Quyen == 1);
+            User user = db.Users.FirstOrDefault(x => x.ID_User== acc.ID_Account);
             if (acc != null)
             {
                 if (acc.Password.Replace(" ", "") == password)
@@ -84,6 +85,7 @@ namespace PBL3.Controllers
                     Session["UserName"] = acc.Username;
                     Session["Password"] = acc.Password;
                     Session["Quyen"] = acc.Quyen;
+                    Session["Name"] = user.Ten;
                     Session["ID_Account"] = acc.ID_Account.ToString();
                     GioHangs giohang = Session["GioHang"] as GioHangs;
                     if (giohang == null || Session["GioHang"] == null)
