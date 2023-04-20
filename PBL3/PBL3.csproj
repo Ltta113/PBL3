@@ -300,6 +300,8 @@
     <Content Include="Views\DanhSachSanPhams\Details.cshtml" />
     <Content Include="Views\DanhSachSanPhams\Index.cshtml" />
     <Content Include="Views\GioHangs\XemGioHang.cshtml" />
+    <Content Include="Views\DangNhapDangKy\ThongTinCaNhan.cshtml" />
+    <Content Include="Views\DangNhapDangKy\ThayDoiThongTin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

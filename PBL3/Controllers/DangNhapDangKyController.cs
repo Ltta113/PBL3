@@ -18,7 +18,7 @@ namespace PBL3.Controllers
         {
             if (Session["UserName"].Equals("") == false)
             {
-                Response.Redirect("~/Home/Index");
+                Response.Redirect("~/Trang-chu");
             }
             return View();
         }
@@ -28,7 +28,7 @@ namespace PBL3.Controllers
             if (ModelState.IsValid)
             {
 
-                var check = db.Accounts.Where(p => p.Username == dangky.Username.Replace(" ","")).FirstOrDefault();
+                var check = db.Accounts.Where(p => p.Username == dangky.Username.Replace(" ", "")).FirstOrDefault();
                 if (check == null)
                 {
                     Account account = new Account();
@@ -47,7 +47,7 @@ namespace PBL3.Controllers
                     db.Users.Add(user);
                     db.SaveChanges();
 
-                    Response.Redirect("~/DangNhapDangKy/DangNhap");
+                    Response.Redirect("~/dang-nhap");
                 }
                 else
                 {
@@ -66,9 +66,9 @@ namespace PBL3.Controllers
         }
         public ActionResult DangNhap()
         {
-            if(Session["UserName"].Equals("") == false)
+            if (Session["UserName"].Equals("") == false)
             {
-                Response.Redirect("~/Home/Index");
+                Response.Redirect("~/Trang-chu");
             }
             return View();
         }
@@ -77,9 +77,10 @@ namespace PBL3.Controllers
         {
 
             Account acc = db.Accounts.FirstOrDefault(x => x.Username == username && x.Quyen == 1);
-            User user = db.Users.FirstOrDefault(x => x.ID_User== acc.ID_Account);
+
             if (acc != null)
             {
+                User user = db.Users.FirstOrDefault(x => x.ID_User == acc.ID_Account);
                 if (acc.Password.Replace(" ", "") == password)
                 {
                     Session["UserName"] = acc.Username;
@@ -92,7 +93,7 @@ namespace PBL3.Controllers
                     {
                         giohang = new GioHangs();
                         Session["GioHang"] = giohang;
-
+                        Session["SoLuong"] = 0;
                     }
                     var sanphams = db.GioHangs.Where(x => x.ID_GioHang == acc.ID_Account);
                     if (sanphams != null)
@@ -101,12 +102,13 @@ namespace PBL3.Controllers
                         {
                             var sp = db.SanPhams.FirstOrDefault(x => x.ID_SP == item.ID_SP);
                             int soluong = Convert.ToInt32(item.SoLuong);
-                            giohang.ThemVaoGio(sp,soluong);
+                            giohang.ThemVaoGio(sp, soluong);
 
                         }
                         Session["GioHang"] = giohang;
+                        Session["SoLuong"] = giohang.Dem();
                     }
-                    Response.Redirect("~/Home/Index");
+                    Response.Redirect("~/Trang-chu");
                 }
                 else ViewBag.Error = "<p class='text-danger'> " + "Mật khẩu không hợp lệ" + "</p>";
             }
@@ -120,26 +122,26 @@ namespace PBL3.Controllers
         {
             if (Session["UserName"].Equals("") == true)
             {
-                Response.Redirect("~/Home/Index");
+                Response.Redirect("~/Trang-chu");
             }
             return View();
         }
         [HttpPost]
         public ActionResult DoiMatKhau(DoiMatKhau dmk)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                string mkc = Session["Password"].ToString().Replace(" ","");
-                if(dmk.OldPassword.Equals(mkc) == true)
+                string mkc = Session["Password"].ToString().Replace(" ", "");
+                if (dmk.OldPassword.Equals(mkc) == true)
                 {
                     string name = Session["Username"].ToString();
                     Session["Password"] = dmk.Password;
-                    Account account = db.Accounts.Where(p =>p.Username == name).FirstOrDefault();
+                    Account account = db.Accounts.Where(p => p.Username == name).FirstOrDefault();
                     account.Password = dmk.Password;
                     db.Entry(account).State = EntityState.Modified;
                     db.SaveChanges();
-                    Response.Redirect("~/Home/Index");
-                }   
+                    Response.Redirect("~/Trang-chu");
+                }
                 else ViewBag.Error = "<p class='text-danger'> " + "Mật khẩu cũ không không đúng" + "</p>";
 
             }
@@ -153,9 +155,50 @@ namespace PBL3.Controllers
             Session["Quyen"] = "";
             Session["ID_Account"] = "";
             Session["GioHang"] = null;
-            Response.Redirect("~/Home/Index");
+            Response.Redirect("~/Trang-chu");
             return null;
         }
+        public ActionResult ThongTinCaNhan()
+        {
+            if (Session["UserName"].Equals("") == true)
+            {
+                Response.Redirect("~/Trang-chu");
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["ID_Account"]);
+                var model = db.Users.Where(x => x.ID_User == id).FirstOrDefault();
+                return View(model);
+            }
+            return View();
+        }
+        public ActionResult ThayDoiThongTin()
+        {
+            if (Session["UserName"].Equals("") == true)
+            {
+                Response.Redirect("~/Trang-chu");
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["ID_Account"]);
+                var model = db.Users.Where(x => x.ID_User == id).FirstOrDefault();
+                return View(model);
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ThayDoiThongTin([Bind(Include = "ID_User,Ten,NgaySinh,DiaChi,GioiTinh,SDT")] User user)
+        {
 
+            if (ModelState.IsValid)
+            {
+                Session["Name"] = user.Ten;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                Response.Redirect("~/Trang-chu");
+            }
+            ViewBag.ID_User = new SelectList(db.Accounts, "ID_Account", "Username", user.ID_User);
+            return View(user);
+        }
     }
 }

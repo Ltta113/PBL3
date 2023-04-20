@@ -2,22 +2,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<script src="~/Scripts/jquery-3.6.4.js"></script>
-	<script src="~/Scripts/jquery.validate.js"></script>
-	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-	<link href="~/Content/base.css" rel="stylesheet" />
-	<link href="~/Content/main.css" rel="stylesheet" />
-	<link rel="stylesheet" href="~/fonts/Quicksand-VariableFont_wght.ttf" />
-	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="~/Scripts/jquery-3.6.4.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <link href="~/Content/base.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/fonts/Quicksand-VariableFont_wght.ttf" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <title>Document</title>
 </head>
 <body>
-	<div class="main">
-		<header class="header">
+    <div class="main">
+        <header class="header">
             <div class="header-search">
                 <div class="header__logo">
                     <img src="~/Anh/img/Logo.png" alt="Logo">
@@ -42,127 +42,128 @@
                 {
 
                     <div class="header__user">
+                        <div class="cart" title="Giỏ hàng">
+                            <a href="~/Gio-hang">
+                                <i class="fa-solid fa-cart-shopping fa-xl">  </i>
+                                <div> @System.Web.HttpContext.Current.Session["SoLuong"] </div>
+                            </a>
+                        </div>
                         <div class=" profile">
                             <i class="fa-solid fa-user fa-xl"></i>
                             <ul class="profile--menu">
-                                <li class="profile--menu-item">Thông tin cá nhân</li>
-                                <li class="profile--menu-item">Đổi mật khẩu</li>
+                                <li class="profile--menu-item"><a href="~/Thong-tin-ca-nhan">Thông tin cá nhân</a></li>
+                                <li class="profile--menu-item"><a href="~/doi-mat-khau">Đổi mật khẩu</a></li>
+                                <li class="profile--menu-item"><a href="~/dang-xuat">Đăng xuất</a></li>
                             </ul>
                         </div>
-                        <div class="cart" title="Giỏ hàng">
-                            <i class="fa-solid fa-cart-shopping fa-xl"></i>
-                        </div>
-                        <div class="name">@System.Web.HttpContext.Current.Session["Name"]</div>
-                        <div class="log-out" title="Đăng xuất">
-                            <i class="fa-solid fa-right-from-bracket fa-xl"></i>
-                        </div>
+                        <div class="name">@System.Web.HttpContext.Current.Session["Name"] </div>
+
                     </div>
                 }
-
             </div>
-                    
-			<nav class="header__navbar">
-				<div class="btn--category">
-					Danh mục sản phẩm
-					<div class="header__navbar--category-down">
-						<i class="  fa-solid fa-angle-down"></i>
-					</div>
-					<ul class="category-menu">
 
-						<li class="category-menu__items">@Html.ActionLink("Tất cả sản phẩm", "Index", "DanhSachSanPhams", new { @DanhMucsp = "" }, null)</li>
-						@{
-							List<String> list = (List<String>)System.Web.HttpContext.Current.Session["ListDanhMuc"];
-						}
-						@foreach (String listDanhMuc in list)
-						{
-							<li class="category-menu__items">@Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, null)</li>
-						}
+            <nav class="header__navbar">
+                <div class="btn--category">
+                    Danh mục sản phẩm
+                    <div class="header__navbar--category-down">
+                        <i class="  fa-solid fa-angle-down"></i>
+                    </div>
+                    <ul class="category-menu">
 
-					</ul>
-				</div>
+                        <li class="category-menu__items">@Html.ActionLink("Tất cả sản phẩm", "Index", "DanhSachSanPhams", new { @DanhMucsp = "" }, null)</li>
+                        @{
+                            List<String> list = (List<String>)System.Web.HttpContext.Current.Session["ListDanhMuc"];
+                        }
+                        @foreach (String listDanhMuc in list)
+                        {
+                            <li class="category-menu__items">@Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, null)</li>
+                        }
 
-				<ul class="header__navbar-list">
-					<li class="header__navbar-item">
-						<div class="header__navbar-item--icon">
-							<i class="fa-solid fa-house fa-xl"></i>
-						</div>
-						Trang chủ
-					</li>
-					<li class="header__navbar-item">
-						<div class="header__navbar-item--icon">
-							<i class="fa-solid fa-circle-info fa-xl"></i>
-						</div>
-						Giới thiệu
-					</li>
-					<li class="header__navbar-item">
-						<div class="header__navbar-item--icon">
-							<i class="fa-solid fa-gifts fa-xl"></i>
-						</div>
-						Khuyến mãi
-					</li>
-					<li class="header__navbar-item">
-						<div class="header__navbar-item--icon">
-							<i class="fa-solid fa-comments fa-xl"></i>
-						</div>
-						Liên hệ
-					</li>
-				</ul>
-			</nav>
-		</header>
-	</div>
-	<div class="container body-content" style="margin-top : 100px;">
-		@RenderBody()
-	</div>
+                    </ul>
+                </div>
 
-	<footer class="footer">
+                <ul class="header__navbar-list">
+                    <li class="header__navbar-item">
+                        <div class="header__navbar-item--icon">
+                            <i class="fa-solid fa-house fa-xl"></i>
+                        </div>
+                        Trang chủ
+                    </li>
+                    <li class="header__navbar-item">
+                        <div class="header__navbar-item--icon">
+                            <i class="fa-solid fa-circle-info fa-xl"></i>
+                        </div>
+                        Giới thiệu
+                    </li>
+                    <li class="header__navbar-item">
+                        <div class="header__navbar-item--icon">
+                            <i class="fa-solid fa-gifts fa-xl"></i>
+                        </div>
+                        Khuyến mãi
+                    </li>
+                    <li class="header__navbar-item">
+                        <div class="header__navbar-item--icon">
+                            <i class="fa-solid fa-comments fa-xl"></i>
+                        </div>
+                        Liên hệ
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="container body-content" style="margin-top : 100px;">
+        @RenderBody()
+    </div>
 
-		<div class="footer-logo">
-			<div class="footer__logo">
-				<img src="~/Anh/img/logo2.png" alt="Logo">
-			</div>
-			<div class="footer__contact">
-				<div class="footer__contact-icon" style="padding-right: 5px;">
-					<i class="fa-solid fa-location-dot fa-lg"></i>
-				</div>
-				54 Nguyễn Lương Bằng, Hòa Khánh Bắc, <br> Liên Chiểu, TP. Đà Nẵng
-			</div>
-			<div class="footer__contact">
-				<div class="footer__contact-icon">
-					<i class="fa-solid fa-phone fa-lg"></i>
-				</div>
-				(+84) 236 3842 308
-			</div>
-			<div class="footer__contact">
-				<div class="footer__contact-icon">
-					<i class="fa-solid fa-envelope fa-lg"></i>
-				</div>
-				electronicsshop@gmail.com
-			</div>
-		</div>
-		<div class="footer__category">
-			<span class="category-header">DANH MỤC SẢN PHẨM</span>
-			<ul class="category">
-				@{ int check = 1;}
-				@foreach (String listDanhMuc in list)
-				{
-					if (check <= 6)
+    <footer class="footer">
 
-					{
-						<li class = "category-item">@Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, null )</li>
-					}
-					//check++;
-				}
-			</ul>
-		</div>
-		<div class="footer__menu">
-			<span class="category-header">VỀ CHÚNG TÔI</span>
-			<ul class="category">
-				<li class="category-item">Trang chủ</li>
-				<li class="category-item">Giới thiệu</li>
-				<li class="category-item">Khuyến mãi</li>
-				<li class="category-item">Liên hệ</li>
-			</ul>
-		</div>
-	</footer>   
+        <div class="footer-logo">
+            <div class="footer__logo">
+                <img src="~/Anh/img/logo2.png" alt="Logo">
+            </div>
+            <div class="footer__contact">
+                <div class="footer__contact-icon" style="padding-right: 5px;">
+                    <i class="fa-solid fa-location-dot fa-lg"></i>
+                </div>
+                54 Nguyễn Lương Bằng, Hòa Khánh Bắc, <br> Liên Chiểu, TP. Đà Nẵng
+            </div>
+            <div class="footer__contact">
+                <div class="footer__contact-icon">
+                    <i class="fa-solid fa-phone fa-lg"></i>
+                </div>
+                (+84) 236 3842 308
+            </div>
+            <div class="footer__contact">
+                <div class="footer__contact-icon">
+                    <i class="fa-solid fa-envelope fa-lg"></i>
+                </div>
+                electronicsshop@gmail.com
+            </div>
+        </div>
+        <div class="footer__category">
+            <span class="category-header">DANH MỤC SẢN PHẨM</span>
+            <ul class="category">
+                @{ int check = 1;}
+                @foreach (String listDanhMuc in list)
+                {
+                    if (check <= 6)
+
+                    {
+                        <li class="category-item">@Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, null)</li>
+                    }
+                    //check++;
+                }
+            </ul>
+        </div>
+        <div class="footer__menu">
+            <span class="category-header">VỀ CHÚNG TÔI</span>
+            <ul class="category">
+                <li class="category-item">Trang chủ</li>
+                <li class="category-item">Giới thiệu</li>
+                <li class="category-item">Khuyến mãi</li>
+                <li class="category-item">Liên hệ</li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>

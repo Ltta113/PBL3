@@ -70,6 +70,11 @@ namespace PBL3.Models.Model_View
         {
             items.RemoveAll(x => x.SanPhamGioHang.ID_SP == id);
         }
+        public int Dem()
+        {
+            var total = items.Sum(x => x.SoLuong);
+            return (int)total;
+        }
 
     }
 }

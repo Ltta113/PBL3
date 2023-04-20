@@ -20,8 +20,9 @@ namespace PBL3.Controllers
             {
                 giohang = new GioHangs();
                 Session["GioHang"] = giohang;
-
+                Session["SoLuong"] = 0;
             }
+            else Session["SoLuong"] = giohang.Dem();
             return giohang;
 
 
@@ -61,7 +62,8 @@ namespace PBL3.Controllers
                         db.Entry(newgh).State = EntityState.Modified;
                         db.SaveChanges();
                     }  
-                }   
+                }
+                Session["SoLuong"] = LayGioHang().Dem();
 
             }
             return RedirectToAction("Index", "DanhSachSanPhams"); 
@@ -72,6 +74,7 @@ namespace PBL3.Controllers
             if (Session["GioHang"] == null)
                 return RedirectToAction("Index", "DanhSachSanPhams");
             GioHangs giohang = Session["GioHang"] as GioHangs;
+            Session["SoLuong"] = giohang.Dem();
             return View(giohang);
         }
         public ActionResult ThayDoiSL(FormCollection form)
@@ -80,6 +83,7 @@ namespace PBL3.Controllers
             int id = int.Parse(form["idSanPham"]);
             int soluong = int.Parse(form["SoLuongSanPham"]);
             giohang.ThayDoiSoLuong(id, soluong);
+            Session["SoLuong"] = giohang.Dem();
             if (Session["ID_Account"].Equals("") == false)
             {
                 int ma = Convert.ToInt32(Session["ID_Account"]);
@@ -94,6 +98,7 @@ namespace PBL3.Controllers
         {
             GioHangs giohang = Session["GioHang"] as GioHangs;
             giohang.Xoa(id);
+            Session["SoLuong"] = giohang.Dem();
             if (Session["ID_Account"].Equals("") == false)
             {
                 int ma = Convert.ToInt32(Session["ID_Account"]);

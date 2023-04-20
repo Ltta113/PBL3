@@ -32,7 +32,6 @@ namespace PBL3
             {
                 list.Add(lin.TenDanhMuc);
             }    
-
             Session["ListDanhMuc"] = list;
             
             

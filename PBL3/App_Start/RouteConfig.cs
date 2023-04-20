@@ -35,6 +35,26 @@ namespace PBL3
                 defaults: new { controller = "DangNhapDangKy", action = "DangXuat", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "Gio-hang",
+                url: "Gio-hang",
+                defaults: new { controller = "GioHangs", action = "XemGioHang", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Thong-tin-ca-nhan",
+                url: "Thong-tin-ca-nhan",
+                defaults: new { controller = "DangNhapDangKy", action = "ThongTinCaNhan", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Trang-chu",
+                url: "Trang-chu",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Thay-doi-thong-tin",
+                url: "Thay-doi-thong-tin",
+                defaults: new { controller = "DangNhapDangKy", action = "ThayDoiThongTin", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
