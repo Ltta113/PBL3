@@ -15,17 +15,33 @@ namespace PBL3.Controllers
         private CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: DanhSachSanPhams
-        public ActionResult Index(string DanhMucsp)
+        public ActionResult Index(string DanhMucsp, string Searchtxt)
         {
             if (DanhMucsp == null)
             {
-                var sanPhams = db.SanPhams.Include(s => s.DanhMucSP).Include(s => s.KhuyenMai);
-                return View(sanPhams.ToList());
+                if (Searchtxt == null)
+                {
+                    var sanPhams = db.SanPhams.Include(s => s.DanhMucSP).Include(s => s.KhuyenMai);
+                    return View(sanPhams.ToList());
+                }
+                else
+                {
+                    var sanPhams = db.SanPhams.Include(s => s.DanhMucSP).Include(s => s.KhuyenMai).Where(s => s.TenSP.Contains(Searchtxt));
+                    return View(sanPhams.ToList());
+                }
             }
             else
             {
-                var sanPhams = db.SanPhams.Include(s => s.DanhMucSP).Include(s => s.KhuyenMai).Where(p => p.DanhMucSP.TenDanhMuc == DanhMucsp);
-                return View(sanPhams.ToList());
+                if (Searchtxt == null)
+                {
+                    var sanPhams = db.SanPhams.Include(s => s.DanhMucSP).Include(s => s.KhuyenMai).Where(s => s.DanhMucSP.TenDanhMuc == DanhMucsp);
+                    return View(sanPhams.ToList());
+                }
+                else
+                {
+                    var sanPhams = db.SanPhams.Include(s => s.DanhMucSP).Include(s => s.KhuyenMai).Where(s => s.TenSP.Contains(Searchtxt) && s.DanhMucSP.TenDanhMuc == DanhMucsp);
+                    return View(sanPhams.ToList());
+                }
             }
         }
 

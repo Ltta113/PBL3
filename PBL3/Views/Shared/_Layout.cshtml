@@ -22,14 +22,23 @@
                 <div class="header__logo">
                     <img src="~/Anh/img/Logo.png" alt="Logo">
                 </div>
+                @*<div class="header__search">
 
-                <div class="header__search">
-                    <input type="text" class="header__search-input" placeholder="Tìm kiếm sản phẩm">
-                    <div class="header__search--button">
-                        <span class="header__search--button-label">Tìm kiếm</span>
-                        <i class="header__search--button-icon fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                    </div>
-                </div>
+                        <div class="header__search--button">
+                            <span class="header__search--button-label">Tìm kiếm</span>
+                            <i class="header__search--button-icon fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+                        </div>
+                    </div>*@
+                @using (Html.BeginForm("Index", "DanhSachSanPhams", FormMethod.Get))
+                {
+                    <div class="header__search">
+                        <input type="text" class="header__search-input" placeholder="Tìm kiếm sản phẩm " name="Searchtxt">
+                        <button type="submit" class="header__search--button">
+                            <span class="header__search--button-label">Tìm kiếm</span>
+                            <i class="header__search--button-icon fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+                        </button>
+
+                    </div>}
 
                 @if (System.Web.HttpContext.Current.Session["UserName"].Equals(""))
                 {
@@ -83,12 +92,16 @@
                 </div>
 
                 <ul class="header__navbar-list">
+
                     <li class="header__navbar-item">
-                        <div class="header__navbar-item--icon">
-                            <i class="fa-solid fa-house fa-xl"></i>
-                        </div>
-                        Trang chủ
+                        <a href="~/Trang-chu">
+                            <div class="header__navbar-item--icon">
+                                <i class="fa-solid fa-house fa-xl"></i>
+                            </div>
+                            Trang chủ
+                        </a>
                     </li>
+
                     <li class="header__navbar-item">
                         <div class="header__navbar-item--icon">
                             <i class="fa-solid fa-circle-info fa-xl"></i>
