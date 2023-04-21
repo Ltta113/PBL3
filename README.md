@@ -1,7 +1,8 @@
 # PBL3
-- Ngày 4/11/2023 : Admin ( Đăng nhập, đăng xuất, thao tác trên Account, Danh muc sản phẩm, Khuyến mãi)
+- Ngày 4/11/2023 : Admin ( Đăng nhập, đăng xuất, thao tác trên Account, Danh mục sản phẩm, Khuyến mãi)
 - Ngày 4/12/2023 : Admin ( Sản phẩm)
 - Ngày 4/13/2003 : Chức năng Search
 - Ngày 4/14/2023 : Đăng ký tài khoản, đăng nhập, đăng xuất, đổi mật khẩu customer
 - Ngày 19/4/2003 : Trang chủ 
 - Ngày 20/4/2023 : Giỏ hàng, lấy số sản phẩm từ giỏ hàng, xem, sửa thông tin cá nhân
+- Ngày 21/4/2023 : Chọn sản phẩm trong giỏ hàng
