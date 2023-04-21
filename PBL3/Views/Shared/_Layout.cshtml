@@ -146,12 +146,13 @@
                 @{ int check = 1;}
                 @foreach (String listDanhMuc in list)
                 {
-                    if (check <= 6)
+                    if (check <= 8)
 
                     {
                         <li class="category-item">@Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, null)</li>
+                        check++;
                     }
-                    //check++;
+
                 }
             </ul>
         </div>

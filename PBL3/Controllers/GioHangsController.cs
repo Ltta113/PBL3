@@ -33,13 +33,13 @@ namespace PBL3.Controllers
             var sanphams = db.SanPhams.FirstOrDefault(x => x.ID_SP == id);
             if (sanphams != null)
             {
-                int soluong = 0;               
+                int soluong = 0;
                 if (sanphams.SoLuong != 0)
                 {
                     LayGioHang().ThemVaoGio(sanphams);
                     soluong = 1;
                 }
-                else LayGioHang().ThemVaoGio(sanphams,soluong);
+                else LayGioHang().ThemVaoGio(sanphams, soluong);
                 if (Session["ID_Account"].Equals("") == false)
                 {
                     int ma = Convert.ToInt32(Session["ID_Account"]);
@@ -61,12 +61,12 @@ namespace PBL3.Controllers
                         newgh.SoLuong += soluong;
                         db.Entry(newgh).State = EntityState.Modified;
                         db.SaveChanges();
-                    }  
+                    }
                 }
                 Session["SoLuong"] = LayGioHang().Dem();
 
             }
-            return RedirectToAction("Index", "DanhSachSanPhams"); 
+            return RedirectToAction("Index", "DanhSachSanPhams");
         }
         // Xem giỏ hàng
         public ActionResult XemGioHang()
@@ -77,20 +77,41 @@ namespace PBL3.Controllers
             Session["SoLuong"] = giohang.Dem();
             return View(giohang);
         }
-        public ActionResult ThayDoiSL(FormCollection form)
+        [HttpPost]
+        public ActionResult ThayDoi(FormCollection form)
         {
             GioHangs giohang = Session["GioHang"] as GioHangs;
-            int id = int.Parse(form["idSanPham"]);
-            int soluong = int.Parse(form["SoLuongSanPham"]);
-            giohang.ThayDoiSoLuong(id, soluong);
-            Session["SoLuong"] = giohang.Dem();
-            if (Session["ID_Account"].Equals("") == false)
+            var listid = form["idSanPham"];
+            var id = listid.Split(',');
+            var listsoluong = form["SoLuongSanPham"];
+            var soluong = listsoluong.Split(',');
+            var liststatus = form["status"];
+            var status = liststatus.Split(',');
+            for (int x = 0; x < id.Length; x++)
             {
-                int ma = Convert.ToInt32(Session["ID_Account"]);
-                GioHang newgh = db.GioHangs.FirstOrDefault(x => x.ID_GioHang == ma && x.ID_SP == id);
-                newgh.SoLuong = soluong;
-                db.Entry(newgh).State = EntityState.Modified;
-                db.SaveChanges();
+                giohang.ThayDoiSoLuong(int.Parse(id[x]), int.Parse(soluong[x]), int.Parse(status[x]));
+                Session["SoLuong"] = giohang.Dem();
+                if (Session["ID_Account"].Equals("") == false)
+                {
+                    int ma = Convert.ToInt32(Session["ID_Account"]);
+                    int masp = int.Parse(id[x]);
+                    GioHang newgh = db.GioHangs.FirstOrDefault(y => y.ID_GioHang == ma && y.ID_SP == masp);
+                    if (newgh != null)
+                    {
+                        newgh.SoLuong = int.Parse(soluong[x]);
+                        db.Entry(newgh).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        newgh = new GioHang();
+                        newgh.ID_GioHang = ma;
+                        newgh.ID_SP = masp;
+                        newgh.SoLuong = int.Parse(soluong[x]);
+                        db.GioHangs.Add(newgh);
+                        db.SaveChanges();
+                    }
+                }
             }
             return RedirectToAction("XemGioHang", "GioHangs");
         }
@@ -109,4 +130,5 @@ namespace PBL3.Controllers
             return RedirectToAction("XemGioHang", "GioHangs");
         }
     }
+
 }

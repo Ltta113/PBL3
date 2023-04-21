@@ -19,37 +19,48 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Items)
+            @using (Html.BeginForm("ThayDoi", "GioHangs", FormMethod.Post))
             {
-                double total = 0.0;
-                if (item.NoiDungKhuyenMai < 100)
+                foreach (var item in Model.Items)
                 {
-                    total = Convert.ToDouble((item.SanPhamGioHang.GiaBan - (item.NoiDungKhuyenMai/100) * item.SanPhamGioHang.GiaBan) * item.SoLuong);
-                }
-                else
-                {
-                    total = Convert.ToDouble((item.SanPhamGioHang.GiaBan - item.NoiDungKhuyenMai) * item.SoLuong);
+                    double total = 0.0;
+                    if (item.NoiDungKhuyenMai < 100)
+                    {
+                        total = Convert.ToDouble((item.SanPhamGioHang.GiaBan - (item.NoiDungKhuyenMai / 100) * item.SanPhamGioHang.GiaBan) * item.SoLuong);
+                    }
+                    else
+                    {
+                        total = Convert.ToDouble((item.SanPhamGioHang.GiaBan - item.NoiDungKhuyenMai) * item.SoLuong);
+                    }
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.SanPhamGioHang.TenSP)
+                        </td>
+                        <td>
+
+                            <input type="hidden" value="@item.SanPhamGioHang.ID_SP" name="idSanPham" />
+                            <input type="number" value="@item.SoLuong" name="SoLuongSanPham" min="0" max="@item.SanPhamGioHang.SoLuong" />
+
+                            <input type="checkbox" value="1" name="status" checked="@item.Status" />
+                            <input type="checkbox" value="0" name="status" @(item.Status ? "" : "checked=\"checked\"")/>
+
+
+                        </td>
+                        <td>
+                            @*<input type="checkbox" name="status" value="@item.Status" checked />*@
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => total)
+                        </td>
+                        <td>
+                            <a href="~/GioHangs/XoaSanPham/@item.SanPhamGioHang.ID_SP">Remove</a>
+                        </td>
+                    </tr>
                 }
                 <tr>
                     <td>
-                        @Html.DisplayFor(model => item.SanPhamGioHang.TenSP)
-                    </td>
-                    <td>
-                        @using (Html.BeginForm("ThayDoiSL", "GioHangs"))
-                        {
-                        <input type="hidden" value="@item.SanPhamGioHang.ID_SP" name="idSanPham" />
-                        <input type="number" value="@item.SoLuong" name="SoLuongSanPham" min="0" max="@item.SanPhamGioHang.SoLuong" />
-                        <button type="submit" class="btn btn-success" > Thay đổi số lượng </button>
-                        }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => total)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => item.Status)
-                    </td>
-                    <td>
-                        <a href="~/GioHangs/XoaSanPham/@item.SanPhamGioHang.ID_SP">Remove</a>
+                        <button type="submit" class="btn btn-success"> Cập nhật giỏ hàng </button>
                     </td>
                 </tr>
             }
@@ -61,4 +72,19 @@
         </tfoot>
     </table>
 }
+<script>
+        $('input[name="status"]').on('change', function () {
+            if ($(this).is(':checked')) {
+                $(this).next('input[name="status"][value="0"]').first().prop('checked', false);
+            } else {
+                $(this).next('input[name="status"][value="0"]').first().prop('checked', true);
+            }
+        });
+    </script>
+<style>
+    input[name="status"][value="0"] {
+        display: none;
+    }
+</style>
+
 

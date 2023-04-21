@@ -47,23 +47,26 @@ namespace PBL3.Models.Model_View
             }
             else
             {
-                item.SoLuong += soluong;
+                if(item.SanPhamGioHang.SoLuong > item.SoLuong + soluong)
+                    item.SoLuong += soluong;
+                else item.SoLuong = (int)item.SanPhamGioHang.SoLuong;
                 if (soluong == 0) item.SoLuong = 0;
             }
         }
-        public void ThayDoiSoLuong(int id, int soluong)
+        public void ThayDoiSoLuong(int id, int soluong, int check = 1)
         {
             var item = items.Find(x => x.SanPhamGioHang.ID_SP == id);
             if (item != null)
             {
                 item.SoLuong = soluong;
+                item.Status = Convert.ToBoolean(check);
             }
                 
         }
         public double TongTien()
         {
-            var total = items.Where(x => x.NoiDungKhuyenMai > 100).Sum(x => x.SoLuong * (x.SanPhamGioHang.GiaBan-x.NoiDungKhuyenMai));
-            total += items.Where(x => x.NoiDungKhuyenMai < 100).Sum(x => x.SoLuong * (x.SanPhamGioHang.GiaBan-(x.NoiDungKhuyenMai/100)*x.SanPhamGioHang.GiaBan));
+            var total = items.Where(x => x.NoiDungKhuyenMai > 100 && x.Status == true).Sum(x => x.SoLuong * (x.SanPhamGioHang.GiaBan-x.NoiDungKhuyenMai));
+            total += items.Where(x => x.NoiDungKhuyenMai < 100 && x.Status == true).Sum(x => x.SoLuong * (x.SanPhamGioHang.GiaBan-(x.NoiDungKhuyenMai/100)*x.SanPhamGioHang.GiaBan));
             return (double)total;
         }
         public void Xoa(int id)
