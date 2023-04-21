@@ -5,3 +5,4 @@
 - Ngày 4/14/2023 : Đăng ký tài khoản, đăng nhập, đăng xuất, đổi mật khẩu customer
 - Ngày 19/4/2003 : Trang chủ 
 - Ngày 20/4/2023 : Giỏ hàng, lấy số sản phẩm từ giỏ hàng, xem, sửa thông tin cá nhân
+- Ngày 21/4/2023 : Chọn sản phẩm trong giỏ hàng
