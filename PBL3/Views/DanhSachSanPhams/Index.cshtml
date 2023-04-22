@@ -25,126 +25,39 @@
             @foreach (var item in Model)
             {
                 <div class="row--item">
-                    <div class="item--photo">
-                        <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 200px; width: 100%;">
-                    </div>
-                    <div class="item--name">
-                        @Html.DisplayFor(modelItem => item.TenSP)
-                    </div>
-                    <div class="item--brand">
-                        @Html.DisplayFor(modelItem => item.NhanHieuSP)
-                    </div>
-                    <div class="item--price">
-                        <div class="item--price old">@Html.DisplayFor(modelItem => item.GiaBan)</div>
-                        15,999,000đ
-                    </div>
+                    <a href="~/Chi-tiet-san-pham-@item.ID_SP">
+                        <div class="item--photo">
+                            <img src="~/Anh/@item.Anh" alt="" style="height: 200px; width: 100%;">
+                        </div>
+                        <div class="item--name">
+                            @Html.DisplayFor(modelItem => item.TenSP)
+                        </div>
+                        <div class="item--brand">
+                            @Html.DisplayFor(modelItem => item.NhanHieuSP)
+                        </div>
+                        <div class="item--price">
+                            <div class="item--price old">@Html.DisplayFor(modelItem => item.GiaBan)</div>
+                            @{
+                                double total = 0.0;
+                                if (item.KhuyenMai.LoaiKM == 0 && item.KhuyenMai.KetThucKM <= DateTime.Now)
+                                {
+                                    total = Convert.ToDouble(item.GiaBan) - Convert.ToDouble(item.KhuyenMai.NoiDungKM);
+                                }
+                                else if (item.KhuyenMai.LoaiKM == 1 && item.KhuyenMai.KetThucKM <= DateTime.Now)
+                                {
+                                    total = Convert.ToDouble(item.GiaBan) * (1 - Convert.ToDouble(item.KhuyenMai.NoiDungKM) / 100);
+                                }
+                                else
+                                {
+                                    total = Convert.ToDouble(item.GiaBan);
+                                }
+                            }
+                            @total
+                        </div>
+                    </a>
                 </div>
             }
-            <div class="row--item">
-                <div class="item--photo">
-                    <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 200px; width: 100%;">
-                </div>
-                <div class="item--name">
-                    Tivi Samsung OLED 4K 40inch
-                </div>
-                <div class="item--brand">
-                    Samsung
-                </div>
-                <div class="item--price">
-                    <div class="item--price old">16,990,000đ</div>
-                    15,999,000đ
-                </div>
-            </div>
-            <div class="row--item">
-                <div class="item--photo">
-                    <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 200px; width: 100%;">
-                </div>
-                <div class="item--name">
-                    Tivi Samsung OLED 4K 40inch
-                </div>
-                <div class="item--brand">
-                    Samsung
-                </div>
-                <div class="item--price">
-                    <div class="item--price old">16,990,000đ</div>
-                    15,999,000đ
-                </div>
-            </div>
-            <div class="row--item">
-                <div class="item--photo">
-                    <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 200px; width: 100%;">
-                </div>
-                <div class="item--name">
-                    Tivi Samsung OLED 4K 40inch
-                </div>
-                <div class="item--brand">
-                    Samsung
-                </div>
-                <div class="item--price">
-                    <div class="item--price old">16,990,000đ</div>
-                    15,999,000đ
-                </div>
-            </div>
-            <div class="row--item">
-                <div class="item--photo">
-                    <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 200px; width: 100%;">
-                </div>
-                <div class="item--name">
-                    Tivi Samsung OLED 4K 40inch
-                </div>
-                <div class="item--brand">
-                    Samsung
-                </div>
-                <div class="item--price">
-                    <div class="item--price old">16,990,000đ</div>
-                    15,999,000đ
-                </div>
-            </div>
-            <div class="row--item">
-                <div class="item--photo">
-                    <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 200px; width: 100%;">
-                </div>
-                <div class="item--name">
-                    Tivi Samsung OLED 4K 40inch
-                </div>
-                <div class="item--brand">
-                    Samsung
-                </div>
-                <div class="item--price">
-                    <div class="item--price old">16,990,000đ</div>
-                    15,999,000đ
-                </div>
-            </div>
-            <div class="row--item">
-                <div class="item--photo">
-                    <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 200px; width: 100%;">
-                </div>
-                <div class="item--name">
-                    Tivi Samsung OLED 4K 40inch
-                </div>
-                <div class="item--brand">
-                    Samsung
-                </div>
-                <div class="item--price">
-                    <div class="item--price old">16,990,000đ</div>
-                    15,999,000đ
-                </div>
-            </div>
-            <div class="row--item">
-                <div class="item--photo">
-                    <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height: 200px; width: 100%;">
-                </div>
-                <div class="item--name">
-                    Tivi Samsung OLED 4K 40inch
-                </div>
-                <div class="item--brand">
-                    Samsung
-                </div>
-                <div class="item--price">
-                    <div class="item--price old">16,990,000đ</div>
-                    15,999,000đ
-                </div>
-            </div>
+
 
         </div>
         <div class="container__paginate">
