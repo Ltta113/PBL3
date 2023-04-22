@@ -70,6 +70,11 @@ namespace PBL3
                 defaults: new { controller = "ChiTietHoaDons", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "Chi-tiet-san-pham",
+                url: "Chi-tiet-san-pham-{id}",
+                defaults: new { controller = "DanhSachSanPhams", action = "Details", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

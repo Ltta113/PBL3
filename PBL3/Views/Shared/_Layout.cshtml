@@ -11,6 +11,7 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <link href="~/Content/base.css" rel="stylesheet" />
     <link href="~/Content/main.css" rel="stylesheet" />
+    @RenderSection("styles", false)
     <link rel="stylesheet" href="~/fonts/Quicksand-VariableFont_wght.ttf" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <title>Document</title>
@@ -33,7 +34,7 @@
                 {
                     <div class="header__search">
                         <input type="text" class="header__search-input" placeholder="Tìm kiếm sản phẩm " name="Searchtxt">
-                        <button type="submit" class="header__search--button">
+                        <button type="submit" class="header__search--button" style="border-style: none">
                             <span class="header__search--button-label">Tìm kiếm</span>
                             <i class="header__search--button-icon fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
                         </button>
@@ -54,7 +55,7 @@
                         <div class="cart" title="Giỏ hàng">
                             <a href="~/Gio-hang">
                                 <i class="fa-solid fa-cart-shopping fa-xl">  </i>
-                                <div> @System.Web.HttpContext.Current.Session["SoLuong"] </div>
+                                <div class="badge"> @System.Web.HttpContext.Current.Session["SoLuong"] </div>
                             </a>
                         </div>
                         <div class=" profile">
