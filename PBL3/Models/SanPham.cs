@@ -31,6 +31,7 @@ namespace PBL3.Models
         public Nullable<int> ID_KM { get; set; }
         public Nullable<int> SoLuong { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
+        [DisplayFormat(DataFormatString = "{0:N0}đ")]
         public Nullable<int> GiaBan { get; set; }
         public string NhanHieuSP { get; set; }
         public string MauSP { get; set; }
