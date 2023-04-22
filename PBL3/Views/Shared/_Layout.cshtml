@@ -20,16 +20,11 @@
     <div class="main">
         <header class="header">
             <div class="header-search">
-                <div class="header__logo">
-                    <img src="~/Anh/img/Logo.png" alt="Logo">
-                </div>
-                @*<div class="header__search">
-
-                        <div class="header__search--button">
-                            <span class="header__search--button-label">Tìm kiếm</span>
-                            <i class="header__search--button-icon fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                        </div>
-                    </div>*@
+                <a href="~/Trang-chu">
+                    <div class="header__logo">
+                        <img src="~/Anh/img/Logo.png" alt="Logo">
+                    </div>
+                </a>
                 @using (Html.BeginForm("Index", "DanhSachSanPhams", FormMethod.Get))
                 {
                     <div class="header__search">

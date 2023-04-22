@@ -28,26 +28,56 @@
             <div class="row">
                 <div class="row--item">
                     <div class="row--photo">
-                        <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height:350px; width: 500px;">
+                        <img src="~/Anh/@Model.Anh" alt="" style="height:350px; width: 500px;">
                     </div>
-                    <span>Tivi Samsung 4K</span>
+                    <span>@Model.TenSP</span>
                 </div>
                 <div class="row--item">
                     <div class="item--price" style="padding: 10px;">
-                        <div class="item--price old">16,990,000đ</div>
-                        15,999,000đ
+                        <div class="item--price old">@String.Format("{0:N0}đ", Model.GiaBan)}</div>
+                        @{
+                            double total = 0.0;
+                            if (Model.KhuyenMai.LoaiKM == 0 && Model.KhuyenMai.KetThucKM <= DateTime.Now)
+                            {
+                                total = Convert.ToDouble(Model.GiaBan) - Convert.ToDouble(Model.KhuyenMai.NoiDungKM);
+                            }
+                            else if (Model.KhuyenMai.LoaiKM == 1 && Model.KhuyenMai.KetThucKM <= DateTime.Now)
+                            {
+                                total = Convert.ToDouble(Model.GiaBan) * (1 - Convert.ToDouble(Model.KhuyenMai.NoiDungKM) / 100);
+                            }
+                            else
+                            {
+                                total = Convert.ToDouble(Model.GiaBan);
+                            }
+                        }
+                        @String.Format("{0:N0}đ", total)
                     </div>
                     <div class="item--number">
                         <h3 style="color: #359DD9;">Số lượng:</h3>
-                        <input type="number" class="pick-number" min="0" placeholder="1">
+                        @if (Model.SoLuong != 0)
+                        {
+                            <input type="number" class="pick-number" min="0" max="@Model.SoLuong" value="1" name="SoLuongSanPham" placeholder="1">
+                            <input type="hidden" value="@Model.ID_SP" name="idSanPham" />
+                        }
+                        else
+                        {
+                            <div>Hết hàng</div>
+                        }
+
                     </div>
                     <div class="item--button">
-                        <div class="btn-buy">
-                            <i class="fa-solid fa-cart-shopping fa-xl" style="margin-right: 15px;"></i>Thêm vào giỏ hàng
-                        </div>
-                        <div class="btn-buy">
-                            <i class="fa-solid fa-wallet fa-xl" style="margin-right: 15px;"></i>Mua ngay
-                        </div>
+                        <a href="~/GioHangs/ThemVaoGioHang/@Model.ID_SP">
+                            <div class="btn-buy">
+                                <i class="fa-solid fa-cart-shopping fa-xl" style="margin-right: 15px;"></i>Thêm vào giỏ hàng
+                            </div>
+                        </a>
+                        <button type="submit" class="btn-buy" >
+                            
+                                <i class="fa-solid fa-wallet fa-xl" style="margin-right: 15px;">
+                                </i>Mua ngay
+                            
+                        </button>
+                        
                     </div>
                 </div>
             </div>
@@ -55,25 +85,24 @@
             <div class="item--detail">
                 <div class="row" style="justify-content: left;">
                     <h4 style=" flex: 0.35;">Tên sản phẩm:</h4>
-                    <div class="label">Tivi Samsung OLED 4K 40inch</div>
+                    <div class="label">@Model.TenSP</div>
                 </div>
                 <div class="row" style="justify-content: left;">
                     <h4 style=" flex: 0.35;">Danh mục:</h4>
-                    <div class="label">Tivi</div>
+                    <div class="label">@Model.DanhMucSP.TenDanhMuc</div>
                 </div>
                 <div class="row" style="justify-content: left;">
                     <h4 style=" flex: 0.35;">Nhãn hiệu sản phẩm:</h4>
-                    <div class="label">Samsung</div>
+                    <div class="label">@Model.NhanHieuSP</div>
                 </div>
                 <div class="row" style="justify-content: left;">
                     <h4 style=" flex: 0.35;">Mẫu sản phẩm:</h4>
-                    <div class="label">OLED 4K 40inch</div>
+                    <div class="label">@Model.MauSP</div>
                 </div>
                 <div class="row" style="justify-content: left;">
                     <h4 style=" flex: 0.35;">Mô tả sản phẩm:</h4>
                     <div class="label">
-                        Điều khiển bằng giọng nói: Bixby (Chưa có tiếng Việt), Google Assistant có tiếng Việt, Tìm kiếm giọng nói trên YouTube bằng tiếng Việt<br>
-                        Remote thông minh: One Remote sạc qua USB C & ánh sáng
+                        @Model.MoTaSP
                     </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@ namespace PBL3.Controllers
                 sanpham.SoLuong -= soluong;
                 db.Entry(sanpham).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ThanhCong", "DatMua");
+                return RedirectToAction("ThanhCong", "MuaHangs");
             }
             else
             {
