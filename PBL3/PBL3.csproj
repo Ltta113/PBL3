@@ -138,10 +138,12 @@
     <Compile Include="Areas\Admin\Controllers\KhuyenMaisController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
+    <Compile Include="Controllers\ChiTietHoaDonesController.cs" />
     <Compile Include="Controllers\DangNhapDangKyController.cs" />
     <Compile Include="Controllers\DanhSachSanPhamsController.cs" />
     <Compile Include="Controllers\GioHangsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MuaHangsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,7 +252,6 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\HomePage\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HomePage\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\Accounts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DanhMucSPs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\DanhMucSPs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DanhMucSPs\Index.cshtml" />
@@ -302,6 +303,10 @@
     <Content Include="Views\GioHangs\XemGioHang.cshtml" />
     <Content Include="Views\DangNhapDangKy\ThongTinCaNhan.cshtml" />
     <Content Include="Views\DangNhapDangKy\ThayDoiThongTin.cshtml" />
+    <Content Include="Views\MuaHangs\ThanhCong.cshtml" />
+    <Content Include="Views\MuaHangs\XemHoaDon.cshtml" />
+    <Content Include="Views\ChiTietHoaDones\Details.cshtml" />
+    <Content Include="Views\ChiTietHoaDones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

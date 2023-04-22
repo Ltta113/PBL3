@@ -45,44 +45,48 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaBan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NhanHieuSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MauSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoTaSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Anh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DanhMucSP.TenDanhMuc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KhuyenMai.NoiDungKM)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_SP }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_SP }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_SP })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaBan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NhanHieuSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MauSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTaSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DanhMucSP.TenDanhMuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhuyenMai.NoiDungKM)
+            </td>
+            <td>
+                <a href="~/Thong-tin-san-pham-@item.ID_SP"> Thông tin sản phẩm |</a>
+                <a href="~/GioHangs/ThemVaoGioHang/@item.ID_SP"> Thêm vào giỏ hàng |</a>
+                @if (item.SoLuong != 0)
+                {
+                    <a href="~/Thong-tin-san-pham-@item.ID_SP">Mua ngay |</a>
+                }
+            </td>
+        </tr>
+    }
 
 </table>

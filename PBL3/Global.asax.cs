@@ -27,6 +27,7 @@ namespace PBL3
             Session["Quyen"] = "";
             Session["Name"] = "";
             Session["ID_Account"] = "";
+
             List<String> list = new List<String>();
             foreach (var lin in db.DanhMucSPs.Where(p =>p.Status == 1).ToList())
             {

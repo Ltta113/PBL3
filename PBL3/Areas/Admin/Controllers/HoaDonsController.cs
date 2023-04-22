@@ -10,14 +10,14 @@ using PBL3.Models;
 
 namespace PBL3.Areas.Admin.Controllers
 {
-    public class HoaDonsController : Controller
+    public class HoaDonsController : LoginManagerController
     {
         private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: Admin/HoaDons
         public ActionResult Index()
         {
-            var hoaDons = db.HoaDons.Include(h => h.User);
+            var hoaDons = db.HoaDons.Include(h => h.User).OrderBy(h =>h.Status).OrderBy(h =>h.NgayBan);
             return View(hoaDons.ToList());
         }
         public ActionResult Confirm(int? id)
@@ -27,7 +27,7 @@ namespace PBL3.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             HoaDon hoaDon = db.HoaDons.Find(id);
-            if (hoaDon == null)
+            if (hoaDon == null || hoaDon.Status == 2)
             {
                 return RedirectToAction("Index");
             }

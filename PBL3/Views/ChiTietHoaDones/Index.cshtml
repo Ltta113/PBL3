@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PBL3.Models.ChiTietHoaDon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoaDon.ID_HoaDon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.TenSP)
+        </th>
+        <th>
+            Tổng tiền
+        </th>
+        <th>
+
+        </th>
+        <th></th>
+    </tr>
+    @{ 
+        double total = 0.0;
+        double total1 = 0.0;
+    }
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoaDon.ID_HoaDon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SanPham.TenSP)
+        </td>
+        <td>
+            @{
+                if (item.SanPham.KhuyenMai.LoaiKM == 0)
+                {
+                    total1 = (double)((item.SanPham.GiaBan - Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM)) * item.SoLuong);
+                }
+                else
+                {
+                    total1 = (double)((item.SanPham.GiaBan - (Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM) / 100) * item.SanPham.GiaBan) * item.SoLuong);
+
+                }
+                
+                    total = total + total1;
+                
+            }
+            @total1
+        </td>
+        <td>
+            <a href="~/ChiTietHoaDones/Details/@item.ID_SP"> Chi tiết sản phẩm</a>
+        </td>
+    </tr>
+    
+}
+<tr>
+    <td>Thành tiền : @total</td>
+</tr>
+</table>
+<p>
+    <button type="button" name="back" class="btn btn-success btn-md" onclick="location.href='/MuaHangs/XemHoaDon'">Quay lại</button>
+</p>

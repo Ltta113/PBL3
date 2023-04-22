@@ -85,7 +85,7 @@ namespace PBL3.Controllers
                 {
                     Session["UserName"] = acc.Username;
                     Session["Password"] = acc.Password;
-                    Session["Quyen"] = acc.Quyen;
+                    Session["Quyen"] = acc.Quyen.ToString();
                     Session["Name"] = user.Ten;
                     Session["ID_Account"] = acc.ID_Account.ToString();
                     GioHangs giohang = Session["GioHang"] as GioHangs;
@@ -95,6 +95,30 @@ namespace PBL3.Controllers
                         Session["GioHang"] = giohang;
                         Session["SoLuong"] = 0;
                     }
+                    foreach (var item in giohang.Items)
+                    {
+                        int ma = Convert.ToInt32(Session["ID_Account"]);
+                        var themmoi = db.GioHangs.FirstOrDefault(x => x.ID_SP == item.SanPhamGioHang.ID_SP && x.ID_GioHang == ma);
+                        if (themmoi == null)
+                        {
+                            db.GioHangs.Add(new GioHang
+                            {
+                                ID_GioHang = ma,
+                                ID_SP = item.SanPhamGioHang.ID_SP,
+                                SoLuong = item.SoLuong
+
+                            });
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            themmoi.SoLuong += item.SoLuong;
+                            db.Entry(themmoi).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
+                    giohang.Huy();
+                    giohang = new GioHangs();
                     var sanphams = db.GioHangs.Where(x => x.ID_GioHang == acc.ID_Account);
                     if (sanphams != null)
                     {
@@ -105,7 +129,10 @@ namespace PBL3.Controllers
                             giohang.ThemVaoGio(sp, soluong);
 
                         }
-                        Session["GioHang"] = giohang;
+                        if (giohang.Items.Count() == 0)
+                            Session["GioHang"] = null;
+                        else
+                            Session["GioHang"] = giohang;
                         Session["SoLuong"] = giohang.Dem();
                     }
                     Response.Redirect("~/Trang-chu");

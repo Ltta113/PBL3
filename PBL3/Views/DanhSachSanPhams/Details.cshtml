@@ -6,94 +6,109 @@
 }
 
 <h2>Details</h2>
+@using (Html.BeginForm("MuaNgay", "MuaHangs", FormMethod.Post))
+{
+    <div>
+        <h4>SanPham</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TenSP)
+            </dt>
 
-<div>
-    <h4>SanPham</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenSP)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TenSP)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenSP)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SoLuong)
+                <input type="hidden" value="@Model.ID_SP" name="idSanPham" />
+                <input type="number" value="1" name="SoLuongSanPham" min="0" max="@Model.SoLuong" />
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SoLuong)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.GiaBan)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GiaBan)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.GiaBan)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.GiaBan)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NhanHieuSP)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NhanHieuSP)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NhanHieuSP)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NhanHieuSP)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MauSP)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MauSP)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MauSP)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MauSP)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MoTaSP)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTaSP)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MoTaSP)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MoTaSP)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Anh)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Anh)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Anh)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Anh)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DanhMucSP.TenDanhMuc)
-        </dt>
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DanhMucSP.TenDanhMuc)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DanhMucSP.TenDanhMuc)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.KhuyenMai.NoiDungKM)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DanhMucSP.TenDanhMuc)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.KhuyenMai.NoiDungKM)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.KhuyenMai.NoiDungKM)
+            </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_SP }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dd>
+                @Html.DisplayFor(model => model.KhuyenMai.NoiDungKM)
+            </dd>
+
+        </dl>
+    </div>
+
+    <p>
+        @if (Model.SoLuong != 0)
+        {
+            <button type="submit" class="btn btn-success"> Mua ngay </button>
+        }
+        else
+        {
+            <a>Hết hàng</a>
+        }
+        <a href="~/GioHangs/ThemVaoGioHang/@Model.ID_SP"> Thêm vào giỏ hàng |</a>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -47,7 +47,7 @@ namespace PBL3.Models.Model_View
             }
             else
             {
-                if(item.SanPhamGioHang.SoLuong > item.SoLuong + soluong)
+                if (item.SanPhamGioHang.SoLuong > item.SoLuong + soluong)
                     item.SoLuong += soluong;
                 else item.SoLuong = (int)item.SanPhamGioHang.SoLuong;
                 if (soluong == 0) item.SoLuong = 0;
@@ -61,17 +61,25 @@ namespace PBL3.Models.Model_View
                 item.SoLuong = soluong;
                 item.Status = Convert.ToBoolean(check);
             }
-                
+
         }
         public double TongTien()
         {
-            var total = items.Where(x => x.NoiDungKhuyenMai > 100 && x.Status == true).Sum(x => x.SoLuong * (x.SanPhamGioHang.GiaBan-x.NoiDungKhuyenMai));
-            total += items.Where(x => x.NoiDungKhuyenMai < 100 && x.Status == true).Sum(x => x.SoLuong * (x.SanPhamGioHang.GiaBan-(x.NoiDungKhuyenMai/100)*x.SanPhamGioHang.GiaBan));
+            var total = items.Where(x => x.NoiDungKhuyenMai > 100 && x.Status == true).Sum(x => x.SoLuong * (x.SanPhamGioHang.GiaBan - x.NoiDungKhuyenMai));
+            total += items.Where(x => x.NoiDungKhuyenMai < 100 && x.Status == true).Sum(x => x.SoLuong * (x.SanPhamGioHang.GiaBan - (x.NoiDungKhuyenMai / 100) * x.SanPhamGioHang.GiaBan));
             return (double)total;
         }
         public void Xoa(int id)
         {
             items.RemoveAll(x => x.SanPhamGioHang.ID_SP == id);
+        }
+        public void Huy()
+        {
+            items.Clear();
+        }
+        public void XoaSanPhamDaMua()
+        {
+            items.RemoveAll(x => x.Status == true);
         }
         public int Dem()
         {

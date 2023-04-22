@@ -11,7 +11,7 @@ namespace PBL3.Areas.Admin.Controllers
         // GET: Admin/LoginManager
         public LoginManagerController()
         {
-            if (System.Web.HttpContext.Current.Session["UserName"].Equals(""))
+            if (System.Web.HttpContext.Current.Session["Quyen"].Equals("0") == false)
             {
                 System.Web.HttpContext.Current.Response.Redirect("~/Admin/HomePage/Login");
             }

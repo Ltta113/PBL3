@@ -1,0 +1,61 @@
+﻿@model IEnumerable<PBL3.Models.HoaDon>
+
+@{
+    ViewBag.Title = "XemHoaDon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>XemHoaDon</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayBan)
+        </th>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayBan)
+            </td>
+            <td>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a href="~/ChiTietHoaDones/Index/@item.ID_HoaDon" class="btn btn-sm btn-danger ">Xem chi tiết</a>
+            </td>
+            <td>
+                
+                @using (Html.BeginForm("HuyHoaDon", "MuaHangs", FormMethod.Post))
+                {
+                    if (item.Status == 0)
+                    {
+                        
+                        <button type="submit" class="btn btn-success">Hủy đơn hàng</button>
+                        <input type="hidden" name="idhoadon" value="@item.ID_HoaDon" />
+                        }
+                }
+            </td>
+
+
+        </tr>
+    }
+
+</table>

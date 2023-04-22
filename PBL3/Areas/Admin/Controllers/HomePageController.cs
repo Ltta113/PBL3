@@ -17,7 +17,7 @@ namespace PBL3.Areas.Admin.Controllers
         }
         public ActionResult Login()
         {
-            if (Session["UserName"].Equals("") == false)
+            if (Session["Quyen"].Equals("0") == true )
             {
                 Response.Redirect("~/Admin/HomePage");
             }
@@ -35,7 +35,7 @@ namespace PBL3.Areas.Admin.Controllers
                 {
                     Session["UserName"] = acc.Username;
                     Session["Password"] = acc.Password;
-                    Session["Quyen"] = acc.Quyen;
+                    Session["Quyen"] = acc.Quyen.ToString();
                     Session["ID_Account"] = acc.ID_Account.ToString();
                     Response.Redirect("~/Admin/HomePage");
                 }
@@ -54,6 +54,8 @@ namespace PBL3.Areas.Admin.Controllers
             Session["Password"] = "";
             Session["Quyen"] = "";
             Session["ID_Account"] = "";
+            Session["GioHang"] = null;
+            Session["Name"] = "";
             Response.Redirect("~/Admin/HomePage/Login");
             return null;
         }

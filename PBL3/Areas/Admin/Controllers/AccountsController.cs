@@ -20,39 +20,34 @@ namespace PBL3.Areas.Admin.Controllers
             var accounts = db.Accounts.Include(a => a.User);
             return View(accounts.ToList());
         }
-
-
-        // GET: Admin/Accounts/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Change(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Account account = db.Accounts.Find(id);
-            if (account == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ID_Account = new SelectList(db.Users, "ID_User", "Ten", account.ID_Account);
-            return View(account);
-        }
-
-        // POST: Admin/Accounts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Account,Username,Password,Quyen")] Account account)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(account).State = EntityState.Modified;
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_Account = new SelectList(db.Users, "ID_User", "Ten", account.ID_Account);
-            return View(account);
+            Account acc = db.Accounts.Find(id);
+            if (acc == null)
+            {
+                return RedirectToAction("Index");
+            }
+            if(acc.Quyen == 0)
+            {
+                acc.Quyen = 1;
+            }
+            else
+            {
+                acc.Quyen = 0;
+            }    
+            db.Entry(acc).State = EntityState.Modified;
+            db.SaveChanges();
+            List<String> list = new List<String>();
+            foreach (var lin in db.DanhMucSPs.Where(p => p.Status == 1).ToList())
+            {
+                list.Add(lin.TenDanhMuc);
+            }
+            Session["ListDanhMuc"] = list;
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
