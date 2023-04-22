@@ -5,110 +5,79 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section styles{
+    <link href="~/Content/ChiTiet.css" rel="stylesheet" />
+}
 <h2>Details</h2>
+
 @using (Html.BeginForm("MuaNgay", "MuaHangs", FormMethod.Post))
 {
-    <div>
-        <h4>SanPham</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.TenSP)
-            </dt>
+    <div class="container" style="margin-bottom: 100px;">
+        <ul class="container__category-menu">
+            <li class="category-menu__items">@Html.ActionLink("Tất cả sản phẩm", "Index", "DanhSachSanPhams", new { @DanhMucsp = "" }, null)</li>
+            @{
+                List<String> list = (List<String>)System.Web.HttpContext.Current.Session["ListDanhMuc"];
+            }
+            @foreach (String listDanhMuc in list)
+            {
+                <li class="category-menu__items">@Html.ActionLink(listDanhMuc, "Index", "DanhSachSanPhams", new { @DanhMucsp = listDanhMuc }, null)</li>
+            }
 
-            <dd>
-                @Html.DisplayFor(model => model.TenSP)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.SoLuong)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.SoLuong)
-                <input type="hidden" value="@Model.ID_SP" name="idSanPham" />
-                <input type="number" value="1" name="SoLuongSanPham" min="0" max="@Model.SoLuong" />
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.GiaBan)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.GiaBan)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.NhanHieuSP)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.NhanHieuSP)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.MauSP)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.MauSP)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.MoTaSP)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.MoTaSP)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Anh)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Anh)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Status)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Status)
-
-
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.DanhMucSP.TenDanhMuc)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DanhMucSP.TenDanhMuc)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.KhuyenMai.NoiDungKM)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.KhuyenMai.NoiDungKM)
-            </dd>
-
-        </dl>
+        </ul>
+        <div class="container__main">
+            <h2 style="color: #359DD9;">Chi tiết sản phẩm</h2>
+            <div class="row">
+                <div class="row--item">
+                    <div class="row--photo">
+                        <img src="https://pre-dispatcher.tclking.com/content/dam/brandsite/region/vietnam/tivi-tcl-55-inch/Q716-front.png?auto=webp,smallest" alt="" style="height:350px; width: 500px;">
+                    </div>
+                    <span>@Html.DisplayNameFor(model => model.TenSP)</span>
+                </div>
+                <div class="row--item">
+                    <div class="item--price" style="padding: 10px;">
+                        <div class="item--price old">16,990,000đ</div>
+                        15,999,000đ
+                    </div>
+                    <div class="item--number">
+                        <h3 style="color: #359DD9;">Số lượng:</h3>
+                        <input type="number" class="pick-number" min="0" placeholder="1">
+                    </div>
+                    <div class="item--button">
+                        <div class="btn-buy">
+                            <i class="fa-solid fa-cart-shopping fa-xl" style="margin-right: 15px;"></i>Thêm vào giỏ hàng
+                        </div>
+                        <div class="btn-buy">
+                            <i class="fa-solid fa-wallet fa-xl" style="margin-right: 15px;"></i>Mua ngay
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 style="color: #359DD9;">Thông tin sản phẩm</h3>
+            <div class="item--detail">
+                <div class="row" style="justify-content: left;">
+                    <h4 style=" flex: 0.35;">Tên sản phẩm:</h4>
+                    <div class="label">Tivi Samsung OLED 4K 40inch</div>
+                </div>
+                <div class="row" style="justify-content: left;">
+                    <h4 style=" flex: 0.35;">Danh mục:</h4>
+                    <div class="label">Tivi</div>
+                </div>
+                <div class="row" style="justify-content: left;">
+                    <h4 style=" flex: 0.35;">Nhãn hiệu sản phẩm:</h4>
+                    <div class="label">Samsung</div>
+                </div>
+                <div class="row" style="justify-content: left;">
+                    <h4 style=" flex: 0.35;">Mẫu sản phẩm:</h4>
+                    <div class="label">OLED 4K 40inch</div>
+                </div>
+                <div class="row" style="justify-content: left;">
+                    <h4 style=" flex: 0.35;">Mô tả sản phẩm:</h4>
+                    <div class="label">
+                        Điều khiển bằng giọng nói: Bixby (Chưa có tiếng Việt), Google Assistant có tiếng Việt, Tìm kiếm giọng nói trên YouTube bằng tiếng Việt<br>
+                        Remote thông minh: One Remote sạc qua USB C & ánh sáng
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <p>
-        @if (Model.SoLuong != 0)
-        {
-            <button type="submit" class="btn btn-success"> Mua ngay </button>
-        }
-        else
-        {
-            <a>Hết hàng</a>
-        }
-        <a href="~/GioHangs/ThemVaoGioHang/@Model.ID_SP"> Thêm vào giỏ hàng |</a>
-        @Html.ActionLink("Back to List", "Index")
-    </p>
 }
