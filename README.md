@@ -7,3 +7,4 @@
 - Ngày 20/4/2023 : Giỏ hàng, lấy số sản phẩm từ giỏ hàng, xem, sửa thông tin cá nhân
 - Ngày 21/4/2023 : Chọn sản phẩm trong giỏ hàng
 - Ngày 22/4/2023 : Hoàn thiện back-end
+- Ngày 23/4/2023 : Trang view thông tin cá nhân
