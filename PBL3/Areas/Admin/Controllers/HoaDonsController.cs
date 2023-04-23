@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using PBL3.Models;
 
 namespace PBL3.Areas.Admin.Controllers
@@ -15,10 +16,33 @@ namespace PBL3.Areas.Admin.Controllers
         private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: Admin/HoaDons
-        public ActionResult Index()
+        public ActionResult Index(string Searchtxt, string currentFilter, int? page)
         {
-            var hoaDons = db.HoaDons.Include(h => h.User).OrderBy(h =>h.Status).OrderBy(h =>h.NgayBan);
-            return View(hoaDons.ToList());
+            if (Searchtxt != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                Searchtxt = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = Searchtxt;
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            if (Searchtxt == null)
+            {
+                var hoaDons = db.HoaDons.Include(h => h.User).OrderBy(h => h.Status).OrderBy(h => h.NgayBan).ToList();
+                return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
+            }
+            else
+            {
+                var hoaDons = db.HoaDons.Include(h => h.User).Where(h =>h.User.Ten.Contains(Searchtxt))
+                    .OrderBy(h => h.Status).OrderBy(h => h.NgayBan).ToList();
+                return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
+            }
+
         }
         public ActionResult Confirm(int? id)
         {

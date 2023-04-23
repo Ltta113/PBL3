@@ -1,14 +1,26 @@
-﻿@model IEnumerable<PBL3.Models.HoaDon>
-
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<PBL3.Models.HoaDon>
 @{
     ViewBag.Title = "Danh sách hóa đơn";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 <h2>Index</h2>
 
 <p>
+    <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        @using (Html.BeginForm("Index", "HoaDons", FormMethod.Get))
+        {
 
+            <div class="input-group">
+                <input class="form-control" type="text" name="Searchtxt" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="Searchtxt" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+
+        }
+    </div>
 </p>
 <table class="table">
     <tr>
@@ -53,9 +65,12 @@
                 {
                     <a href="/Admin/HoaDons/Confirm/@item.ID_HoaDon" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-check"></i></a>
                 }
-                
+
             </td>
         </tr>
     }
 
 </table>
+<br />
+@Html.PagedListPager(Model, page => Url.Action("Index",
+new { page, currentFilter = ViewBag.CurrentFilter }))

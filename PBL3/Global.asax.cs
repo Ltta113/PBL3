@@ -34,7 +34,13 @@ namespace PBL3
                 list.Add(lin.TenDanhMuc);
             }    
             Session["ListDanhMuc"] = list;
-            
+            var listKM = db.KhuyenMais.Where(p =>p.KetThucKM < DateTime.Now).ToList();
+            foreach (var km in listKM)
+            {
+                km.Status = 0;
+                db.Entry(km).State = System.Data.Entity.EntityState.Modified;
+            }
+            db.SaveChanges();
             
         }
     }

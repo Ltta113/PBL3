@@ -1,4 +1,6 @@
-﻿@model IEnumerable<PBL3.Models.SanPham>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<PBL3.Models.SanPham>
 
 @{
     ViewBag.Title = "Index";
@@ -6,6 +8,7 @@
 }
 @section styles{
     <link href="~/Content/DanhSach.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
 }
 <div class="container">
     <ul class="container__category-menu">
@@ -39,11 +42,11 @@
                             <div class="item--price old">@Html.DisplayFor(modelItem => item.GiaBan)</div>
                             @{
                                 double total = 0.0;
-                                if (item.KhuyenMai.LoaiKM == 0 && item.KhuyenMai.KetThucKM <= DateTime.Now)
+                                if (item.KhuyenMai.LoaiKM == 0 && item.KhuyenMai.KetThucKM >= DateTime.Now)
                                 {
                                     total = Convert.ToDouble(item.GiaBan) - Convert.ToDouble(item.KhuyenMai.NoiDungKM);
                                 }
-                                else if (item.KhuyenMai.LoaiKM == 1 && item.KhuyenMai.KetThucKM <= DateTime.Now)
+                                else if (item.KhuyenMai.LoaiKM == 1 && item.KhuyenMai.KetThucKM >= DateTime.Now)
                                 {
                                     total = Convert.ToDouble(item.GiaBan) * (1 - Convert.ToDouble(item.KhuyenMai.NoiDungKM) / 100);
                                 }
@@ -52,7 +55,7 @@
                                     total = Convert.ToDouble(item.GiaBan);
                                 }
                             }
-                            @String.Format("{0:N0}đ",total)
+                            @String.Format("{0:N0}đ", total)
                         </div>
                     </a>
                 </div>
@@ -60,14 +63,8 @@
 
 
         </div>
-        <div class="container__paginate">
-            <ul class="page">
-                <li class="page--button prev">Đầu</li>
-                <li class="page--button active">1</li>
-                <li class="page--button">2</li>
-                <li class="page--button">3</li>
-                <li class="page--button last">Cuối</li>
-            </ul>
-        </div>
+        <br />
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, Danhmucsp = ViewBag.DanhMuc, currentFilter = ViewBag.CurrentFilter }))
     </div>
 </div>

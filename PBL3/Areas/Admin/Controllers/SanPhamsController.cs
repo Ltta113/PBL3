@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using PBL3.Models;
 using System.IO;
 using System.Xml.Linq;
+using PagedList;
 
 namespace PBL3.Areas.Admin.Controllers
 {
@@ -17,18 +18,31 @@ namespace PBL3.Areas.Admin.Controllers
         private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: Admin/SanPhams
-        public ActionResult Index(string Searchtxt)
+        public ActionResult Index(string Searchtxt,string currentFilter, int? page)
         {
             
-            if (Searchtxt == null)
+            if (Searchtxt != null)
             {
-                var sanPhams = db.SanPhams.Include(s => s.DanhMucSP).Include(s => s.KhuyenMai);
-                return View(sanPhams.ToList());
+                page = 1;
             }
             else
             {
-                var sanPham = db.SanPhams.Where(p => p.TenSP.Contains(Searchtxt));
-                return View(sanPham.ToList());
+                Searchtxt = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = Searchtxt;
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            if (Searchtxt == null)
+            {
+                var sanPhams = db.SanPhams.Include(s => s.DanhMucSP).Include(s => s.KhuyenMai).ToList();
+                return View(sanPhams.ToPagedList((int)pageNumber,(int)pageSize));
+            }
+            else
+            {
+                var sanPham = db.SanPhams.Where(p => p.TenSP.Contains(Searchtxt)).ToList();
+                return View(sanPham.ToPagedList((int)pageNumber, (int)pageSize));
             }
             
         }

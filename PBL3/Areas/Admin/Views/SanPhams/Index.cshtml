@@ -1,9 +1,12 @@
-﻿@model IEnumerable<PBL3.Models.SanPham>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<PBL3.Models.SanPham>
 
 @{
     ViewBag.Title = "Danh sách sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 <h2>Danh sách sản phẩm</h2>
 
@@ -104,3 +107,6 @@
     }
 
 </table>
+<br />
+@Html.PagedListPager(Model, page => Url.Action("Index",
+new { page, currentFilter = ViewBag.CurrentFilter }))
