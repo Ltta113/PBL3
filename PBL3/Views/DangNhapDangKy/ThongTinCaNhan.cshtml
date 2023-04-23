@@ -26,7 +26,7 @@
         </div>
 
         <div class="change-pass__button">
-            <a href="" class="btn--change-pass">Thay đổi thông tin</a>
+            <a href="Thay-doi-thong-tin" class="btn--change-pass">Thay đổi thông tin</a>
 
         </div>
     </div>
@@ -38,16 +38,25 @@
         <div class="row">
             <h4>Ngày sinh:</h4>
             <div class="label">
-            @{
-                DateTime datetime = (DateTime)Model.NgaySinh;
-                string date = datetime.ToString("dd/MM/yyyy");
-            }
+                @{
+                    DateTime datetime = (DateTime)Model.NgaySinh;
+                    string date = datetime.ToString("dd/MM/yyyy");
+                }
                 @date
             </div>
         </div>
         <div class="row">
             <h4>Giới tính:</h4>
-            <div class="label">@Model.GioiTinh</div>
+            <div class="label">
+                @{
+                    string GT = "Nam";
+                    if (Model.GioiTinh == false)
+                    {
+                        GT = "Nữ";
+                    }
+                }
+                @GT
+            </div>
         </div>
         <div class="row">
             <h4>Số điện thoại:</h4>
@@ -62,13 +71,13 @@
         <div class="row">
             <h4>Số lần đặt mua:</h4>
             <div class="label">
-              @{ 
-                  int count = Model.HoaDons.Count(x => x.ID_User == Model.ID_User);
-              }
+                @{
+                    int count = Model.HoaDons.Count(x => x.ID_User == Model.ID_User);
+                }
                 @count
             </div>
         </div>
     </div>
 </div>
-    
+
 
