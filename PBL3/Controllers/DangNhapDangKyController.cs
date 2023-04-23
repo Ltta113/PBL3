@@ -209,6 +209,9 @@ namespace PBL3.Controllers
             {
                 int id = Convert.ToInt32(Session["ID_Account"]);
                 var model = db.Users.Where(x => x.ID_User == id).FirstOrDefault();
+                DateTime datetime =(DateTime) model.NgaySinh;
+                string date = datetime.ToString("MM/dd/yyyy");
+                ViewBag.NgaySinh = date;
                 return View(model);
             }
             return View();
@@ -222,9 +225,10 @@ namespace PBL3.Controllers
                 Session["Name"] = user.Ten;
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                Response.Redirect("~/Trang-chu");
+                Response.Redirect("~/Thong-tin-ca-nhan");
             }
             ViewBag.ID_User = new SelectList(db.Accounts, "ID_Account", "Username", user.ID_User);
+            
             return View(user);
         }
     }

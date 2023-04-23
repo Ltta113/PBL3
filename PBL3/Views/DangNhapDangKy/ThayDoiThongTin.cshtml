@@ -7,49 +7,60 @@
 @section styles{
     <link href="~/Content/ThayDoiThongTin.css" rel="stylesheet" />
 }
-<div class="main-container">
-    <h2>
-        THAY ĐỔI THÔNG TIN
-    </h2>
-    <div class="row">
-        <label for="information">Họ và Tên:</label>
-        <br>
-        
-        @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+@using (Html.BeginForm())
+{
+    <div class="main-container">
+        <h2>
+            THAY ĐỔI THÔNG TIN
+        </h2>
+        <div class="row">
+            <label for="information">Họ và Tên:</label>
+            <br>
+            @Html.HiddenFor(model => model.ID_User)
+            @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+        </div>
+        <div class="row">
+            <label for="information">Ngày Sinh:</label>
+            <br>
+            @Html.TextBoxFor(model => model.NgaySinh, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+        </div>
+        <div class="row">
+            <label for="information">Giới tính:</label>
+            <br>
+            @Html.DropDownList("GioiTinh",
+                      new SelectList(
+                             new List<Object>{
+                                  new { value = true , text = "Nam"  },
+                                  new { value = false , text = "Nữ" },
+                               },
+                             "value",
+                             "text",
+                              Model.GioiTinh
+                      ), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+        </div>
+        <div class="row">
+            <label for="information">Số điện thoại:</label>
+            <br>
+            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+        </div>
+        <div class="row">
+            <label for="information">Địa chỉ:</label>
+            <br>
+            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+        </div>
+        <div class="body__button">
+            <button type="submit" class="button btn-save">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Lưu
+            </button>
+            <a href="Thong-tin-ca-nhan" class="button btn-cancel">
+                <i class="fa-solid fa-xmark"></i>Hủy
+            </a>
+        </div>
     </div>
-    <div class="row">
-        <label for="information">Ngày Sinh:</label>
-        <br>
-        @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
-    </div>
-    <div class="row">
-        <label for="information">Giới tính:</label>
-        <br>
-        @Html.EditorFor(model => model.GioiTinh)
-        @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
-    </div>
-    <div class="row">
-        <label for="information">Số điện thoại:</label>
-        <br>
-        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
-    </div>
-    <div class="row">
-        <label for="information">Địa chỉ:</label>
-        <br>
-        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
-    </div>
-    <div class="body__button">
-        <a href="" class="button btn-save">
-            <i class="fa-solid fa-floppy-disk"></i>
-            Lưu
-        </a>
-        <a href="" class="button btn-cancel">
-            <i class="fa-solid fa-xmark"></i>Hủy
-        </a>
-    </div>
-</div>
-    
+}
