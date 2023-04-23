@@ -5,71 +5,61 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ThongTinCaNhan</h2>
+@section styles{
+    <link href="~/Content/ThongTinCaNhan.css" rel="stylesheet" />
+}
+<div class="container">
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Ten)
-        </dt>
+    <div class="Profile">
+        <h3>Thông tin khách hàng:</h3>
+        <div class="Profile-avatar">
+            <img src="~/Front-Prototype/assets/img/avatar.png" alt="" style="height:250px; width: 300px;">
+        </div>
+        <div class="Profile-name">
+            <div class="Profile__icon">
+                <i class="fas fa-medal"></i>
+            </div>
+            <div class="name">
+                @Model.Ten
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ten)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </dt>
+        <div class="change-pass__button">
+            <a href="" class="btn--change-pass">Thay đổi thông tin</a>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgaySinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GioiTinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GioiTinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Account.Username)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Account.Username)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
+    <div class="item--detail">
+        <div class="row">
+            <h4>Họ và tên:</h4>
+            <div class="label">@Model.Ten</div>
+        </div>
+        <div class="row">
+            <h4>Ngày sinh:</h4>
+            <div class="label">@Model.NgaySinh</div>
+        </div>
+        <div class="row">
+            <h4>Giới tính:</h4>
+            <div class="label">@Model.GioiTinh</div>
+        </div>
+        <div class="row">
+            <h4>Số điện thoại:</h4>
+            <div class="label">@Model.SDT</div>
+        </div>
+        <div class="row">
+            <h4>Địa chỉ:</h4>
+            <div class="label">
+                @Model.DiaChi
+            </div>
+        </div>
+        <div class="row">
+            <h4>Số lần đặt mua:</h4>
+            <div class="label">
+              idk man số lần đặt mua wtf
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    <a href="~/Thay-doi-thong-tin">
-        <div>
-            Thay đổi thông tin cá nhân
-        </div>
-    </a> 
-    <a href="~/Trang-chu">
-        <div>
-            Trang chủ
-        </div>
-    </a>
-</p>
+    
+
