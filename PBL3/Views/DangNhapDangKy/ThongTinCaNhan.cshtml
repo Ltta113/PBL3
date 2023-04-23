@@ -37,7 +37,13 @@
         </div>
         <div class="row">
             <h4>Ngày sinh:</h4>
-            <div class="label">@Model.NgaySinh</div>
+            <div class="label">
+            @{
+                DateTime datetime = (DateTime)Model.NgaySinh;
+                string date = datetime.ToString("dd/MM/yyyy");
+            }
+                @date
+            </div>
         </div>
         <div class="row">
             <h4>Giới tính:</h4>
@@ -56,7 +62,10 @@
         <div class="row">
             <h4>Số lần đặt mua:</h4>
             <div class="label">
-              idk man số lần đặt mua wtf
+              @{ 
+                  int count = Model.HoaDons.Count(x => x.ID_User == Model.ID_User);
+              }
+                @count
             </div>
         </div>
     </div>
