@@ -220,6 +220,7 @@
     <Content Include="Content\main.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\sb-admin-2.css" />
+    <Content Include="Content\ThayDoiThongTin.css" />
     <Content Include="Content\ThongTinCaNhan.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

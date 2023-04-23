@@ -1,0 +1,54 @@
+﻿.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row > input {
+    background: #F9FAFB;
+    width: 400px;
+    border: 2px solid #E5E7EB;
+    border-radius: 8px;
+    height: 32px;
+}
+
+.row > label {
+    font-weight: bold;
+    padding-bottom:20px;
+}
+
+.body__button {
+    width: 450px;
+    text-align: center;
+    padding-top:15px;
+    padding-bottom:15px;
+}
+
+.button {
+    display: inline-block;
+    padding: 5px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity .2s ease;
+}
+
+    .button:hover {
+        opacity: 0.7;
+    }
+
+    .button + .button {
+        margin-left: 16px;
+    }
+
+.btn-save {
+    background-color: #4848F4;
+    color: white;
+}
+
+.btn-cancel {
+    background-color: #FF0000;
+    color: white;
+}
+.row{
+    padding-bottom:25px;
+}
