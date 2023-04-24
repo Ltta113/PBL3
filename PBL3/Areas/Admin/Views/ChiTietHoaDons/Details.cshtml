@@ -16,7 +16,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SanPham.TenSP)
+            @Html.DisplayFor(model => model.SanPham.TenSP) @Model.ID_HoaDon
         </dd>
         <dt>
             Số lượng
@@ -30,7 +30,22 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SanPham.GiaBan)
+            @{
+                double total = 0.0;
+                if (Model.SanPham.KhuyenMai.LoaiKM == 0 && Model.SanPham.KhuyenMai.Status == 1)
+                {
+                    total += Convert.ToDouble(Model.SoLuong * (Model.SanPham.GiaBan - Convert.ToDouble(Model.SanPham.KhuyenMai.NoiDungKM)));
+                }
+                else if (Model.SanPham.KhuyenMai.LoaiKM == 1 && Model.SanPham.KhuyenMai.Status == 1)
+                {
+                    total += Convert.ToDouble(Model.SoLuong * (Model.SanPham.GiaBan * (1 - Convert.ToDouble(Model.SanPham.KhuyenMai.NoiDungKM) / 100)));
+                }
+                else
+                {
+                    total += Convert.ToDouble(Model.SoLuong * Model.SanPham.GiaBan);
+                }
+            }
+            @String.Format("{0:N0}đ", total)
         </dd>
         <dt>
             Ảnh sản phẩm
@@ -45,5 +60,5 @@
     </dl>
 </div>
 <p>
-    <button type="button" name="back" class="btn btn-success btn-md" onclick="location.href='/Admin/ChiTietHoaDons/Index/@Model.ID_HoaDon'">Quay lại</button>
+    <a href="/Admin/HoaDons/Index" class="btn btn-sm btn-info">Quay lại</a>
 </p>

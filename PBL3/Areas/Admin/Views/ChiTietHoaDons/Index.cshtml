@@ -1,4 +1,7 @@
-﻿@model IEnumerable<PBL3.Models.ChiTietHoaDon>
+﻿@{ 
+
+}
+@model IEnumerable<PBL3.Models.ChiTietHoaDon>
 
 @{
     ViewBag.Title = "Index";
@@ -7,9 +10,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -23,23 +23,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SanPham.TenSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SanPham.GiaBan)
-        </td>
-        
-        <td>
-            <a href="/Admin/ChiTietHoaDons/Details/@item.ID_SP" class="btn btn-sm btn-info"> <i class="fa-sharp fa-solid fa-circle-info"></i></a>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanPham.TenSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @{
+                    double total = 0.0;
+                    if (item.SanPham.KhuyenMai.LoaiKM == 0 && item.HoaDon.NgayBan <= item.SanPham.KhuyenMai.KetThucKM)
+                    {
+                        total += Convert.ToDouble(item.SoLuong * (item.SanPham.GiaBan - Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM)));
+                    }
+                    else if (item.SanPham.KhuyenMai.LoaiKM == 1 && item.HoaDon.NgayBan <= item.SanPham.KhuyenMai.KetThucKM)
+                    {
+                        total += Convert.ToDouble(item.SoLuong * (item.SanPham.GiaBan * (1 - Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM) / 100)));
+                    }
+                    else
+                    {
+                        total += Convert.ToDouble(item.SoLuong * item.SanPham.GiaBan);
+                    }
+                }
+                @String.Format("{0:N0}đ", total)
+            </td>
+
+            <td>
+                <a href="/Admin/ChiTietHoaDons/Details/@item.ID_SP" class="btn btn-sm btn-info"> <i class="fa-sharp fa-solid fa-circle-info"></i></a>
+            </td>
+        </tr>
+    }
 
 </table>
 <p>

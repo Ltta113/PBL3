@@ -15,9 +15,10 @@ namespace PBL3.Areas.Admin.Controllers
         private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: Admin/ChiTietHoaDons
-        public ActionResult Index(int? id )
+        public ActionResult Index(int? id)
         {
-            var chiTietHoaDons = db.ChiTietHoaDons.Include(c => c.HoaDon).Include(c => c.SanPham).Where(c =>c.ID_HoaDon == id);
+            
+            var chiTietHoaDons = db.ChiTietHoaDons.Where(c =>c.ID_HoaDon == id).Include(c => c.HoaDon).Include(c => c.SanPham);
             return View(chiTietHoaDons.ToList());
         }
 

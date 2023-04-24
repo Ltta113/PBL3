@@ -1,8 +1,25 @@
-﻿
+﻿@model IEnumerable<PBL3.Models.Model_View.ThongKeSanPham>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Thống kê</h2>
+<div>
+    Tổng doanh thu @ViewBag.total
+</div>
+<div>
+    Doanh thu năm nay @ViewBag.yeartotal
+</div>
+<div>
+    Doanh thu ngày hôm nay @ViewBag.datetotal
+</div>
 
+
+@foreach (var item in Model)
+{
+    <div>
+        @item.TenSP - @item.SoLuong
+    </div>
+
+}    

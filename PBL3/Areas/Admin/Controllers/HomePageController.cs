@@ -1,9 +1,12 @@
 ﻿using PBL3.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PBL3.Models.Model_View;
 
 namespace PBL3.Areas.Admin.Controllers
 {
@@ -13,11 +16,47 @@ namespace PBL3.Areas.Admin.Controllers
         private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
         public ActionResult Index()
         {
-            return View();
+            List<HoaDon> thongketong = db.HoaDons.Where(p => p.Status == 1).ToList();
+            List<HoaDon> thongkenam = db.HoaDons.Where(p => p.Status == 1 && p.NgayBan.Value.Year == DateTime.Now.Year).ToList();
+            List<HoaDon> thongkengay = db.HoaDons.Where(p => p.Status == 1 && p.NgayBan.Value.Year == DateTime.Now.Year
+            && p.NgayBan.Value.Month == DateTime.Now.Month && p.NgayBan.Value.Day == DateTime.Now.Day).ToList();
+            ViewBag.yeartotal = Thongke(thongkenam);
+            ViewBag.datetotal = Thongke(thongkengay);
+            ViewBag.total = Thongke(thongketong);
+            var model = db.ChiTietHoaDons.Include(p => p.SanPham).Where(p => p.HoaDon.Status == 1).GroupBy(p => p.ID_SP)
+                .Select(g => new ThongKeSanPham
+                {
+                    ID_SP= g.Key,
+                    TenSP = db.SanPhams.FirstOrDefault(sp => sp.ID_SP == g.Key).TenSP,
+                    SoLuong = (int)g.Sum(p => p.SoLuong)
+                }).OrderByDescending(p => p.SoLuong)
+        .ToList();
+            return View(model.ToList());
+        }
+        public double Thongke(List<HoaDon> thongketong)
+        {
+            double total = 0.0;
+            foreach (var thongke in thongketong)
+            {
+                var cthd = db.ChiTietHoaDons.Where(p => p.ID_HoaDon == thongke.ID_HoaDon)
+                    .Include(p => p.SanPham);
+                foreach (var item in cthd)
+                {
+                    if (item.SanPham.KhuyenMai.LoaiKM == 0 && thongke.NgayBan <= item.SanPham.KhuyenMai.KetThucKM)
+                    {
+                        total += Convert.ToDouble(item.SoLuong * (item.SanPham.GiaBan - Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM)));
+                    }
+                    else if (item.SanPham.KhuyenMai.LoaiKM == 1 && thongke.NgayBan <= item.SanPham.KhuyenMai.KetThucKM)
+                        total += Convert.ToDouble(item.SoLuong * (item.SanPham.GiaBan * (1 - Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM) / 100)));
+                    else
+                        total += Convert.ToDouble(item.SoLuong * item.SanPham.GiaBan);
+                }
+            }
+            return total;
         }
         public ActionResult Login()
         {
-            if (Session["Quyen"].Equals("0") == true )
+            if (Session["Quyen"].Equals("0") == true)
             {
                 Response.Redirect("~/Admin/HomePage");
             }
@@ -45,7 +84,7 @@ namespace PBL3.Areas.Admin.Controllers
             {
                 ViewBag.Error = "<p class='text-danger'> " + "Tên đăng nhập không hợp lệ" + "</p>";
             }
-            
+
             return View();
         }
         public ActionResult Logout()
