@@ -8,3 +8,4 @@
 - Ngày 21/4/2023 : Chọn sản phẩm trong giỏ hàng
 - Ngày 22/4/2023 : Hoàn thiện back-end
 - Ngày 23/4/2023 : Trang view thông tin cá nhân, view trang thay dổi thông tin cá nhân, phân trang 
+- Ngày 24/4/2023 : Thêm thống kê
