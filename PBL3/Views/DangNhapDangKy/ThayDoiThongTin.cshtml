@@ -30,15 +30,15 @@
             <label for="information">Giới tính:</label>
             <br>
             @Html.DropDownList("GioiTinh",
-                      new SelectList(
-                             new List<Object>{
+                   new SelectList(
+                          new List<Object>{
                                   new { value = true , text = "Nam"  },
                                   new { value = false , text = "Nữ" },
-                               },
-                             "value",
-                             "text",
-                              Model.GioiTinh
-                      ), htmlAttributes: new { @class = "form-control" })
+                            },
+                          "value",
+                          "text",
+                           Model.GioiTinh
+                   ), htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
         </div>
         <div class="row">
@@ -53,14 +53,35 @@
             @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
         </div>
+
+
         <div class="body__button">
-            <button type="submit" class="button btn-save">
-                <i class="fa-solid fa-floppy-disk"></i>
-                Lưu
-            </button>
-            <a href="Thong-tin-ca-nhan" class="button btn-cancel">
-                <i class="fa-solid fa-xmark"></i>Hủy
-            </a>
+            <section>
+
+                <button type="button" class="button btn-save">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Lưu
+                </button>
+                <a href="Thong-tin-ca-nhan" class="button btn-cancel">
+                    <i class="fa-solid fa-xmark"></i>Hủy
+                </a>
+                <span class="overlay"></span>
+
+                <div class="modal-box">
+                    <i class="fa-regular fa-circle-check"style="font-size: 70px; color: #4070f4;"></i>
+                    <h2>Completed!</h2>
+                    <h3>Chỉnh sửa thông tin thành công</h3>
+
+                    <div class="buttons">
+                        <button class="close-btn"> Close</button>
+
+                    </div>
+                </div>
+            </section>
         </div>
+
+
     </div>
 }
+
+
