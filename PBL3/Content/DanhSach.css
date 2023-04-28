@@ -44,7 +44,6 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    min-height: 500px;
 }
 .row--item{
     height: 330px;
@@ -93,8 +92,9 @@
     text-decoration: line-through;
     color: #6B7280;
 }
-.container__paginate{
-    text-align: center;
+.pagination-container{
+    display: flex;
+    justify-content: center
 }
 .page{
     list-style: none;

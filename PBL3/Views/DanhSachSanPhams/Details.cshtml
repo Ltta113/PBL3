@@ -33,25 +33,37 @@
                     <span>@Model.TenSP</span>
                 </div>
                 <div class="row--item">
-                    <div class="item--price" style="padding: 10px;">
-                        <div class="item--price old">@String.Format("{0:N0}đ", Model.GiaBan)}</div>
-                        @{
-                            double total = 0.0;
-                            if (Model.KhuyenMai.LoaiKM == 0 && Model.KhuyenMai.KetThucKM <= DateTime.Now)
-                            {
-                                total = Convert.ToDouble(Model.GiaBan) - Convert.ToDouble(Model.KhuyenMai.NoiDungKM);
-                            }
-                            else if (Model.KhuyenMai.LoaiKM == 1 && Model.KhuyenMai.KetThucKM <= DateTime.Now)
-                            {
-                                total = Convert.ToDouble(Model.GiaBan) * (1 - Convert.ToDouble(Model.KhuyenMai.NoiDungKM) / 100);
-                            }
-                            else
-                            {
-                                total = Convert.ToDouble(Model.GiaBan);
-                            }
+                    @{
+                        if (Model.ID_KM == null || Model.KhuyenMai.KetThucKM <= DateTime.Now)
+                        {
+                            <div class="item--price" style="padding: 10px;">
+                                @String.Format("{0:N0}đ", Model.GiaBan)
+                            </div>
+
                         }
-                        @String.Format("{0:N0}đ", total)
-                    </div>
+                        else
+                        {
+                            <div class="item--price" style="padding: 10px;">
+                                <div class="item--price old">@String.Format("{0:N0}đ", Model.GiaBan)</div>
+                                @{
+                                    double total = 0.0;
+                                    if (Model.KhuyenMai.LoaiKM == 0 && Model.KhuyenMai.KetThucKM >= DateTime.Now)
+                                    {
+                                        total = Convert.ToDouble(Model.GiaBan) - Convert.ToDouble(Model.KhuyenMai.NoiDungKM);
+                                    }
+                                    else if (Model.KhuyenMai.LoaiKM == 1 && Model.KhuyenMai.KetThucKM >= DateTime.Now)
+                                    {
+                                        total = Convert.ToDouble(Model.GiaBan) * (1 - Convert.ToDouble(Model.KhuyenMai.NoiDungKM) / 100);
+                                    }
+                                    else
+                                    {
+                                        total = Convert.ToDouble(Model.GiaBan);
+                                    }
+                                }
+                                @String.Format("{0:N0}đ", total)
+                            </div>
+                        }
+                    }
                     <div class="item--number">
                         <h3 style="color: #359DD9;">Số lượng:</h3>
                         @if (Model.SoLuong != 0)
@@ -71,13 +83,13 @@
                                 <i class="fa-solid fa-cart-shopping fa-xl" style="margin-right: 15px;"></i>Thêm vào giỏ hàng
                             </div>
                         </a>
-                        <button type="submit" class="btn-buy" >
-                            
-                                <i class="fa-solid fa-wallet fa-xl" style="margin-right: 15px;">
-                                </i>Mua ngay
-                            
+                        <button type="submit" class="btn-buy">
+
+                            <i class="fa-solid fa-wallet fa-xl" style="margin-right: 15px;">
+                            </i>Mua ngay
+
                         </button>
-                        
+
                     </div>
                 </div>
             </div>

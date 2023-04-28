@@ -38,25 +38,36 @@
                         <div class="item--brand">
                             @Html.DisplayFor(modelItem => item.NhanHieuSP)
                         </div>
-                        <div class="item--price">
-                            <div class="item--price old">@Html.DisplayFor(modelItem => item.GiaBan)</div>
-                            @{
-                                double total = 0.0;
-                                if (item.KhuyenMai.LoaiKM == 0 && item.KhuyenMai.KetThucKM >= DateTime.Now)
-                                {
-                                    total = Convert.ToDouble(item.GiaBan) - Convert.ToDouble(item.KhuyenMai.NoiDungKM);
-                                }
-                                else if (item.KhuyenMai.LoaiKM == 1 && item.KhuyenMai.KetThucKM >= DateTime.Now)
-                                {
-                                    total = Convert.ToDouble(item.GiaBan) * (1 - Convert.ToDouble(item.KhuyenMai.NoiDungKM) / 100);
-                                }
-                                else
-                                {
-                                    total = Convert.ToDouble(item.GiaBan);
-                                }
+                        @{
+                            if (item.ID_KM == null || item.KhuyenMai.KetThucKM <= DateTime.Now)
+                            {
+                                                <div class="item--price">
+                                                    @String.Format("{0:N0}đ", item.GiaBan)
+                                                </div>
                             }
-                            @String.Format("{0:N0}đ", total)
-                        </div>
+                            else
+                            {
+                                <div class="item--price">
+                                    <div class="item--price old">@Html.DisplayFor(modelItem => item.GiaBan)</div>
+                                    @{
+                                        double total = 0.0;
+                                        if (item.KhuyenMai.LoaiKM == 0 && item.KhuyenMai.KetThucKM >= DateTime.Now)
+                                        {
+                                            total = Convert.ToDouble(item.GiaBan) - Convert.ToDouble(item.KhuyenMai.NoiDungKM);
+                                        }
+                                        else if (item.KhuyenMai.LoaiKM == 1 && item.KhuyenMai.KetThucKM >= DateTime.Now)
+                                        {
+                                            total = Convert.ToDouble(item.GiaBan) * (1 - Convert.ToDouble(item.KhuyenMai.NoiDungKM) / 100);
+                                        }
+                                        else
+                                        {
+                                            total = Convert.ToDouble(item.GiaBan);
+                                        }
+                                    }
+                                    @String.Format("{0:N0}đ", total)
+                                </div>
+                            }
+                        }
                     </a>
                 </div>
             }

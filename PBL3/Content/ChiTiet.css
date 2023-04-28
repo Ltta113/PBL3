@@ -2,6 +2,9 @@
     min-height: 500px;
     display: flex;
 }
+.container__main{
+    margin-left: 100px;
+}
 .container__category-menu{
     margin: 30px 60px;
     list-style: none;
@@ -14,7 +17,7 @@
 .row--item{
     text-align: center;
     font-weight: bold;
-    padding-bottom: 10px;
+    padding-bottom: 25px;
 }
 .item--price{
     font-size: 32px;
@@ -23,6 +26,7 @@
     font-weight: bold;
     transition: 0.09s linear;
     align-items: center;
+    justify-content: center;
 }
 .item--price .old{
     font-size: 25px;
@@ -61,7 +65,10 @@
     margin-top: 15px;
     font-weight: 500;
     transition: .2s linear;
-    cursor: pointer;;
+    cursor: pointer;
+    white-space: nowrap;
+    min-width: 290px;
+    border: none;
 }
 .btn-buy:hover{
     opacity: 0.85;
@@ -71,4 +78,5 @@
     flex: 1;
     padding: 7px;
     padding-right: 60px;
+    margin: auto;
 }
