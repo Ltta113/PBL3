@@ -13,17 +13,15 @@ namespace PBL3.Controllers
     public class DangNhapDangKyController : Controller
     {
         private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
-        //GET: DangKy
+        // GET: DangKy
         public ActionResult DangKy()
         {
             if (Session["UserName"].Equals("") == false)
             {
                 Response.Redirect("~/Trang-chu");
             }
-
-            return View("DangKy");
+            return View();
         }
-
         [HttpPost]
         public ActionResult DangKy(DangKy dangky)
         {
@@ -31,30 +29,31 @@ namespace PBL3.Controllers
             {
 
                 var check = db.Accounts.Where(p => p.Username == dangky.Username.Replace(" ", "")).FirstOrDefault();
-            if (check == null)
-            {
-                Account account = new Account();
-                account.Username = dangky.Username.Replace(" ", "");
-                account.Password = dangky.Password;
-                account.Quyen = 1;
-                db.Accounts.Add(account);
-                User user = new User();
-                user.ID_User = account.ID_Account;
-                user.Ten = dangky.Ten;
-                user.NgaySinh = dangky.NgaySinh;
-                user.GioiTinh = dangky.GioiTinh;
-                user.SDT = dangky.SDT;
-                user.DiaChi = dangky.DiaChi;
-                db.Users.Add(user);
-                db.SaveChanges();
+                if (check == null)
+                {
+                    Account account = new Account();
+                    account.Username = dangky.Username.Replace(" ", "");
+                    account.Password = dangky.Password;
+                    account.Quyen = 1;
+                    db.Accounts.Add(account);
+                    db.SaveChanges();
+                    User user = new User();
+                    var newuser = db.Accounts.Where(p => p.Username == dangky.Username.Replace(" ", "")).FirstOrDefault();
+                    user.ID_User = newuser.ID_Account;
+                    user.Ten = dangky.Ten;
+                    user.NgaySinh = dangky.NgaySinh;
+                    user.SDT = dangky.SDT;
+                    user.DiaChi = dangky.DiaChi;
+                    db.Users.Add(user);
+                    db.SaveChanges();
 
-                Response.Redirect("~/dang-nhap");
-            }
-            else
-            {
-                ViewBag.Error = "<p class='text-danger'> " + "  Tên đăng nhập đã tồn tại, mời nhập lại" + "</p>";
-                return View();
-            }
+                    Response.Redirect("~/dang-nhap");
+                }
+                else
+                {
+                    ViewBag.Error = "<p class='text-danger'> " + "  Tên đăng nhập đã tồn tại, mời nhập lại" + "</p>";
+                    return View();
+                }
             }
 
             else
@@ -65,7 +64,6 @@ namespace PBL3.Controllers
             return View();
 
         }
-
         public ActionResult DangNhap()
         {
             if (Session["UserName"].Equals("") == false)
@@ -211,7 +209,7 @@ namespace PBL3.Controllers
             {
                 int id = Convert.ToInt32(Session["ID_Account"]);
                 var model = db.Users.Where(x => x.ID_User == id).FirstOrDefault();
-                DateTime datetime = (DateTime)model.NgaySinh;
+                DateTime datetime =(DateTime) model.NgaySinh;
                 string date = datetime.ToString("MM/dd/yyyy");
                 ViewBag.NgaySinh = date;
                 return View(model);
@@ -230,7 +228,7 @@ namespace PBL3.Controllers
                 Response.Redirect("~/Thong-tin-ca-nhan");
             }
             ViewBag.ID_User = new SelectList(db.Accounts, "ID_Account", "Username", user.ID_User);
-
+            
             return View(user);
         }
     }
