@@ -14,7 +14,7 @@ namespace PBL3.Controllers
 {
     public class DanhSachSanPhamsController : Controller
     {
-        private CuaHangDienMayEntities db = new CuaHangDienMayEntities();
+        private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: DanhSachSanPhams
         public ActionResult Index(string DanhMucsp,string currentFilter, string Searchtxt, int? page)

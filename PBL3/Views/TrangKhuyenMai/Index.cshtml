@@ -1,0 +1,93 @@
+﻿@model PBL3.Models.Model_View.TrangKhuyenMai
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Index</h2>
+<table class="table">
+    @foreach (var km in Model.ListKM)
+    {
+
+        <tr>
+
+            @if (km.LoaiKM == 0 && Convert.ToInt32(km.NoiDungKM) != 0)
+            {
+
+                <td>
+                    <a href="~/TrangKhuyenMai/KhuyenMai/@km.ID_KM">
+                        Giảm - @String.Format("{0:N0}đ", km.NoiDungKM)
+                    </a>
+                </td>
+            }
+            else if (km.LoaiKM == 1 && Convert.ToInt32(km.NoiDungKM) != 0)
+            {
+                <td>
+                    <a href="~/TrangKhuyenMai/KhuyenMai/@km.ID_KM">
+                        Giảm - @km.NoiDungKM %
+                    </a>
+                </td>
+            }
+            else
+            {
+
+            }
+        </tr>
+        <tr>
+            @foreach (var item in Model.ListSP.Where(p => p.ID_KM == km.ID_KM).Take(5))
+            {
+                if (Convert.ToInt32(km.NoiDungKM) != 0)
+                {
+                    <td>
+                        <a href="~/Chi-tiet-san-pham-@item.ID_SP">
+                            @item.TenSP
+                        </a>
+                    </td>
+                    <td>
+                        <a href="~/Chi-tiet-san-pham-@item.ID_SP">
+                            @item.SoLuong
+                        </a>
+                    </td>
+                }
+            }
+        </tr>
+
+    }
+    <tr>
+        <td colspan="2">
+            <ul class="pagination justify-content-center">
+                @{
+                    int Pre = ViewBag.Page - 1;
+                    if (Pre <= 0)
+                    {
+                        Pre = 1;
+                    }
+                    int Next = ViewBag.Page + 1;
+                    if (Next > ViewBag.PageNumber)
+                    {
+                        Next = ViewBag.PageNumber;
+                    }
+                }
+                <li class="page-item">
+                    <a class="page-link" href="~/TrangKhuyenMai/Index?page=@Pre">
+                        <<
+                    </a>
+                </li>
+                @for (int i = 0; i < ViewBag.PageNumber; i++)
+                {
+
+                    <li class="page-item">
+                        <a class="page-link" href="~/TrangKhuyenMai/Index?page=@(i+1)">
+                            @(i+1)
+                        </a>
+                    </li>
+                }
+                <li class="page-item">
+                    <a class="page-link" href="~/TrangKhuyenMai/Index?page=@Next">
+                        >>
+                    </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
