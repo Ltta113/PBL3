@@ -75,6 +75,11 @@ namespace PBL3
                 defaults: new { controller = "DanhSachSanPhams", action = "Details", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "Trang-khuyen-mai",
+                url: "Trang-khuyen-mai",
+                defaults: new { controller = "TrangKhuyenMai", action = "Index", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
