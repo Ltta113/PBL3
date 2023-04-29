@@ -40,6 +40,11 @@
   --font-family-sans-serif: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+.validation-summary-errors{
+    margin: 0;
+    padding: 0;
+    width:0;
+}
 .rect{
   background: #40F5D4;
   border-radius: 105.53px;

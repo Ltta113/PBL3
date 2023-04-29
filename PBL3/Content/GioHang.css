@@ -1,0 +1,16 @@
+﻿.table thead {
+    display: none
+}
+
+.table th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #359DD9;
+}
+
+.table body + body {
+    border-bottom: 2px solid #359DD9;
+}
+
+.table {
+    background-color: aqua
+}

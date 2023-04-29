@@ -48,7 +48,7 @@ h4 {
 
 .Profile-name {
     display: flex;
-    padding-left: 30px;
+    padding-right: 30px;
     align-items:center;
 }
 
@@ -67,10 +67,7 @@ h4 {
 }
 
 .name {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    font-size: 22px;
-    color: #004B84;
+    
     padding-bottom: 15px;
     /* position: absolute; */
 }

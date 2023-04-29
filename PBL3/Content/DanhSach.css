@@ -92,10 +92,7 @@
     text-decoration: line-through;
     color: #6B7280;
 }
-.pagination-container{
-    display: flex;
-    justify-content: center
-}
+
 .page{
     list-style: none;
     display: flex;

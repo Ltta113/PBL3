@@ -4,17 +4,19 @@
     ViewBag.Title = "XemGioHang";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>XemGioHang</h2>
+@section styles{
+    <link href="~/Content/GioHang.css" rel="stylesheet" />
+}
+<h2 style="color: #359DD9">Giỏ Hàng</h2>
 @if (Model != null)
 {
     <table class="table">
         <thead>
             <tr>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Giá bán</th>
-                <th>Trạng thái</th>
+                <th style="width: 50%">Tên sản phẩm</th>
+                <th style="width: 10%">Số lượng</th>
+                <th style="width: 25%">Giá bán</th>
+                <th style="width: 15%">Trạng thái</th>
                 <td></td>
             </tr>
         </thead>
@@ -39,54 +41,52 @@
                         <td>
 
                             <input type="hidden" value="@item.SanPhamGioHang.ID_SP" name="idSanPham" />
-                            <input type="number" value="@item.SoLuong" name="SoLuongSanPham" min="0" max="@item.SanPhamGioHang.SoLuong" />
-
-                            <input type="checkbox" value="1" name="status" checked="@item.Status" />
-                            <input type="checkbox" value="0" name="status" @(item.Status ? "" : "checked=\"checked\"")/>
-
+                            <input type="number" value="@item.SoLuong" name="SoLuongSanPham" min="0" max="@item.SanPhamGioHang.SoLuong" style="width: 60px"/>
+                        </td>
+                        <td>
+                            @String.Format("{0:N0}đ", total)
 
                         </td>
                         <td>
+                            <input type="checkbox" value="1" name="status" checked="@item.Status" class="checkbox" style="width: 25px; height: 25px" />
+                            <input type="checkbox" value="0" name="status" @(item.Status ? "" : "checked=\"checked\"") class="checkbox" />
                             @*<input type="checkbox" name="status" value="@item.Status" checked />*@
-
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => total)
                         </td>
                         <td>
                             <a href="~/GioHangs/XoaSanPham/@item.SanPhamGioHang.ID_SP">Remove</a>
                         </td>
+                        
                     </tr>
                 }
                 <tr>
                     <td>
                         <button type="submit" class="btn btn-success"> Cập nhật giỏ hàng </button>
                     </td>
-                    <td>                       
+                    <td>
                         <a href="~/GioHangs/HuyGioHang" class="btn btn-danger "> Hủy giỏ hàng </a>
                     </td>
                     <td>
-                        <a href="~/MuaHangs/DatMua" class="btn btn-success" > Đặt mua </a>
+                        <a href="~/MuaHangs/DatMua" class="btn btn-success"> Đặt mua </a>
                     </td>
                 </tr>
             }
         </tbody>
         <tfoot>
             <tr>
-                <td>Tổng tiền = @Model.TongTien()</td>
+                <td>Tổng tiền = @String.Format("{0:N0}đ", Model.TongTien())</td>
             </tr>
         </tfoot>
     </table>
 }
 <script>
-        $('input[name="status"]').on('change', function () {
-            if ($(this).is(':checked')) {
-                $(this).next('input[name="status"][value="0"]').first().prop('checked', false);
-            } else {
-                $(this).next('input[name="status"][value="0"]').first().prop('checked', true);
-            }
-        });
-    </script>
+    $('input[name="status"]').on('change', function () {
+        if ($(this).is(':checked')) {
+            $(this).next('input[name="status"][value="0"]').first().prop('checked', false);
+        } else {
+            $(this).next('input[name="status"][value="0"]').first().prop('checked', true);
+        }
+    });
+</script>
 <style>
     input[name="status"][value="0"] {
         display: none;
