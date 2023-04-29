@@ -150,6 +150,7 @@
     <Compile Include="Controllers\GioHangsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MuaHangsController.cs" />
+    <Compile Include="Controllers\TrangKhuyenMaiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -175,6 +176,7 @@
     <Compile Include="Models\Model_View\DoiMatKhau.cs" />
     <Compile Include="Models\Model_View\SPGioHang.cs" />
     <Compile Include="Models\Model_View\ThongKeSanPham.cs" />
+    <Compile Include="Models\Model_View\TrangKhuyenMai.cs" />
     <Compile Include="Models\PBL3.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -320,6 +322,8 @@
     <Content Include="Views\MuaHangs\XemHoaDon.cshtml" />
     <Content Include="Views\ChiTietHoaDones\Details.cshtml" />
     <Content Include="Views\ChiTietHoaDones\Index.cshtml" />
+    <Content Include="Views\TrangKhuyenMai\Index.cshtml" />
+    <Content Include="Views\TrangKhuyenMai\KhuyenMai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

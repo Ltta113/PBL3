@@ -20,14 +20,14 @@ namespace PBL3.Controllers
         // GET: TrangKhuyenMai
         public ActionResult Index(int page = 1)
         {
-            
+
             TrangKhuyenMai List = new TrangKhuyenMai();
             List<SanPham> sanphams = db.SanPhams.Where(p => p.KhuyenMai.Status == 1).ToList();
             List<KhuyenMai> khuyenmais = db.KhuyenMais.Where(p => p.Status == 1 && p.NoiDungKM != "0").ToList();
             List.ListSP = sanphams;
-            
+
             int pageSize = 1;
-            int pageNumber = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(khuyenmais.Count)/
+            int pageNumber = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(khuyenmais.Count) /
                 Convert.ToDouble(pageSize)));
             int pageSkip = ((int)page - 1) * pageSize;
             ViewBag.Page = page;
@@ -40,7 +40,7 @@ namespace PBL3.Controllers
         {
             ViewBag.ID_KM = id;
             int idkm = Convert.ToInt32(ViewBag.ID_KM);
-            if(page == null)
+            if (page == null)
                 page = 1;
             int pageSize = 8;
             int pageNumber = (page ?? 1);

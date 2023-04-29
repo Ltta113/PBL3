@@ -9,6 +9,6 @@ namespace PBL3.Models.Model_View
     public class TrangKhuyenMai
     {
         public List<SanPham> ListSP { get; set; }
-        public List<KhuyenMai> ListKM { get;set; }
+        public List<KhuyenMai> ListKM { get; set; }
     }
 }
