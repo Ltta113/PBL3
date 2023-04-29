@@ -1,16 +1,50 @@
-﻿.table thead {
-    display: none
+﻿.table{
+    margin: auto;
+    width:75%;
+    border-collapse: collapse;
 }
-
-.table th {
+.table thead{
     vertical-align: bottom;
-    border-bottom: 1px solid #359DD9;
+    border: 2px solid #359DD9;
 }
-
-.table body + body {
-    border-bottom: 2px solid #359DD9;
+.table tbody tr{
+    border: 1px solid #359DD9;
+    border-left: 2px solid #359DD9;
+    border-right: 2px solid #359DD9;
 }
-
-.table {
-    background-color: aqua
+.table td{
+    padding: 10px;
+    text-align: center;
+}
+.pick-number{
+    width: 60px;
+    height: 35px;
+    padding: 10px;
+}
+.pick-number:focus{
+    outline: none;
+}
+.btn{
+    border-radius: 5px;
+}
+.btn-danger{
+    background-color: red;
+    color: white;
+}
+.btn-success {
+    background-color: #359DD9;
+    color: white;
+}
+.btn-primary {
+    background-color: #ccc;
+    font-weight: 500;
+}
+:focus-visible{
+    border-color: none;
+}
+.row{
+    display:flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
