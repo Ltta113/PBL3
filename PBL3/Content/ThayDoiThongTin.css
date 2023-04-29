@@ -93,10 +93,7 @@ section.active .overlay {
     pointer-events: auto;
 }
 
-.body__button .modal-box >i {
-    font-size: 70px;
-    color: #4070f4;
-}
+
 
 section.active .modal-box {
     opacity: 1;
