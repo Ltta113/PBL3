@@ -383,6 +383,7 @@ h2 {
     box-shadow: 0 -4px 3px rgba(18, 139, 201, 0.2);
     background-color: #EFF9FF;
     font-size: 18px;
+    margin-top: 70px;
 }
 .footer__contact{
     display: flex;

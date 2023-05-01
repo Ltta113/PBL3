@@ -1,50 +1,71 @@
-﻿.table{
+﻿.table {
     margin: auto;
-    width:75%;
+    width: 75%;
     border-collapse: collapse;
 }
-.table thead{
-    vertical-align: bottom;
-    border: 2px solid #359DD9;
-}
-.table tbody tr{
-    border: 1px solid #359DD9;
-    border-left: 2px solid #359DD9;
-    border-right: 2px solid #359DD9;
-}
-.table td{
-    padding: 10px;
-    text-align: center;
-}
-.pick-number{
+
+    .table thead {
+        vertical-align: bottom;
+        border: 2px solid #359DD9;
+    }
+
+    .table tbody tr {
+        border: 1px solid #359DD9;
+        border-left: 2px solid #359DD9;
+        border-right: 2px solid #359DD9;
+    }
+
+    .table td {
+        padding: 10px;
+        text-align: center;
+    }
+
+.pick-number {
     width: 60px;
     height: 35px;
     padding: 10px;
 }
-.pick-number:focus{
-    outline: none;
-}
-.btn{
+
+    .pick-number:focus {
+        outline: none;
+    }
+
+.btn {
     border-radius: 5px;
 }
-.btn-danger{
+
+.btn-danger {
     background-color: red;
     color: white;
 }
+
 .btn-success {
     background-color: #359DD9;
     color: white;
 }
+
 .btn-primary {
     background-color: #ccc;
     font-weight: 500;
 }
-:focus-visible{
+
+:focus-visible {
     border-color: none;
 }
-.row{
-    display:flex;
+
+.row {
+    display: flex;
     justify-content: center;
     margin-top: 30px;
     margin-bottom: 50px;
+}
+
+.tag {
+    border-radius: 7px;
+}
+
+.tag-warning {
+    background-color: orange;
+    color: white;
+    font-size: 16px
 }

@@ -210,6 +210,7 @@
     <Content Include="Anh\img\Logo.png" />
     <Content Include="Anh\img\logo2.png" />
     <Content Include="Anh\img\register_img.png" />
+    <Content Include="Anh\img\reset_img.png" />
     <Content Include="Anh\img\x-circle.png" />
     <Content Include="Anh\TiviSS32.jpg" />
     <Content Include="Content\adminstyles.css" />

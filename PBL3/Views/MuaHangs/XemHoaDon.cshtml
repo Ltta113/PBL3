@@ -4,29 +4,29 @@
     ViewBag.Title = "XemHoaDon";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>XemHoaDon</h2>
+@section styles{
+    <link href="~/Content/GioHang.css" rel="stylesheet"/>
+}
+<h2>Lịch sử mua hàng</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayBan)
-        </th>
-        <th>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayBan) Ngày đặt mua
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status) Trạng thái
+            </th>
+            <th>
 
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-
-        </th>
-        <th></th>
-    </tr>
-
+            </th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach (var item in Model)
     {
         <tr>
@@ -37,20 +37,24 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
+                @if (item.Status == 0)
+                {
+                    <div class="tag tag-warning">Chưa xác nhận</div>
+                }
             </td>
             <td>
-                <a href="~/ChiTietHoaDones/Index/@item.ID_HoaDon" class="btn btn-sm btn-danger ">Xem chi tiết</a>
+                <a href="~/ChiTietHoaDones/Index/@item.ID_HoaDon" class="btn btn-sm btn-primary ">Xem chi tiết</a>
             </td>
             <td>
-                
+
                 @using (Html.BeginForm("HuyHoaDon", "MuaHangs", FormMethod.Post))
                 {
                     if (item.Status == 0)
                     {
-                        
-                        <button type="submit" class="btn btn-success">Hủy đơn hàng</button>
+
+                        <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
                         <input type="hidden" name="idhoadon" value="@item.ID_HoaDon" />
-                        }
+                    }
                 }
             </td>
 

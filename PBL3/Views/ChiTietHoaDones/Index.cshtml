@@ -4,73 +4,74 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section styles{
+    <link href="~/Content/GioHang.css" rel="stylesheet" />
+}
+<h2>Chi tiết hóa đơn</h2>
 
-<h2>Index</h2>
 
+<table class="table" style="margin-bottom: 50px">
+    <thead>
+        <tr>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SoLuong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HoaDon.ID_HoaDon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SanPham.TenSP)
-        </th>
-        <th>
-            Tổng tiền
-        </th>
-        <th>
-
-        </th>
-        <th></th>
-    </tr>
-    @{ 
+            </th>
+        </tr>
+    </thead>
+    @{
         double total = 0.0;
         double total1 = 0.0;
     }
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoaDon.ID_HoaDon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SanPham.TenSP)
-        </td>
-        <td>
-            @{
-                if (item.SanPham.KhuyenMai.LoaiKM == 0)
-                {
-                    total1 = (double)((item.SanPham.GiaBan - Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM)) * item.SoLuong);
-                }
-                else
-                {
-                    total1 = (double)((item.SanPham.GiaBan - (Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM) / 100) * item.SanPham.GiaBan) * item.SoLuong);
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align: left; display: flex; align-items: center">
+                <img src="~/Anh/@item.SanPham.Anh" alt="" style="height: 100%; width: 100px;">
+                @Html.DisplayFor(modelItem => item.SanPham.TenSP)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @{
+                    if (item.SanPham.KhuyenMai.LoaiKM == 0)
+                    {
+                        total1 = (double)((item.SanPham.GiaBan - Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM)) * item.SoLuong);
+                    }
+                    else
+                    {
+                        total1 = (double)((item.SanPham.GiaBan - (Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM) / 100) * item.SanPham.GiaBan) * item.SoLuong);
+
+                    }
+
+                    total = total + total1;
 
                 }
-                
-                    total = total + total1;
-                
-            }
-            @total1
-        </td>
-        <td>
-            <a href="~/ChiTietHoaDones/Details/@item.ID_SP"> Chi tiết sản phẩm</a>
-        </td>
+                @String.Format("{0:N0}đ", total1)
+            </td>
+            <td>
+                <a href="~/Chi-tiet-san-pham-@item.ID_SP" class="btn btn-primary"> Chi tiết sản phẩm</a>
+            </td>
+        </tr>
+
+    }
+    <tr style="border: 2px solid #359DD9">
+        <td style="font-weight: bold">Thành tiền </td>
+        <td></td>
+        <td style="color: #359DD9; font-weight: bold">@String.Format("{0:N0}đ", total)</td>
     </tr>
-    
-}
-<tr>
-    <td>Thành tiền : @total</td>
-</tr>
 </table>
-<p>
-    <button type="button" name="back" class="btn btn-success btn-md" onclick="location.href='/MuaHangs/XemHoaDon'">Quay lại</button>
-</p>
+<div style="display: flex; justify-content: center">
+    <a href="~/MuaHangs/XemHoaDon" class="btn btn-success" style="margin: auto"> Quay lại</a>
+</div>
