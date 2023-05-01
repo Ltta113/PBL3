@@ -7,19 +7,16 @@
 @section styles{
     <link href="~/Content/GioHang.css" rel="stylesheet"/>
 }
-<h2>Lịch sử mua hàng</h2>
+<h2 style="color: #359DD9">Lịch sử mua hàng</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NgayBan) Ngày đặt mua
+                Ngày đặt mua
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status) Trạng thái
+                 Trạng thái
             </th>
             <th>
 
@@ -34,12 +31,17 @@
                 @Html.DisplayFor(modelItem => item.NgayBan)
             </td>
             <td>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
                 @if (item.Status == 0)
                 {
                     <div class="tag tag-warning">Chưa xác nhận</div>
+                }
+                else if (item.Status == 1)
+                {
+                    <div class="tag tag-success">Đã xác nhận</div>
+                }
+                else
+                {
+                    <div class="tag tag-danger">Đã hủy</div>
                 }
             </td>
             <td>

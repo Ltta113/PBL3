@@ -62,10 +62,15 @@
 
 .tag {
     border-radius: 7px;
+    font-size: 16px; color: white;
 }
 
 .tag-warning {
     background-color: orange;
-    color: white;
-    font-size: 16px
+}
+.tag-danger{
+    background-color: red;
+}
+.tag-success {
+    background-color: #198754;
 }
