@@ -17,15 +17,15 @@
         @Html.HiddenFor(model => model.ID_Danhmuc)
 
         <div class="form-group">
-            <label>Tên danh mục<span class="text-danger">(*)</span></label>
-            <div class="col-md-3">
+            <label class="py-1">Tên danh mục<span class="text-danger">(*)</span></label>
+            <div class="col-md-3 py-1">
                 @Html.EditorFor(model => model.TenDanhMuc, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenDanhMuc, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            <label>Trạng thái<span class="text-danger">(*)</span></label>
-            <div class="col-md-3">
+            <label class="py-1">Trạng thái<span class="text-danger">(*)</span></label>
+            <div class="col-md-3 py-1">
                 @Html.DropDownList("Status",
                        new SelectList(
                               new List<Object>{
@@ -41,16 +41,14 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 text-right">
-            <button type="submit" value="Save" class="btn btn-sm btn-success"><i class="fa-light fa-floppy-disk"></i> Lưu thay đổi</button>
+    <div class="form-group" style="display: flex; padding-top: 20px">
+        <div class="col-md-offset-2 text-right px-4">
+            <button type="submit" value="Save" class="btn btn-md btn-success"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
+        </div>
+        <div class="col-md-offset-2 ">
+            <button type="button" name="back" class="btn btn-info btn-md" onclick="location.href='/Admin/DanhMucSPs/Index'"><i class="fa-solid fa-left-long" style="padding-right: 5px;"></i>Quay lại</button>
         </div>
     </div>
 
 }
 
-<div class="form-group">
-    <div class="col-md-offset-2 ">
-        <button type="button" name="back" class="btn btn-success btn-md" onclick="location.href='/Admin/DanhMucSPs/Index'">Quay lại</button>
-    </div>
-</div>

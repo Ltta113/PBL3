@@ -16,88 +16,84 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <label>Tên danh mục<span class="text-danger">(*)</span></label>
-            <div class="col-md-3">
+            <label class="py-1">Tên danh mục<span class="text-danger">(*)</span></label>
+            <div class="col-md-3 py-1">
                 @Html.DropDownList("ID_Danhmuc", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ID_Danhmuc, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label>Tên sản phẩm<span class="text-danger">(*)</span></label>
-            <div class="col-md-3">
+            <label class="py-1">Tên sản phẩm<span class="text-danger">(*)</span></label>
+            <div class="col-md-3 py-1">
                 @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label>Khuyến mãi<span class="text-danger">(*)</span></label>
-            <div class="col-md-3">
+            <label class="py-1">Khuyến mãi<span class="text-danger">(*)</span></label>
+            <div class="col-md-3 py-1">
                 @Html.DropDownList("ID_KM", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ID_KM, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label>Số lượng<span class="text-danger">(*)</span></label>
-            <div class="col-md-3">
+            <label class="py-1">Số lượng<span class="text-danger">(*)</span></label>
+            <div class="col-md-3 py-1">
                 @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", type = "number", @Value = 0 } })
                 @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label>Giá bán<span class="text-danger">(*)</span></label>
-            <div class="col-md-3">
+            <label class="py-1">Giá bán<span class="text-danger">(*)</span></label>
+            <div class="col-md-3 py-1">
                 @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label>Nhãn hiệu</label>
-            <div class="col-md-3">
+            <label class="py-1">Nhãn hiệu</label>
+            <div class="col-md-3 py-1">
                 @Html.EditorFor(model => model.NhanHieuSP, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NhanHieuSP, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label>Mẫu</label>
-            <div class="col-md-3">
+            <label class="py-1">Mẫu</label>
+            <div class="col-md-3 py-1">
                 @Html.EditorFor(model => model.MauSP, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MauSP, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label>Mô tả</label>
-            <div class="col-md-3">
+            <label class="py-1">Mô tả</label>
+            <div class="col-md-10 py-1">
                 @Html.EditorFor(model => model.MoTaSP, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MoTaSP, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label>Img<span class="text-danger">(*)</span></label>
-            <div class="col-md-3">
+            <label class="py-1">Img<span class="text-danger">(*)</span></label>
+            <div class="col-md-3 py-1">
                 <input type="file" id="uploadhinh" name="uploadhinh" accept="image/*" />
                 @Html.ValidationMessageFor(model => model.Anh, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 text-right">
-                <button type="submit" value="Save" class="btn btn-sm btn-success"><i class="fa-solid fa-plus"></i> Thêm mới</button>
+        <div class="form-group" style="display: flex; padding-top: 20px">
+            <div class="col-md-offset-2 text-right px-4">
+                <button type="submit" value="Save" class="btn btn-md btn-success"><i class="fa-solid fa-plus"></i> Thêm mới</button>
+            </div>
+            <div class="col-md-offset-2 ">
+                <button type="button" name="back" class="btn btn-info btn-md" onclick="location.href='/Admin/SanPhams/Index'"><i class="fa-solid fa-left-long" style="padding-right: 5px;"></i>Quay lại</button>
             </div>
         </div>
     </div>
 }
 
-<div class="form-group">
-    <div class="col-md-offset-2 ">
-        <button type="button" name="back" class="btn btn-success btn-md" onclick="location.href='/Admin/SanPhams/Index'">Quay lại</button>
-    </div>
-</div>
