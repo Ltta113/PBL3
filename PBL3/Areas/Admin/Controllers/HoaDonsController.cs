@@ -16,7 +16,7 @@ namespace PBL3.Areas.Admin.Controllers
         private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
 
         // GET: Admin/HoaDons
-        public ActionResult Index(string Searchtxt, string currentFilter, int? page)
+        public ActionResult Index(string Searchtxt, string currentFilter, int? page, string status)
         {
             if (Searchtxt != null)
             {
@@ -26,24 +26,50 @@ namespace PBL3.Areas.Admin.Controllers
             {
                 Searchtxt = currentFilter;
             }
-
+            int Status = -1;
+            ViewBag.Status = status;
+            if (status == "Chưa xác nhận")
+                Status = 0;
+            else if (status == "Đã xác nhận")
+                Status = 1;
+            else if (status == "Đã hủy")
+                Status = 2;
             ViewBag.CurrentFilter = Searchtxt;
             int pageSize = 10;
             int pageNumber = (page ?? 1);
 
-            if (Searchtxt == null)
+            if (status == null)
             {
-                var hoaDons = db.HoaDons.Include(h => h.User).OrderBy(h => h.Status).OrderBy(h => h.NgayBan).ToList();
-                return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
+                if (Searchtxt == null)
+                {
+                    var hoaDons = db.HoaDons.Include(h => h.User).OrderBy(h => h.Status).OrderBy(h => h.NgayBan).ToList();
+                    return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
+                }
+                else
+                {
+                    var hoaDons = db.HoaDons.Include(h => h.User).Where(h => h.User.Ten.Contains(Searchtxt))
+                        .OrderBy(h => h.Status).OrderBy(h => h.NgayBan).ToList();
+                    return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
+                } 
             }
             else
             {
-                var hoaDons = db.HoaDons.Include(h => h.User).Where(h =>h.User.Ten.Contains(Searchtxt))
-                    .OrderBy(h => h.Status).OrderBy(h => h.NgayBan).ToList();
-                return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
+                if (Searchtxt == null)
+                {
+                    var hoaDons = db.HoaDons.Include(h => h.User)
+                        .Where(h => h.Status == Status).OrderBy(h => h.NgayBan).ToList();
+                    return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
+                }
+                else
+                {
+                    var hoaDons = db.HoaDons.Include(h => h.User).Where(h => h.User.Ten.Contains(Searchtxt))
+                        .Where(h => h.Status == Status).OrderBy(h => h.NgayBan).ToList();
+                    return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
+                }
             }
 
         }
+
         public ActionResult Confirm(int? id)
         {
             if (id == null)

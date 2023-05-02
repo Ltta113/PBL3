@@ -6,10 +6,19 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/PagedList.css" rel="stylesheet" />
-
 <h2>Danh sách hóa đơn</h2>
 
 <p>
+    <ul class="container__category-menu">
+        @{
+            List<string> list = new List<string>() { "Chưa xác nhận", "Đã xác nhận", "Đã hủy" };
+        }
+        @foreach (string liststatus in list)
+        {
+            <li class="category-menu__items">@Html.ActionLink(liststatus, "Index", "HoaDons", new { @status = liststatus }, null)</li>
+        }
+
+    </ul>
     <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         @using (Html.BeginForm("Index", "HoaDons", FormMethod.Get))
         {
@@ -73,4 +82,4 @@
 </table>
 <br />
 @Html.PagedListPager(Model, page => Url.Action("Index",
-new { page, currentFilter = ViewBag.CurrentFilter }))
+new { page, currentFilter = ViewBag.CurrentFilter, status = ViewBag.Status  }))
