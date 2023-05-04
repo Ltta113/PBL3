@@ -21,10 +21,12 @@ namespace PBL3.Areas.Admin.Controllers
             List<HoaDon> thongkenamtruoc = db.HoaDons.Where(p => p.Status == 1 && p.NgayBan.Value.Year == DateTime.Now.Year - 1).ToList();
             List<HoaDon> thongkengay = db.HoaDons.Where(p => p.Status == 1 && p.NgayBan.Value.Year == DateTime.Now.Year
             && p.NgayBan.Value.Month == DateTime.Now.Month && p.NgayBan.Value.Day == DateTime.Now.Day).ToList();
+            int sohoadon = db.HoaDons.Where(p => p.Status == 0).Count();
             ViewBag.yeartotal = Thongke(thongkenam);
             ViewBag.preyeartotal = Thongke(thongkenamtruoc);
             ViewBag.datetotal = Thongke(thongkengay);
             ViewBag.total = Thongke(thongketong);
+            ViewBag.sohoadon = sohoadon;
             var model = db.ChiTietHoaDons.Include(p => p.SanPham).Where(p => p.HoaDon.Status == 1).GroupBy(p => p.ID_SP)
                 .Select(g => new ThongKeSanPham
                 {
