@@ -5,7 +5,54 @@
 }
 
 <h2>Thống kê</h2>
-<div>
+<table class="table">
+    <tr>
+        <th>
+            Tổng doanh thu
+        </th>
+        <td>
+            @ViewBag.total
+        </td>
+        <td></td>
+    </tr>
+
+
+    <tr>
+        <th>
+            Doanh thu năm nay
+        </th>
+        <td>
+            @ViewBag.yeartotal
+        </td>
+
+    </tr>
+
+    <tr>
+        <th>
+            Doanh thu ngày hôm nay
+        </th>
+        <td>
+            @ViewBag.datetotal
+        </td>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                @item.TenSP
+            </th>
+            <td>
+                @item.SoLuong
+            </td>
+
+        </tr>
+
+
+    }
+
+</table>
+@*<div>
     Tổng doanh thu @ViewBag.total
 </div>
 <div>
@@ -22,4 +69,29 @@
         @item.TenSP - @item.SoLuong
     </div>
 
-}    
+}*@
+@*<div class="item--detail">
+        <div class="row" style="justify-content: left;">
+            <h4 style=" flex: 0.35;">Tổng doanh thu</h4>
+            <div class="label">@ViewBag.total</div>
+        </div>
+        <div class="row" style="justify-content: left;">
+            <h4 style=" flex: 0.35;">Doanh thu năm nay</h4>
+            <div class="label"> @ViewBag.yeartotal</div>
+        </div>
+        <div class="row" style="justify-content: left;">
+            <h4 style=" flex: 0.35;">Doanh thu ngày hôm nay</h4>
+            <div class="label">@ViewBag.datetotal</div>
+        </div>
+        <div class="row" style="justify-content: left;">
+            <h4 style=" flex: 0.35;">Mẫu sản phẩm:</h4>
+            <div class="label">@Model.MauSP</div>
+        </div>
+        <div class="row" style="justify-content: left;">
+            <h4 style=" flex: 0.35;">Mô tả sản phẩm:</h4>
+            <div class="label">
+                @Model.MoTaSP
+            </div>
+        </div>
+    </div>*@
+
