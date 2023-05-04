@@ -5,58 +5,53 @@
 }
 
 <h2>Thống kê</h2>
-<table class="table">
-    <tr>
-        <th>
-            Tổng doanh thu
-        </th>
-        <td>
-            @ViewBag.total
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <th>
-            Doanh thu năm nay
-        </th>
-        <td>
-            @ViewBag.yeartotal
-        </td>
-        @if (ViewBag.yeartotal >= ViewBag.preyeartotal && ViewBag.preyeartotal != 0)
-        {
-            <td>Tăng @(((double)ViewBag.yeartotal/(double)ViewBag.preyeartotal)*100)</td>
-        }
-        else if (ViewBag.yeartotal < ViewBag.preyeartotal && ViewBag.preyeartotal != 0)
-        {
-            <td>Giảm @(((double)ViewBag.yeartotal/(double)ViewBag.preyeartotal)*100)</td>
-        }
-        else
-        {
-            <td> 0 </td>
-        }
-    </tr>
+<div class="row justify-content-center">
+    <div class="col-lg-4 col-md-12">
+        <div class="white-box analytics-info" style="background: #CCFFFF; height: 90px;">
+            <h4 class="box-title" style="color: black">Tổng doanh thu</h4>
+            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                <li>
+                    <div id="sparklinedash">
+                        <canvas width="67" height="30"
+                                style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                    </div>
+                </li>
+                <li class="ms-auto"><span class="counter text-success"> @ViewBag.total</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+        <div class="white-box analytics-info" style="background: #CCFFFF; height: 90px;">
+            <h4 class="box-title" style="color: black">Doanh thu hôm nay</h4>
+            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                <li>
+                    <div id="sparklinedash2">
+                        <canvas width="67" height="30"
+                                style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                    </div>
+                </li>
+                <li class="ms-auto"><span class="counter text-purple">@ViewBag.datetotal</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+        <div class="white-box analytics-info" style="background: #CCFFFF; height: 90px;">
+            <h4 class="box-title" style="color: black">Hóa đơn chưa xác nhận</h4>
+            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                <li>
+                    <div id="sparklinedash3">
+                        <canvas id="canvas" width="67" height="30"
+                                style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                    </div>
+                </li>
+                <li class="ms-auto">
+                    <span class="counter text-info"> @ViewBag.sohoadon</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-    <tr>
-        <th>
-            Doanh thu ngày hôm nay
-        </th>
-        <td>
-            @ViewBag.datetotal
-        </td>
-
-    </tr>
-    <tr>
-        <th>
-            Số hóa đơn chưa được xác nhận
-        </th>
-        <td>
-            @ViewBag.sohoadon
-        </td>
-
-    </tr>
-
-
-</table>
 <div>
     <canvas id="myChart"></canvas>
 </div>
@@ -87,15 +82,65 @@
             responsive: true,
             plugins: {
                 legend: {
-                    
+
                     position: 'right',
                 },
                 title: {
                     display: true,
-                    text: 'Cách mặt hàng bán được'
+                    text: 'Các mặt hàng bán được'
                 }
             }
         },
     });
+</script>
+<script src="~/plugins/bower_components/chartist/dist/chartist.min.js"></script>
+<script src="~/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script src="~/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+<script>
+
+    $(function () {
+        "use strict";
+
+
+        var chart = [chart];
+
+        var sparklineLogin = function () {
+            $('#sparklinedash').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+                type: 'bar',
+                height: '30',
+                barWidth: '4',
+                resize: true,
+                barSpacing: '5',
+                barColor: '#7ace4c'
+            });
+            $('#sparklinedash2').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+                type: 'bar',
+                height: '30',
+                barWidth: '4',
+                resize: true,
+                barSpacing: '5',
+                barColor: '#7460ee'
+            });
+            $('#sparklinedash3').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+                type: 'bar',
+                height: '30',
+                barWidth: '4',
+                resize: true,
+                barSpacing: '5',
+                barColor: '#FF0000'
+            });
+
+        }
+        var sparkResize;
+        $(window).on("resize", function (e) {
+            clearTimeout(sparkResize);
+            sparkResize = setTimeout(sparklineLogin, 500);
+        });
+        sparklineLogin();
+    });
+
+
+
 </script>
 

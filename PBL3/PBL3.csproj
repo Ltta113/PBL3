@@ -253,6 +253,15 @@
       <DependentUpon>PBL3.edmx</DependentUpon>
       <LastGenOutput>PBL3.cs</LastGenOutput>
     </Content>
+    <Content Include="plugins\bower_components\chartist-plugin-tooltips\dist\chartist-plugin-tooltip.css" />
+    <Content Include="plugins\bower_components\chartist-plugin-tooltips\dist\chartist-plugin-tooltip.min.js" />
+    <Content Include="plugins\bower_components\chartist\dist\chartist.min.css" />
+    <Content Include="plugins\bower_components\chartist\dist\chartist.min.js" />
+    <Content Include="plugins\bower_components\jquery-sparkline\jquery.charts-sparkline.js" />
+    <Content Include="plugins\bower_components\jquery-sparkline\jquery.sparkline.min.js" />
+    <Content Include="plugins\bower_components\jquery\dist\core.js" />
+    <Content Include="plugins\bower_components\jquery\dist\jquery.min.js" />
+    <Content Include="plugins\bower_components\jquery\dist\jquery.slim.min.js" />
     <Content Include="Scripts\AdminScript.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -284,6 +293,7 @@
     <Content Include="Areas\Admin\Views\ChiTietHoaDons\Index.cshtml" />
     <Content Include="Front-Prototype\assets\fonts\Quicksand-VariableFont_wght.ttf" />
     <Content Include="fonts\Quicksand-VariableFont_wght.ttf" />
+    <Content Include="plugins\.DS_Store" />
     <None Include="Scripts\jquery-3.6.4.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.4.js" />
     <Content Include="Scripts\jquery-3.6.4.min.js" />
