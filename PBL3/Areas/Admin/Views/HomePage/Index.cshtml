@@ -22,7 +22,18 @@
         <td>
             @ViewBag.yeartotal
         </td>
-
+        @if (ViewBag.yeartotal >= ViewBag.preyeartotal && ViewBag.preyeartotal != 0)
+        {
+            <td>Tăng @(((double)ViewBag.yeartotal/(double)ViewBag.preyeartotal)*100)</td>
+        }
+        else if (ViewBag.yeartotal < ViewBag.preyeartotal && ViewBag.preyeartotal != 0)
+        {
+            <td>Giảm @(((double)ViewBag.yeartotal/(double)ViewBag.preyeartotal)*100)</td>
+        }
+        else
+        {
+            <td> 0 </td>
+        }
     </tr>
 
     <tr>
@@ -34,18 +45,48 @@
         </td>
 
     </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <th>
-                @item.TenSP
-            </th>
-            <td>
-                @item.SoLuong
-            </td>
 
-        </tr>
-    }
 
 </table>
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    const listlabels = @Html.Raw(Json.Encode(Model.Select(p => p.TenSP).ToList()));
+    const listdatas = @Html.Raw(Json.Encode(Model.Select(p => p.SoLuong).ToList()));
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: '',
+                data: listdatas,
+            }],
+            labels: listlabels,
+        },
+        options: {
+            indexAxis: 'y',
+
+            elements: {
+                bar: {
+                    borderWidth: 0.2,
+                }
+            },
+            responsive: true,
+            plugins: {
+                legend: {
+                    
+                    position: 'right',
+                },
+                title: {
+                    display: true,
+                    text: 'Cách mặt hàng bán được'
+                }
+            }
+        },
+    });
+</script>
 
