@@ -50,7 +50,7 @@ namespace PBL3.Areas.Admin.Controllers
                     var hoaDons = db.HoaDons.Include(h => h.User).Where(h => h.User.Ten.Contains(Searchtxt))
                         .OrderBy(h => h.Status).OrderBy(h => h.NgayBan).ToList();
                     return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
-                } 
+                }
             }
             else
             {
@@ -81,10 +81,20 @@ namespace PBL3.Areas.Admin.Controllers
             {
                 return RedirectToAction("Index");
             }
+
             hoaDon.Status = 1;
             db.Entry(hoaDon).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            string urlReferrer = Request.UrlReferrer.ToString();
+
+            if (urlReferrer != null)
+            {
+                return Redirect(urlReferrer); 
+            }
+            else
+                return RedirectToAction("Index");
+
         }
         protected override void Dispose(bool disposing)
         {

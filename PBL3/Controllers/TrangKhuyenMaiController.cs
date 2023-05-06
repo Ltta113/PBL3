@@ -28,16 +28,6 @@ namespace PBL3.Controllers
             List.ListKM = khuyenmais;
             return View(List);
         }
-        public ActionResult KhuyenMai(string id, int? page)
-        {
-            ViewBag.ID_KM = id;
-            int idkm = Convert.ToInt32(ViewBag.ID_KM);
-            if (page == null)
-                page = 1;
-            int pageSize = 8;
-            int pageNumber = (page ?? 1);
-            var sanphams = db.SanPhams.Where(p => p.ID_KM == idkm).ToList();
-            return View(sanphams.ToPagedList((int)pageNumber, (int)pageSize));
-        }
+       
     }
 }

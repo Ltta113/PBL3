@@ -335,7 +335,6 @@
     <Content Include="Views\ChiTietHoaDones\Details.cshtml" />
     <Content Include="Views\ChiTietHoaDones\Index.cshtml" />
     <Content Include="Views\TrangKhuyenMai\Index.cshtml" />
-    <Content Include="Views\TrangKhuyenMai\KhuyenMai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

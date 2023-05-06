@@ -1,6 +1,6 @@
 ﻿@model PBL3.Models.Model_View.TrangKhuyenMai
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trang khuyến mãi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section styles{
@@ -28,7 +28,7 @@
             }
             <div class="row">
 
-                @foreach (var item in Model.ListSP.Take(8)) //Viết query lấy sp áp dụng km loại 1 ở trên
+                @foreach (var item in Model.ListSP.Where(p => p.ID_KM == km.ID_KM).Take(8)) //Viết query lấy sp áp dụng km loại 1 ở trên
                 {
                     <div class="row--item">
                         <a href="~/Chi-tiet-san-pham-@item.ID_SP">
@@ -96,7 +96,7 @@
             }
             <div class="row">
 
-                @foreach (var item in Model.ListSP.Take(8)) // Viết query lấy sp áp dụng kmai loại 0 ở trên
+                @foreach (var item in Model.ListSP.Where(p => p.ID_KM == kmai.ID_KM).Take(8)) // Viết query lấy sp áp dụng kmai loại 0 ở trên
                 {
                     <div class="row--item">
                         <a href="~/Chi-tiet-san-pham-@item.ID_SP">
