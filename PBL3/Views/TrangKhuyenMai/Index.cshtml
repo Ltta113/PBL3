@@ -17,10 +17,10 @@
         </div>
 
         @{
-            var km = Model.ListKM.Where(x => x.LoaiKM == 0 && x.Status == 1).FirstOrDefault();
+            var km = Model.ListKM.Where(x => x.LoaiKM == 1 && x.Status == 1).FirstOrDefault();
             if (km != null)
             {
-                <h3 style="color: whitesmoke; text-align: center; font-style: italic;">Giảm %</h3>
+                <h3 style="color: whitesmoke; text-align: center; font-style: italic;">Giảm @km.NoiDungKM %</h3>
             }
             else
             {
@@ -28,7 +28,7 @@
             }
             <div class="row">
 
-                @foreach (var item in Model.ListSP) //Viết query lấy sp áp dụng km loại 1 ở trên
+                @foreach (var item in Model.ListSP.Take(8)) //Viết query lấy sp áp dụng km loại 1 ở trên
                 {
                     <div class="row--item">
                         <a href="~/Chi-tiet-san-pham-@item.ID_SP">
@@ -79,15 +79,16 @@
     </div>
     <div class="container__main">
         <div>
+            
             <i class="fa-solid fa-certificate fa-2xl icon" style="color: red;"></i>
             <span class="tag">đ</span>
         </div>
 
         @{
             var kmai = Model.ListKM.Where(x => x.LoaiKM == 0 && x.Status == 1).FirstOrDefault();
-            if (km != null)
+            if (kmai != null)
             {
-                <h3 style="color: whitesmoke; text-align: center; font-style: italic;">Giảm @String.Format("{0:N0}đ", Convert.ToInt32(kmai.NoiDungKM))</h3>
+                <h3 style="color: whitesmoke; text-align: center; font-style: italic;">Giảm @String.Format("{0:N0} đ", Convert.ToInt32(kmai.NoiDungKM))</h3>
             }
             else
             {
@@ -95,7 +96,7 @@
             }
             <div class="row">
 
-                @foreach (var item in Model.ListSP) // Viết query lấy sp áp dụng kmai loại 0 ở trên
+                @foreach (var item in Model.ListSP.Take(8)) // Viết query lấy sp áp dụng kmai loại 0 ở trên
                 {
                     <div class="row--item">
                         <a href="~/Chi-tiet-san-pham-@item.ID_SP">
@@ -154,7 +155,7 @@
         @{
             <div class="row">
 
-                @foreach (var item in Model.ListSP) // Viết query lấy sp mới (Lấy 8 cái từ dưới lên)
+                @foreach (var item in Model.ListSP.OrderByDescending(p => p.ID_SP).Take(8)) // Viết query lấy sp mới (Lấy 8 cái từ dưới lên)
                 {
                     <div class="row--item">
                         <a href="~/Chi-tiet-san-pham-@item.ID_SP">

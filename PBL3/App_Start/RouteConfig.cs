@@ -80,6 +80,16 @@ namespace PBL3
                 defaults: new { controller = "TrangKhuyenMai", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "Trang-lien-he",
+                url: "Trang-lien-he",
+                defaults: new { controller = "Home", action = "Contact", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Trang-gioi-thieu",
+                url: "Trang-gioi-thieu",
+                defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

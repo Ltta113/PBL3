@@ -18,21 +18,13 @@ namespace PBL3.Controllers
     {
         private readonly CuaHangDienMayEntities db = new CuaHangDienMayEntities();
         // GET: TrangKhuyenMai
-        public ActionResult Index(int page = 1)
+        public ActionResult Index()
         {
 
             TrangKhuyenMai List = new TrangKhuyenMai();
             List<SanPham> sanphams = db.SanPhams.Where(p => p.KhuyenMai.Status == 1).ToList();
             List<KhuyenMai> khuyenmais = db.KhuyenMais.Where(p => p.Status == 1 && p.NoiDungKM != "0").ToList();
             List.ListSP = sanphams;
-
-            int pageSize = 1;
-            int pageNumber = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(khuyenmais.Count) /
-                Convert.ToDouble(pageSize)));
-            int pageSkip = ((int)page - 1) * pageSize;
-            ViewBag.Page = page;
-            ViewBag.PageNumber = pageNumber;
-            khuyenmais = khuyenmais.Skip(pageSkip).Take(pageSize).ToList();
             List.ListKM = khuyenmais;
             return View(List);
         }
