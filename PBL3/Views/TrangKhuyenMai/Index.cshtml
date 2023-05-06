@@ -3,91 +3,204 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Index</h2>
-<table class="table">
-    @foreach (var km in Model.ListKM)
-    {
+@section styles{
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/KhuyenMai.css" rel="stylesheet" />
+}
 
-        <tr>
+<div class="container">
+    <h2 style="color: #359DD9;">Khuyến mãi nổi bật</h2>
+    <div class="container__main">
+        <div>
+            <i class="fa-solid fa-certificate fa-2xl icon" style="color: red;"></i>
+            <span class="tag">%</span>
+        </div>
 
-            @if (km.LoaiKM == 0 && Convert.ToInt32(km.NoiDungKM) != 0)
+        @{
+            var km = Model.ListKM.Where(x => x.LoaiKM == 0 && x.Status == 1).FirstOrDefault();
+            if (km != null)
             {
-
-                <td>
-                    <a href="~/TrangKhuyenMai/KhuyenMai/@km.ID_KM">
-                        Giảm - @String.Format("{0:N0}đ", km.NoiDungKM)
-                    </a>
-                </td>
-            }
-            else if (km.LoaiKM == 1 && Convert.ToInt32(km.NoiDungKM) != 0)
-            {
-                <td>
-                    <a href="~/TrangKhuyenMai/KhuyenMai/@km.ID_KM">
-                        Giảm - @km.NoiDungKM %
-                    </a>
-                </td>
+                <h3 style="color: whitesmoke; text-align: center; font-style: italic;">Giảm %</h3>
             }
             else
             {
-
+                <h3 style="color: whitesmoke; text-align: center; font-style: italic;">Giảm %</h3>
             }
-        </tr>
-        <tr>
-            @foreach (var item in Model.ListSP.Where(p => p.ID_KM == km.ID_KM).Take(5))
+            <div class="row">
+
+                @foreach (var item in Model.ListSP) //Viết query lấy sp áp dụng km loại 1 ở trên
+                {
+                    <div class="row--item">
+                        <a href="~/Chi-tiet-san-pham-@item.ID_SP">
+                            <div class="item--photo">
+                                <img src="~/Anh/@item.Anh" alt="" style="height: 200px; width: 100%;">
+                            </div>
+                            <div class="item--name">
+                                @Html.DisplayFor(modelItem => item.TenSP)
+                            </div>
+                            <div class="item--brand">
+                                @Html.DisplayFor(modelItem => item.NhanHieuSP)
+                            </div>
+                            @{
+                                if (item.ID_KM == null || item.KhuyenMai.KetThucKM <= DateTime.Now)
+                                {
+                                    <div class="item--price">
+                                        @String.Format("{0:N0}đ", item.GiaBan)
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="item--price">
+                                        <div class="item--price old">@Html.DisplayFor(modelItem => item.GiaBan)</div>
+                                        @{
+                                            double total = 0.0;
+                                            if (item.KhuyenMai.LoaiKM == 0 && item.KhuyenMai.KetThucKM >= DateTime.Now)
+                                            {
+                                                total = Convert.ToDouble(item.GiaBan) - Convert.ToDouble(item.KhuyenMai.NoiDungKM);
+                                            }
+                                            else if (item.KhuyenMai.LoaiKM == 1 && item.KhuyenMai.KetThucKM >= DateTime.Now)
+                                            {
+                                                total = Convert.ToDouble(item.GiaBan) * (1 - Convert.ToDouble(item.KhuyenMai.NoiDungKM) / 100);
+                                            }
+                                            else
+                                            {
+                                                total = Convert.ToDouble(item.GiaBan);
+                                            }
+                                        }
+                                        @String.Format("{0:N0}đ", total)
+                                    </div>
+                                }
+                            }
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <div class="container__main">
+        <div>
+            <i class="fa-solid fa-certificate fa-2xl icon" style="color: red;"></i>
+            <span class="tag">đ</span>
+        </div>
+
+        @{
+            var kmai = Model.ListKM.Where(x => x.LoaiKM == 0 && x.Status == 1).FirstOrDefault();
+            if (km != null)
             {
-                if (Convert.ToInt32(km.NoiDungKM) != 0)
-                {
-                    <td>
-                        <a href="~/Chi-tiet-san-pham-@item.ID_SP">
-                            @item.TenSP
-                        </a>
-                    </td>
-                    <td>
-                        <a href="~/Chi-tiet-san-pham-@item.ID_SP">
-                            @item.SoLuong
-                        </a>
-                    </td>
-                }
+                <h3 style="color: whitesmoke; text-align: center; font-style: italic;">Giảm @String.Format("{0:N0}đ", Convert.ToInt32(kmai.NoiDungKM))</h3>
             }
-        </tr>
+            else
+            {
+                <h3 style="color: whitesmoke; text-align: center; font-style: italic;">Giảm đ</h3>
+            }
+            <div class="row">
 
-    }
-    <tr>
-        <td colspan="2">
-            <ul class="pagination justify-content-center">
-                @{
-                    int Pre = ViewBag.Page - 1;
-                    if (Pre <= 0)
-                    {
-                        Pre = 1;
-                    }
-                    int Next = ViewBag.Page + 1;
-                    if (Next > ViewBag.PageNumber)
-                    {
-                        Next = ViewBag.PageNumber;
-                    }
-                }
-                <li class="page-item">
-                    <a class="page-link" href="~/TrangKhuyenMai/Index?page=@Pre">
-                        <<
-                    </a>
-                </li>
-                @for (int i = 0; i < ViewBag.PageNumber; i++)
+                @foreach (var item in Model.ListSP) // Viết query lấy sp áp dụng kmai loại 0 ở trên
                 {
-
-                    <li class="page-item">
-                        <a class="page-link" href="~/TrangKhuyenMai/Index?page=@(i+1)">
-                            @(i+1)
+                    <div class="row--item">
+                        <a href="~/Chi-tiet-san-pham-@item.ID_SP">
+                            <div class="item--photo">
+                                <img src="~/Anh/@item.Anh" alt="" style="height: 200px; width: 100%;">
+                            </div>
+                            <div class="item--name">
+                                @Html.DisplayFor(modelItem => item.TenSP)
+                            </div>
+                            <div class="item--brand">
+                                @Html.DisplayFor(modelItem => item.NhanHieuSP)
+                            </div>
+                            @{
+                                if (item.ID_KM == null || item.KhuyenMai.KetThucKM <= DateTime.Now)
+                                {
+                                    <div class="item--price">
+                                        @String.Format("{0:N0}đ", item.GiaBan)
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="item--price">
+                                        <div class="item--price old">@Html.DisplayFor(modelItem => item.GiaBan)</div>
+                                        @{
+                                            double total = 0.0;
+                                            if (item.KhuyenMai.LoaiKM == 0 && item.KhuyenMai.KetThucKM >= DateTime.Now)
+                                            {
+                                                total = Convert.ToDouble(item.GiaBan) - Convert.ToDouble(item.KhuyenMai.NoiDungKM);
+                                            }
+                                            else if (item.KhuyenMai.LoaiKM == 1 && item.KhuyenMai.KetThucKM >= DateTime.Now)
+                                            {
+                                                total = Convert.ToDouble(item.GiaBan) * (1 - Convert.ToDouble(item.KhuyenMai.NoiDungKM) / 100);
+                                            }
+                                            else
+                                            {
+                                                total = Convert.ToDouble(item.GiaBan);
+                                            }
+                                        }
+                                        @String.Format("{0:N0}đ", total)
+                                    </div>
+                                }
+                            }
                         </a>
-                    </li>
+                    </div>
                 }
-                <li class="page-item">
-                    <a class="page-link" href="~/TrangKhuyenMai/Index?page=@Next">
-                        >>
-                    </a>
-                </li>
-            </ul>
-        </td>
-    </tr>
-</table>
+            </div>
+        }
+    </div>
+    <h2 style="color: #359DD9;">Sản phẩm mới</h2>
+    <div class="container__main" style="padding-top: 50px">
+        <div>
+            <i class="fa-solid fa-certificate fa-2xl icon" style="color: red;"></i>
+            <span class="tag" style="left: -1.9%; transform: rotate(-20deg); font-size: 20px; font-weight: bold">HOT</span>
+        </div>
 
+        @{
+            <div class="row">
+
+                @foreach (var item in Model.ListSP) // Viết query lấy sp mới (Lấy 8 cái từ dưới lên)
+                {
+                    <div class="row--item">
+                        <a href="~/Chi-tiet-san-pham-@item.ID_SP">
+                            <div class="item--photo">
+                                <img src="~/Anh/@item.Anh" alt="" style="height: 200px; width: 100%;">
+                            </div>
+                            <div class="item--name">
+                                @Html.DisplayFor(modelItem => item.TenSP)
+                            </div>
+                            <div class="item--brand">
+                                @Html.DisplayFor(modelItem => item.NhanHieuSP)
+                            </div>
+                            @{
+                                if (item.ID_KM == null || item.KhuyenMai.KetThucKM <= DateTime.Now)
+                                {
+                                    <div class="item--price">
+                                        @String.Format("{0:N0}đ", item.GiaBan)
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="item--price">
+                                        <div class="item--price old">@Html.DisplayFor(modelItem => item.GiaBan)</div>
+                                        @{
+                                            double total = 0.0;
+                                            if (item.KhuyenMai.LoaiKM == 0 && item.KhuyenMai.KetThucKM >= DateTime.Now)
+                                            {
+                                                total = Convert.ToDouble(item.GiaBan) - Convert.ToDouble(item.KhuyenMai.NoiDungKM);
+                                            }
+                                            else if (item.KhuyenMai.LoaiKM == 1 && item.KhuyenMai.KetThucKM >= DateTime.Now)
+                                            {
+                                                total = Convert.ToDouble(item.GiaBan) * (1 - Convert.ToDouble(item.KhuyenMai.NoiDungKM) / 100);
+                                            }
+                                            else
+                                            {
+                                                total = Convert.ToDouble(item.GiaBan);
+                                            }
+                                        }
+                                        @String.Format("{0:N0}đ", total)
+                                    </div>
+                                }
+                            }
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

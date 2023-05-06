@@ -222,6 +222,7 @@
     <Content Include="Content\ChiTiet.css" />
     <Content Include="Content\DanhSach.css" />
     <Content Include="Content\GioHang.css" />
+    <Content Include="Content\KhuyenMai.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\sb-admin-2.css" />
