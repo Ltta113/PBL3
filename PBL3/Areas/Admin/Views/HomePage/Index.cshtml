@@ -7,41 +7,53 @@
 <h2>Thống kê</h2>
 <div class="row justify-content-center">
     <div class="col-lg-4 col-md-12">
-        <div class="white-box analytics-info" style="background: #fff08c; height: 100px; border-radius: 5px; box-shadow: 0px 3px 3px 3px #888888;">
-            <h4 class="box-title" style="color: white">Tổng doanh thu</h4>
+        <div class="white-box analytics-info" style="background: #f2c200; box-shadow: 0px 3px 3px 3px #888888; ">
+            <h4 class="box-title">Tổng doanh thu</h4>
             
-                <ul class="">
-                    <li class="ms-auto"><span class="counter text-success"> @ViewBag.total</span></li>
-                    @if (ViewBag.yeartotal >= ViewBag.preyeartotal && ViewBag.preyeartotal != 0)
-                    {
-                        <li class="ms-auto"><span class="counter text-success"> Tăng @(((double)ViewBag.yeartotal/(double)ViewBag.preyeartotal)*100)</span></li>
-                    }
-                    else if (ViewBag.yeartotal < ViewBag.preyeartotal && ViewBag.preyeartotal != 0)
-                    {
+            <ul class="my-ul">
+                <li>
+                <h5 class="ms-auto"><span class="counter text-success">$ @String.Format("{0:N0}đ", @ViewBag.total)</span></h5>
+                </li>
+                @if (ViewBag.yeartotal >= ViewBag.preyeartotal && ViewBag.preyeartotal != 0)
+                {
+                   
+                        <li class="ms-auto"><span class="counter text-success"> Tăng @(((double)ViewBag.yeartotal/(double)ViewBag.preyeartotal)*100) <i class="fa-solid fa-arrow-up"></i></span></li>
+                  
+                        }
+                        else if (ViewBag.yeartotal < ViewBag.preyeartotal && ViewBag.preyeartotal != 0)
+                        {
+                    
                         <li class="ms-auto"><span class="counter text-success"> Giảm @(((double)ViewBag.yeartotal/(double)ViewBag.preyeartotal)*100) <i class="fa-solid fa-arrow-down" style="color: red"></i></span></li>
+                    
                     }
+
                     else
                     {
-                        <li class="ms-auto"><span class="counter text-success"> Giảm @(((double)ViewBag.yeartotal/(double)ViewBag.preyeartotal)*100) <i class="fa-solid fa-arrow-down" style="color: red"></i></span></li>
-                        @*<li class="ms-auto"><span class="counter text-success"> Không thay đổi </span></li>*@
+                    
+                        <li class="ms-auto"><span class="counter text-success"> Không thay đổi </span></li>
+                   
                     }
                 </ul>
         </div>
     </div>
     <div class="col-lg-4 col-md-12">
-        <div class="white-box analytics-info" style="background: #FF99CC; height: 100px;border-radius: 5px; box-shadow: 0px 3px 3px 3px #888888;">
-            <h4 class="box-title" style="color: white">Doanh thu hôm nay</h4>
-            <ul class="">
-                <li class="ms-auto"><span class="counter text-purple">@ViewBag.datetotal</span></li>
-            </ul>
+        <div class="white-box analytics-info" style="background: #3972bd; box-shadow: 0px 3px 3px 3px #888888; ">
+            <h4 class="box-title" >Doanh thu hôm nay</h4>
+            <ul class="my-ul">
+                <li>
+                <h5 class="ms-auto"><span class="counter text-purple">@ViewBag.datetotal</span></h5>
+                </li>
+                </ul>
         </div>
     </div>
     <div class="col-lg-4 col-md-12">
-        <div class="white-box analytics-info" style="background: #96ffa1; height: 100px;border-radius: 5px; box-shadow: 0px 3px 3px 3px #888888;">
-            <h4 class="box-title" style="color: white">Hóa đơn chưa xác nhận</h4>
-            <ul class="">
-                <li class="ms-auto">
-                    <span class="counter text-info"> @ViewBag.sohoadon</span>
+        <div class="white-box analytics-info" style="background: #00b000; box-shadow: 0px 3px 3px 3px #888888;">
+            <h4 class="box-title">Hóa đơn chưa xác nhận</h4>
+            <ul class="my-ul">
+                <li>
+                    <h5 class="ms-auto">
+                        <span class="counter text-info"> @ViewBag.sohoadon</span>
+                    </h5>
                 </li>
             </ul>
         </div>

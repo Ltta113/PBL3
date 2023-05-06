@@ -12865,3 +12865,25 @@ body {
     font-size: 0.75rem;
     border-radius: 0.375rem !important;
 }
+.box-title {
+    padding-left: 20px;
+    padding-top: 10px;
+    font-family: Open Sans;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.ms-auto {
+    font-weight: bolder;
+    list-style: none;
+}
+
+.white-box {
+    border-radius: 20px;
+    height: 120px;
+}
+.my-ul{
+    list-style:none;
+}
