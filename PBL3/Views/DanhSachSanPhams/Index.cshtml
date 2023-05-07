@@ -39,7 +39,7 @@
                             @Html.DisplayFor(modelItem => item.NhanHieuSP)
                         </div>
                         @{
-                            if (item.ID_KM == null || item.KhuyenMai.KetThucKM <= DateTime.Now)
+                            if (item.ID_KM == null || item.KhuyenMai.Status == 0 || item.KhuyenMai.NoiDungKM == "0")
                             {
                                                 <div class="item--price">
                                                     @String.Format("{0:N0}đ", item.GiaBan)

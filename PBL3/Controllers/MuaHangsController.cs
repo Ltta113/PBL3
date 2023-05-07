@@ -83,10 +83,6 @@ namespace PBL3.Controllers
             return RedirectToAction("Index", "Home");
 
         }
-        public ActionResult ThanhCong()
-        {
-            return View();
-        }
         public ActionResult XemHoaDon()
         {
             if (Session["ID_Account"].Equals("") == false)
