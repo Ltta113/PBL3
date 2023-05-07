@@ -36,13 +36,26 @@ namespace PBL3.Models.Model_View
                 {
                     kms = Convert.ToInt32(km.NoiDungKM);
                 }
-                items.Add(new SPGioHang
+                if (soluong != 0)
                 {
-                    SanPhamGioHang = SP,
-                    SoLuong = soluong,
-                    Status = true,
-                    NoiDungKhuyenMai = kms
-                });
+                    items.Add(new SPGioHang
+                    {
+                        SanPhamGioHang = SP,
+                        SoLuong = soluong,
+                        Status = true,
+                        NoiDungKhuyenMai = kms
+                    }); 
+                }
+                else
+                {
+                    items.Add(new SPGioHang
+                    {
+                        SanPhamGioHang = SP,
+                        SoLuong = soluong,
+                        Status = false,
+                        NoiDungKhuyenMai = kms
+                    });
+                }
 
             }
             else
@@ -59,7 +72,10 @@ namespace PBL3.Models.Model_View
             if (item != null)
             {
                 item.SoLuong = soluong;
-                item.Status = Convert.ToBoolean(check);
+                if(soluong != 0)
+                    item.Status = Convert.ToBoolean(check);
+                else
+                    item.Status = false;
             }
 
         }

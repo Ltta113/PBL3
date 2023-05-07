@@ -11,3 +11,4 @@
 - Ngày 24/4/2023 : Thêm thống kê
 - Ngày 29/4/2023 : Thêm khuyến mãi, css giỏ hàng
 - Ngày 06/5/2023 : Css thống kê, trang khuyến mãi
+- Ngày 07/5/2023 : Pop-up mua hàng
