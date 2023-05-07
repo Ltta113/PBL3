@@ -71,26 +71,48 @@
             </tbody>
         </table>
         <div class="row">
-            <button type="submit" class="btn btn-primary"> Cập nhật giỏ hàng </button>
-            <a href="~/GioHangs/HuyGioHang" class="btn btn-danger "> Hủy giỏ hàng </a>
-            <a href="~/MuaHangs/DatMua" class="btn btn-success"> Đặt mua </a>
-        </div>
-    }
-}
+            <div class="body__button">
+                <section>
 
-    <script>
-        $('input[name="status"]').on('change', function () {
-            if ($(this).is(':checked')) {
-                $(this).next('input[name="status"][value="0"]').first().prop('checked', false);
-            } else {
-                $(this).next('input[name="status"][value="0"]').first().prop('checked', true);
+                    <button type="submit" class="button btn-primary"> Cập nhật giỏ hàng </button>
+                    <a href="~/GioHangs/HuyGioHang" class="button btn-danger "> Hủy giỏ hàng </a>
+                    <button type="button" class="button btn-save">
+                        Đặt mua
+                    </button>
+                    <span class="overlay"></span>
+
+                    <div class="modal-box">
+                        <i class="fa-regular fa-circle-check" style=" font-size: 70px; color: #4070f4;"></i>
+                        <h2>Completed!</h2>
+                        <h3>Mua hàng thành công!</h3>
+
+                        <div class="buttons">
+                            <a href="~/Trang-chu" class="button-back"> Trở lại trang chủ </a>
+
+
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
             }
-        });
-    </script>
-    <style>
-        input[name="status"][value="0"] {
-            display: none;
-        }
-    </style>
+            }
+
+            <script>
+                $('input[name="status"]').on('change', function () {
+                    if ($(this).is(':checked')) {
+                        $(this).next('input[name="status"][value="0"]').first().prop('checked', false);
+                    } else {
+                        $(this).next('input[name="status"][value="0"]').first().prop('checked', true);
+                    }
+                });
+            </script>
+            <style>
+                input[name="status"][value="0"] {
+                    display: none;
+                }
+            </style>
 
 

@@ -30,7 +30,7 @@
         outline: none;
     }
 
-.btn {
+.button {
     border-radius: 5px;
 }
 
@@ -39,7 +39,7 @@
     color: white;
 }
 
-.btn-success {
+.btn-save {
     background-color: #359DD9;
     color: white;
 }
@@ -73,4 +73,124 @@
 }
 .tag-success {
     background-color: #198754;
+}
+
+
+
+.body__button {
+    width: 450px;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity .2s ease;
+    border: none;
+}
+
+    .button:hover {
+        opacity: 0.7;
+    }
+
+    .button + .button {
+        margin-left: 16px;
+        margin-top:16px;
+    }
+
+.btn-save {
+    background-color: #4848F4;
+    color: white;
+    padding: 15px 30px;
+}
+
+.btn-cancel {
+    background-color: #FF0000;
+    color: white;
+}
+
+.modal-box {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 380px;
+    width: 100%;
+    padding: 30px 20px;
+    border-radius: 24px;
+    background-color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.close-btn {
+    background-color: #4848F4;
+    color: white;
+    border: none;
+    padding: 5px 5px;
+    border-radius: 5px;
+}
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+section.active .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-box i {
+    font-size: 70px;
+    color: #4070f4;
+}
+
+section.active .modal-box {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-box h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.modal-box button {
+    font-size: 14px;
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+
+.modal-box h2 {
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+}
+.buttons {
+    background-color: #359DD9;
+    padding: 10px 15px;
+    border-radius: 15px;
+}
+
+.button-back {
+    color: white;
 }
