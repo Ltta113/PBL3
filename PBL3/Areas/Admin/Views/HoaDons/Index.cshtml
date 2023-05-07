@@ -8,14 +8,14 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <h2>Danh sách hóa đơn</h2>
 
-<p>
+<div class="main-container">
     <ul class="container__category-menu">
         @{
             List<string> list = new List<string>() { "Chưa xác nhận", "Đã xác nhận", "Đã hủy" };
         }
         @foreach (string liststatus in list)
         {
-            <li class="category-menu__items">@Html.ActionLink(liststatus, "Index", "HoaDons", new { @status = liststatus }, null)</li>
+            <li class="category-menu__items" >@Html.ActionLink(liststatus, "Index", "HoaDons", new { @status = liststatus },null)</li>
         }
 
     </ul>
@@ -30,7 +30,7 @@
 
         }
     </div>
-</p>
+</div>
 <table class="table">
     <tr>
         <th>
