@@ -35,7 +35,6 @@ namespace PBL3.Controllers
                 sanpham.SoLuong -= soluong;
                 db.Entry(sanpham).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ThanhCong", "MuaHangs");
             }
             else
             {
@@ -47,7 +46,7 @@ namespace PBL3.Controllers
         {
 
             GioHangs giohang = Session["Giohang"] as GioHangs;
-            if (Session["ID_Account"].Equals("") == false)
+            if (Session["ID_Account"].Equals("") == false && giohang.Items.Count(p =>p.Status == true) != 0)
             {
                 HoaDon hoadon = new HoaDon();
                 hoadon.ID_User = Convert.ToInt32(Session["ID_Account"]);
@@ -74,8 +73,8 @@ namespace PBL3.Controllers
                     }
                 }
                 giohang.XoaSanPhamDaMua();
+                Session["SoLuong"] = giohang.Dem();
                 db.SaveChanges();
-                return RedirectToAction("ThanhCong", "MuaHangs");
             }
             else
             {

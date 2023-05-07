@@ -35,39 +35,38 @@
                     {
                         total = Convert.ToDouble((item.SanPhamGioHang.GiaBan - item.NoiDungKhuyenMai) * item.SoLuong);
                     }
-                <tr>
-                    <td style="text-align: left; display: flex; align-items: center">
-                        <img src="~/Anh/@item.SanPhamGioHang.Anh" alt="" style="height: 100%; width: 100px;">
-                        @Html.DisplayFor(model => item.SanPhamGioHang.TenSP)
-                    </td>
-                    <td>
+                    <tr>
+                        <td style="text-align: left; display: flex; align-items: center">
+                            <img src="~/Anh/@item.SanPhamGioHang.Anh" alt="" style="height: 100%; width: 100px;">
+                            @Html.DisplayFor(model => item.SanPhamGioHang.TenSP)
+                        </td>
+                        <td>
 
-                        <input type="hidden" value="@item.SanPhamGioHang.ID_SP" name="idSanPham" />
-                        <input type="number" value="@item.SoLuong" name="SoLuongSanPham" min="0" max="@item.SanPhamGioHang.SoLuong" class="pick-number" />
-                    </td>
-                    <td>
-                        @String.Format("{0:N0}đ", total)
+                            <input type="hidden" value="@item.SanPhamGioHang.ID_SP" name="idSanPham" />
+                            <input type="number" value="@item.SoLuong" name="SoLuongSanPham" min="0" max="@item.SanPhamGioHang.SoLuong" class="pick-number" />
+                        </td>
+                        <td>
+                            @String.Format("{0:N0}đ", total)
 
-                    </td>
-                    <td>
-                        <input type="checkbox" value="1" name="status" checked="@item.Status" class="checkbox" style="width: 25px; height: 25px" />
-                        <input type="checkbox" value="0" name="status" @(item.Status ? "" : "checked=\"checked\"") class="checkbox" />
-                        @*<input type="checkbox" name="status" value="@item.Status" checked />*@
-                    </td>
-                    <td>
-                        <a href="~/GioHangs/XoaSanPham/@item.SanPhamGioHang.ID_SP" class="btn btn-danger">
-                            <i class="fa-solid fa-trash" style="color: white"></i>
-                        </a>
-                    </td>
+                        </td>
+                        <td>
+                            <input type="checkbox" value="1" name="status" checked="@item.Status" class="checkbox" style="width: 25px; height: 25px" />
+                            <input type="checkbox" value="0" name="status" @(item.Status ? "" : "checked=\"checked\"") class="checkbox" />
+                        </td>
+                        <td>
+                            <a href="~/GioHangs/XoaSanPham/@item.SanPhamGioHang.ID_SP" class="btn btn-danger">
+                                <i class="fa-solid fa-trash" style="color: white"></i>
+                            </a>
+                        </td>
 
+                    </tr>
+
+                }
+                <tr style="border: 2px solid #359DD9;">
+                    <td style="font-weight: bold">Tổng tiền</td>
+                    <td></td>
+                    <td>@String.Format("{0:N0}đ", Model.TongTien())</td>
                 </tr>
-                
-                }     
-            <tr style="border: 2px solid #359DD9;">
-                <td style="font-weight: bold">Tổng tiền</td>
-                <td></td>
-                <td>@String.Format("{0:N0}đ", Model.TongTien())</td>
-            </tr>
             </tbody>
         </table>
         <div class="row">
@@ -76,43 +75,65 @@
 
                     <button type="submit" class="button btn-primary"> Cập nhật giỏ hàng </button>
                     <a href="~/GioHangs/HuyGioHang" class="button btn-danger "> Hủy giỏ hàng </a>
-                    <button type="button" class="button btn-save">
-                        Đặt mua
-                    </button>
-                    <span class="overlay"></span>
+                    @if (Model.Items.Count(p => p.Status == true) != 0)
+                    {
+                        <button type="button" class="button btn-save">
+                            Đặt mua
+                        </button>
+                        <span class="overlay"></span>
 
-                    <div class="modal-box">
-                        <i class="fa-regular fa-circle-check" style=" font-size: 70px; color: #4070f4;"></i>
-                        <h2>Completed!</h2>
-                        <h3>Mua hàng thành công!</h3>
+                        <div class="modal-box">
+                            <i class="fa-regular fa-circle-check" style=" font-size: 70px; color: #4070f4;"></i>
+                            <h2>Completed!</h2>
+                            <h3>Mua hàng thành công!</h3>
 
-                        <div class="buttons">
-                            <a href="~/Trang-chu" class="button-back"> Trở lại trang chủ </a>
+                            <div class="buttons">
+                                <a href="~/MuaHangs/DatMua" class="button-back"> Xác nhận </a>
 
 
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <button type="button" class="button btn-save">
+                            Đặt mua
+                        </button>
+                        <span class="overlay"></span>
+
+                        <div class="modal-box">
+                            <i class="fa-regular fa-circle-check" style=" font-size: 70px; color: red;"></i>
+                            <h2>Failed!</h2>
+                            <h3>Mua hàng thất bại!</h3>
+
+                            <div class="buttons">
+                                <a href="~/Gio-hang" class="button-back"> Trở lại giỏ hàng </a>
+
+
+                            </div>
+                        </div>
+                    }
                 </section>
 
             </div>
 
         </div>
-            }
-            }
+    }
+}
 
-            <script>
-                $('input[name="status"]').on('change', function () {
-                    if ($(this).is(':checked')) {
-                        $(this).next('input[name="status"][value="0"]').first().prop('checked', false);
-                    } else {
-                        $(this).next('input[name="status"][value="0"]').first().prop('checked', true);
-                    }
-                });
-            </script>
-            <style>
-                input[name="status"][value="0"] {
-                    display: none;
-                }
-            </style>
+<script>
+    $('input[name="status"]').on('change', function () {
+        if ($(this).is(':checked')) {
+            $(this).next('input[name="status"][value="0"]').first().prop('checked', false);
+        } else {
+            $(this).next('input[name="status"][value="0"]').first().prop('checked', true);
+        }
+    });
+</script>
+<style>
+    input[name="status"][value="0"] {
+        display: none;
+    }
+</style>
 
 

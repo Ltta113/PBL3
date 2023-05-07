@@ -79,33 +79,60 @@
                     </div>
                     <div class="item--button">
                         <a href="~/GioHangs/ThemVaoGioHang/@Model.ID_SP">
-                            <div class="btn">
+                            <div class="btn1">
                                 <i class="fa-solid fa-cart-shopping fa-xl" style="margin-right: 15px;"></i>Thêm vào giỏ hàng
                             </div>
                         </a>
 
                         <section>
+                            @if (Session["ID_Account"].Equals("") == false)
+                            {
+                                <button type="button" class="btn1 btn-save">
 
-                            <button type="button" class="btn btn-save">
+                                    <i class="fa-solid fa-wallet fa-xl" style="margin-right: 15px;">
+                                    </i>Mua ngay
 
-                                <i class="fa-solid fa-wallet fa-xl" style="margin-right: 15px;">
-                                </i>Mua ngay
+                                </button>
 
-                            </button>
+                                <span class="overlay"></span>
 
-                            <span class="overlay"></span>
+                                <div class="modal-box">
+                                    <i class="fa-regular fa-circle-check" style=" font-size: 70px; color: #4070f4;"></i>
+                                    <h2>Completed!</h2>
+                                    <h3>Mua hàng thành công</h3>
 
-                            <div class="modal-box">
-                                <i class="fa-regular fa-circle-check" style=" font-size: 70px; color: #4070f4;"></i>
-                                <h2>Completed!</h2>
-                                <h3>Mua hàng thành công</h3>
+                                    <div class="buttons">
 
-                                <div class="buttons">
-                                    <a href="~/Trang-chu" class="button-back"> Trở lại trang chủ </a>
+                                        <button type="submit" class="btn1"> Xác nhận </button>
 
 
+                                    </div>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn1 btn-save">
+
+                                    <i class="fa-solid fa-wallet fa-xl" style="margin-right: 15px;">
+                                    </i>Mua ngay
+
+                                </button>
+
+                                <span class="overlay"></span>
+
+                                <div class="modal-box">
+                                    <i class="fa-regular fa-circle-check" style=" font-size: 70px; color: red;"></i>
+                                    <h2>Failed!</h2>
+                                    <h3>Bạn chưa đăng nhập</h3>
+
+                                    <div class="buttons">
+                                        <label>
+                                            <button type="submit" class="btn1"> Đăng nhập ngay </button>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            }
                         </section>
 
 
