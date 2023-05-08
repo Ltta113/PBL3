@@ -223,6 +223,7 @@
     <Content Include="Content\Contact.css" />
     <Content Include="Content\DanhSach.css" />
     <Content Include="Content\GioHang.css" />
+    <Content Include="Content\HoaDon.css" />
     <Content Include="Content\KhuyenMai.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\PagedList.css" />
