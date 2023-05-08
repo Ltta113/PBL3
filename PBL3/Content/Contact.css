@@ -1,82 +1,66 @@
-﻿.table {
-    margin: auto;
-    width: 75%;
-    border-collapse: collapse;
+﻿.container__contact {
+    height: 600px;
+    position: relative;
 }
 
-    .table thead {
-        vertical-align: bottom;
-        border: 2px solid #359DD9;
-    }
+.container__contact-label {
+    position: absolute;
+    top: 0;
+    left: 170px;
 
-    .table tbody tr {
-        border: 1px solid #359DD9;
-        border-left: 2px solid #359DD9;
-        border-right: 2px solid #359DD9;
-    }
-
-    .table td {
-        padding: 10px;
-        text-align: center;
-    }
-
-.pick-number {
-    width: 60px;
-    height: 35px;
-    padding: 10px;
 }
 
-    .pick-number:focus {
-        outline: none;
+.btn--more {
+    color: #359DD9;
+    border: 2px solid rgba(66, 66, 66, 0.03);
+    border-color: #359DD9;
+    margin-top: 40px;
+    transition: .4s ease;
+}
+
+    .btn--more:hover {
+        background-color: #359DD9;
+        color: white;
+        opacity: 1;
     }
 
-.button {
+.h4 {
+    margin: 0;
+    padding: 7px;
+    font-size: 20px;
+    flex: 1;
+    cursor: default;
+    color: white;
+    font-weight: bold
+}
+
+.input-info {
+    padding: 10px 10px;
+}
+
+.info {
+    height: 40px;
+    padding: 6px 10px;
     border-radius: 5px;
+    border: 2px white;
 }
 
-.btn-danger {
-    background-color: red;
-    color: white;
+.contact {
+    width: 540px;
+    height: 125px;
 }
 
-.btn-save {
-    background-color: #359DD9;
-    color: white;
+.container__contact .row {
+    margin: 0;
 }
 
-.btn-primary {
-    background-color: #ccc;
-    font-weight: 500;
+.container__contact .h2 {
+    margin: 15px 0px;
 }
-
-:focus-visible {
-    border-color: none;
+.row{
+    display:flex;
+    justify-content:center;
 }
-
-.row {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 50px;
-}
-
-.tag {
-    border-radius: 7px;
-    font-size: 16px; color: white;
-}
-
-.tag-warning {
-    background-color: orange;
-}
-.tag-danger{
-    background-color: red;
-}
-.tag-success {
-    background-color: #198754;
-}
-
-
-
 .body__button {
     width: 450px;
     text-align: center;
@@ -98,7 +82,6 @@
 
     .button + .button {
         margin-left: 16px;
-        margin-top:16px;
     }
 
 .btn-save {
@@ -147,7 +130,7 @@
     position: fixed;
     height: 100%;
     width: 100%;
-   
+ 
 }
 
 section.active .overlay {

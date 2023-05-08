@@ -220,6 +220,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ChiTiet.css" />
+    <Content Include="Content\Contact.css" />
     <Content Include="Content\DanhSach.css" />
     <Content Include="Content\GioHang.css" />
     <Content Include="Content\KhuyenMai.css" />
