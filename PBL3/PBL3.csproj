@@ -331,7 +331,6 @@
     <Content Include="Views\GioHangs\XemGioHang.cshtml" />
     <Content Include="Views\DangNhapDangKy\ThongTinCaNhan.cshtml" />
     <Content Include="Views\DangNhapDangKy\ThayDoiThongTin.cshtml" />
-    <Content Include="Views\MuaHangs\ThanhCong.cshtml" />
     <Content Include="Views\MuaHangs\XemHoaDon.cshtml" />
     <Content Include="Views\ChiTietHoaDones\Details.cshtml" />
     <Content Include="Views\ChiTietHoaDones\Index.cshtml" />
