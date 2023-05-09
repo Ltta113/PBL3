@@ -35,10 +35,25 @@ namespace PBL3.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                khuyenMai.Status = 1;
-                db.KhuyenMais.Add(khuyenMai);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (khuyenMai.KetThucKM < DateTime.Now)
+                {
+                    ViewBag.Error = "<p class='text-danger'> " + " Ngày kết thúc lớn hơn ngày hôm nay" + "</p>";
+                    return View();
+
+                }
+                else if (khuyenMai.KetThucKM < khuyenMai.BatDauKM)
+                {
+                    ViewBag.Error = "<p class='text-danger'> " + " Ngày kết thúc nhỏ hơn ngày bắt đầu" + "</p>";
+                    return View();
+                }
+                else
+                {
+                    khuyenMai.Status = 1;
+                    db.KhuyenMais.Add(khuyenMai);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
             }
 
             return View(khuyenMai);
