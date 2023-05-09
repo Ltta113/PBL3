@@ -51,9 +51,12 @@
 
                         </div>
                         <hr />
-
+                        
                         <div class="col-lg-7">
                             <div class="p-5">
+                                <a href="~/Trang-chu">
+                                    <img src="~/Anh/img/img/x-circle(1).png" alt="" style="position: absolute; right: 11px; top: 0; padding: 5px;">
+                                </a>
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <p>@Html.Raw(ViewBag.Error) </p>
                                 <form class="user">
