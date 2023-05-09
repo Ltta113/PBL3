@@ -45,16 +45,18 @@
             </td>
             <td>
                 @{
-                    if (item.SanPham.KhuyenMai.LoaiKM == 0)
+                    if (item.SanPham.KhuyenMai.LoaiKM == 0 && item.SanPham.KhuyenMai.Status == 1)
                     {
                         total1 = (double)((item.SanPham.GiaBan - Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM)) * item.SoLuong);
                     }
-                    else
+                    else if (item.SanPham.KhuyenMai.Status == 1)
                     {
                         total1 = (double)((item.SanPham.GiaBan - (Convert.ToDouble(item.SanPham.KhuyenMai.NoiDungKM) / 100) * item.SanPham.GiaBan) * item.SoLuong);
-
                     }
-
+                    else
+                    {
+                        total1 = (double)(item.SanPham.GiaBan * item.SoLuong);
+                    }
                     total = total + total1;
 
                 }

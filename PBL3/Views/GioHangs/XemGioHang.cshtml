@@ -23,18 +23,26 @@
                 </tr>
             </thead>
             <tbody>
-
+                @{ double total1 = 0.0;}
                 @foreach (var item in Model.Items)
                 {
                     double total = 0.0;
-                    if (item.NoiDungKhuyenMai < 100)
+                    if (item.SanPhamGioHang.KhuyenMai.Status == 1)
                     {
-                        total = Convert.ToDouble((item.SanPhamGioHang.GiaBan - (item.NoiDungKhuyenMai / 100) * item.SanPhamGioHang.GiaBan) * item.SoLuong);
+                        if (item.NoiDungKhuyenMai < 100)
+                        {
+                            total = Convert.ToDouble(item.SanPhamGioHang.GiaBan) * (1 - Convert.ToDouble(item.NoiDungKhuyenMai) / 100);
+                        }
+                        else
+                        {
+                            total = Convert.ToDouble(item.SanPhamGioHang.GiaBan - ((Convert.ToDouble(item.NoiDungKhuyenMai)) * item.SoLuong));
+                        }
                     }
                     else
                     {
-                        total = Convert.ToDouble((item.SanPhamGioHang.GiaBan - item.NoiDungKhuyenMai) * item.SoLuong);
+                        total = Convert.ToDouble(item.SanPhamGioHang.GiaBan * item.SoLuong);
                     }
+                    { total1 = total1 + total; }
                     <tr>
                         <td style="text-align: left; display: flex; align-items: center">
                             <img src="~/Anh/@item.SanPhamGioHang.Anh" alt="" style="height: 100%; width: 100px;">
@@ -65,7 +73,7 @@
                 <tr style="border: 2px solid #359DD9;">
                     <td style="font-weight: bold">Tổng tiền</td>
                     <td></td>
-                    <td>@String.Format("{0:N0}đ", Model.TongTien())</td>
+                    <td>@String.Format("{0:N0}đ", total1)</td>
                 </tr>
             </tbody>
         </table>

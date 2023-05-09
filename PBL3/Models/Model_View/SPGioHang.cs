@@ -79,12 +79,7 @@ namespace PBL3.Models.Model_View
             }
 
         }
-        public double TongTien()
-        {
-            var total = items.Where(x => x.NoiDungKhuyenMai > 100 && x.Status == true).Sum(x => x.SoLuong * (x.SanPhamGioHang.GiaBan - x.NoiDungKhuyenMai));
-            total += items.Where(x => x.NoiDungKhuyenMai < 100 && x.Status == true).Sum(x => x.SoLuong * (x.SanPhamGioHang.GiaBan - (x.NoiDungKhuyenMai / 100) * x.SanPhamGioHang.GiaBan));
-            return (double)total;
-        }
+
         public void Xoa(int id)
         {
             items.RemoveAll(x => x.SanPhamGioHang.ID_SP == id);
