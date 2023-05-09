@@ -3,10 +3,6 @@
     background-color: white;
     
 }
-a{
-    text-decoration: none;
-    color: black;
-}
 .header__user{
     display : flex;
     align-items: center;
@@ -49,6 +45,7 @@ input {
 a{
     text-decoration: none;
     background-color: transparent;
+    color: black;
 }
 .header__search--button{
     background-color: #359DD9;
@@ -160,6 +157,8 @@ a{
 }
 .category-menu__items:hover a {
     color: white;
+    display: block;
+    width: 100%;
 }
 
 .header__navbar-list {

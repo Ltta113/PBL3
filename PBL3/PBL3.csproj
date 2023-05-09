@@ -202,10 +202,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Anh\img\Banner.png" />
-    <Content Include="Anh\img\discount %281%29.png" />
     <Content Include="Anh\img\home_ad_1.jpg" />
     <Content Include="Anh\img\home_ad_2.png" />
     <Content Include="Anh\img\home_ad_3.jpg" />
+    <Content Include="Anh\img\img\content-img1.jpg" />
+    <Content Include="Anh\img\img\content-img2.jpg" />
+    <Content Include="Anh\img\img\content-img3.jpg" />
+    <Content Include="Anh\img\img\content-img4.jpg" />
     <Content Include="Anh\img\login_img.png" />
     <Content Include="Anh\img\Logo.png" />
     <Content Include="Anh\img\logo2.png" />
@@ -223,6 +226,7 @@
     <Content Include="Content\Contact.css" />
     <Content Include="Content\DanhSach.css" />
     <Content Include="Content\GioHang.css" />
+    <Content Include="Content\GioiThieu.css" />
     <Content Include="Content\HoaDon.css" />
     <Content Include="Content\KhuyenMai.css" />
     <Content Include="Content\main.css" />
