@@ -13,3 +13,4 @@
 - Ngày 06/5/2023 : Css thống kê, trang khuyến mãi
 - Ngày 07/5/2023 : Pop-up mua hàng
 - Ngày 08/5/2023 : Thêm trang liên hệ
+- Ngày 09/5/2023 : Thêm trang giới thiệu
