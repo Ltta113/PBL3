@@ -41,7 +41,14 @@
             @Html.DisplayFor(modelItem => item.KetThucKM)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NoiDungKM)
+            @if(item.LoaiKM == 0)
+                {
+                    <div>@String.Format("{0:N0}đ", Convert.ToInt32(item.NoiDungKM))</div>
+                }
+            else
+                {
+                    <div>@item.NoiDungKM%</div>
+                }
         </td>
         <td>
             @if(item.LoaiKM == 0)
