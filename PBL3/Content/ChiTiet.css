@@ -183,11 +183,15 @@ section.active .modal-box {
 }
 
 .buttons {
-    background-color: #359DD9;
+   
     padding: 10px 15px;
     border-radius: 15px;
+    
 }
 
 .button-back {
     color: white;
+}
+.btn-danger{
+    background-color:red;
 }
