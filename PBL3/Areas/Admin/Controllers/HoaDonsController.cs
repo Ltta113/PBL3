@@ -42,13 +42,13 @@ namespace PBL3.Areas.Admin.Controllers
             {
                 if (Searchtxt == null)
                 {
-                    var hoaDons = db.HoaDons.Include(h => h.User).OrderBy(h => h.Status).OrderBy(h => h.NgayBan).ToList();
+                    var hoaDons = db.HoaDons.Include(h => h.User).OrderBy(h => h.Status).OrderByDescending(h => h.NgayBan).ToList();
                     return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
                 }
                 else
                 {
                     var hoaDons = db.HoaDons.Include(h => h.User).Where(h => h.User.Ten.Contains(Searchtxt))
-                        .OrderBy(h => h.Status).OrderBy(h => h.NgayBan).ToList();
+                        .OrderBy(h => h.Status).OrderByDescending(h => h.NgayBan).ToList();
                     return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
                 }
             }
@@ -57,13 +57,13 @@ namespace PBL3.Areas.Admin.Controllers
                 if (Searchtxt == null)
                 {
                     var hoaDons = db.HoaDons.Include(h => h.User)
-                        .Where(h => h.Status == Status).OrderBy(h => h.NgayBan).ToList();
+                        .Where(h => h.Status == Status).OrderByDescending(h => h.NgayBan).ToList(); 
                     return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
                 }
                 else
                 {
                     var hoaDons = db.HoaDons.Include(h => h.User).Where(h => h.User.Ten.Contains(Searchtxt))
-                        .Where(h => h.Status == Status).OrderBy(h => h.NgayBan).ToList();
+                        .Where(h => h.Status == Status).OrderByDescending(h => h.NgayBan).ToList();
                     return View(hoaDons.ToPagedList((int)pageNumber, (int)pageSize));
                 }
             }

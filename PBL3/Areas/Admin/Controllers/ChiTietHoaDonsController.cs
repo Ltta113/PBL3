@@ -17,7 +17,6 @@ namespace PBL3.Areas.Admin.Controllers
         // GET: Admin/ChiTietHoaDons
         public ActionResult Index(int? id)
         {
-            
             var chiTietHoaDons = db.ChiTietHoaDons.Where(c =>c.ID_HoaDon == id).Include(c => c.HoaDon).Include(c => c.SanPham);
             return View(chiTietHoaDons.ToList());
         }
