@@ -35,6 +35,8 @@ namespace PBL3.Controllers
                 sanpham.SoLuong -= soluong;
                 db.Entry(sanpham).State = EntityState.Modified;
                 db.SaveChanges();
+                int idHoaDon = hoadon.ID_HoaDon; // Lấy giá trị ID_HoaDon sau khi thêm vào cơ sở dữ liệu
+                return RedirectToAction("Index", "ChiTietHoaDones", new { id = idHoaDon });
             }
             else
             {
