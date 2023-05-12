@@ -94,7 +94,11 @@ namespace PBL3.Models.Model_View
         }
         public int Dem()
         {
-            var total = items.Sum(x => x.SoLuong);
+            int total = 0;
+            foreach (SPGioHang item in items)
+            {
+                total += 1;
+            }
             return (int)total;
         }
 

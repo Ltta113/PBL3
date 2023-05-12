@@ -32,32 +32,41 @@ namespace PBL3.Controllers
             {
 
                 var check = db.Accounts.Where(p => p.Username == dangky.Username.Replace(" ", "")).FirstOrDefault();
-            if (check == null)
-            {
-                Account account = new Account();
-                account.Username = dangky.Username.Replace(" ", "");
-                account.Password = dangky.Password;
-                account.Quyen = 1;
-                db.Accounts.Add(account);
-                User user = new User();
-                user.ID_User = account.ID_Account;
-                user.Ten = dangky.Ten;
-                user.NgaySinh = dangky.NgaySinh;
-                user.GioiTinh = dangky.GioiTinh;
-                user.SDT = dangky.SDT;
-                user.DiaChi = dangky.DiaChi;
-                user.Email= dangky.Email;
-                user.Anh = "";
-                db.Users.Add(user);
-                db.SaveChanges();
+                if (check == null)
+                {
+                    int nam = dangky.NgaySinh.Value.Year;
+                    if (dangky.NgaySinh.Value.Year <= DateTime.Now.Year - 18)
+                    {
+                        Account account = new Account();
+                        account.Username = dangky.Username.Replace(" ", "");
+                        account.Password = dangky.Password;
+                        account.Quyen = 1;
+                        db.Accounts.Add(account);
+                        User user = new User();
+                        user.ID_User = account.ID_Account;
+                        user.Ten = dangky.Ten;
+                        user.NgaySinh = dangky.NgaySinh;
+                        user.GioiTinh = dangky.GioiTinh;
+                        user.SDT = dangky.SDT;
+                        user.DiaChi = dangky.DiaChi;
+                        user.Email = dangky.Email;
+                        user.Anh = "avatar.png";
+                        db.Users.Add(user);
+                        db.SaveChanges();
 
-                Response.Redirect("~/dang-nhap");
-            }
-            else
-            {
-                ViewBag.Error = "<p class='text-danger'> " + "  Tên đăng nhập đã tồn tại, mời nhập lại" + "</p>";
-                return View();
-            }
+                        Response.Redirect("~/dang-nhap");
+                    }
+                    else
+                    {
+                        ViewBag.ErrorTuoi = "<p class='text-danger'> " + "  Bạn phải đủ 18 tuổi để đăng ký tài khoản" + "</p>";
+                        return View();
+                    }    
+                }
+                else
+                {
+                    ViewBag.Error = "<p class='text-danger'> " + "  Tên đăng nhập đã tồn tại, mời nhập lại" + "</p>";
+                    return View();
+                }
             }
 
             else
@@ -228,7 +237,11 @@ namespace PBL3.Controllers
             if (ModelState.IsValid)
             {
                 Session["Name"] = user.Ten;
-                if (uploadhinh != null || uploadhinh.ContentLength > 0)
+                if (uploadhinh == null)
+                {
+                    user.Anh = user.Anh;
+                }
+                else if (uploadhinh != null || uploadhinh.ContentLength > 0)
                 {
                     string hinh = uploadhinh.FileName.ToString();
                     var path = Path.Combine(Server.MapPath("~/Anh"), hinh);

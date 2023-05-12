@@ -17,6 +17,7 @@
             <label for="information">Họ và Tên:</label>
             <br>
             @Html.HiddenFor(model => model.ID_User)
+            @Html.HiddenFor(model => model.Anh)
             @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
         </div>
@@ -70,16 +71,16 @@
         </div>
 
         <div class="body__button">
-            <section>
+            @*<section>*@
 
-                <button type="button" class="button btn-save">
+                <button type="submit" class="button btn-save">
                     <i class="fa-solid fa-floppy-disk" style="padding-right: 5px"></i>
                     Lưu
                 </button>
                 <a href="Thong-tin-ca-nhan" class="button btn-cancel">
                     <i class="fa-solid fa-xmark" style="padding-right: 6px"></i>Hủy
                 </a>
-                <span class="overlay"></span>
+                @*<span class="overlay"></span>
 
                 <div class="modal-box">
                     <i class="fa-regular fa-circle-check" style="font-size: 70px; color: #4070f4;"></i>
@@ -87,11 +88,11 @@
                     <h3>Chỉnh sửa thông tin thành công</h3>
 
                     <div class="buttons">
-                        <button class="close-btn"> Close</button>
+                        <button type="submit"class="close-btn"> Close</button>
 
                     </div>
                 </div>
-            </section>
+            </section>*@
         </div>
         <script>
             uploadhinh.onchange = evt => {

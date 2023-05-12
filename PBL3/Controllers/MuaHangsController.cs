@@ -93,15 +93,26 @@ namespace PBL3.Controllers
         {
 
             GioHangs giohang = Session["Giohang"] as GioHangs;
-            if (Session["ID_Account"].Equals("") == false && giohang.Items.Count(p =>p.Status == true) != 0)
+            if (Session["ID_Account"].Equals("") == false && giohang.Items.Count(p => p.Status == true) != 0)
             {
                 HoaDon hoadon = new HoaDon();
                 hoadon.ID_User = Convert.ToInt32(Session["ID_Account"]);
                 hoadon.NgayBan = DateTime.Now;
                 hoadon.Status = 0;
-                hoadon.DiaChi = form["DiaChi"];
-                hoadon.TenNguoiNhan = form["TenNguoiNhan"];
-                hoadon.Sdt = form["Sdt"];
+                int id1 = Convert.ToInt32(Session["ID_Account"]);
+                var user = db.Users.Where(p => p.ID_User == id1).FirstOrDefault();
+                if (form["DiaChi"] != "")
+                    hoadon.DiaChi = form["DiaChi"];
+                else
+                    hoadon.DiaChi = user.DiaChi;
+                if (form["TenNguoiNhan"] != "")
+                    hoadon.TenNguoiNhan = form["TenNguoiNhan"];
+                else
+                    hoadon.TenNguoiNhan = user.Ten;
+                if (form["Sdt"] != "")
+                     hoadon.Sdt = form["Sdt"];
+                else
+                    hoadon.Sdt = user.SDT;
                 db.HoaDons.Add(hoadon);
                 foreach (var item in giohang.Items)
                 {
@@ -127,7 +138,7 @@ namespace PBL3.Controllers
                 int idHoaDon = hoadon.ID_HoaDon; // Lấy giá trị ID_HoaDon sau khi thêm vào cơ sở dữ liệu
                 giohang.XoaSanPhamDaMua();
                 Session["SoLuong"] = giohang.Dem();
-                return RedirectToAction("Index", "ChiTietHoaDones", new { id = idHoaDon }); 
+                return RedirectToAction("Index", "ChiTietHoaDones", new { id = idHoaDon });
             }
             else
             {
