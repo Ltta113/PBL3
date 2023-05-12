@@ -13,7 +13,14 @@
     <div class="Profile">
         <h3>Thông tin khách hàng:</h3>
         <div class="Profile-avatar">
-            <img src="~/Anh/avatar.png" alt="" style="height:250px; width: 300px;">
+            @if (Model.Anh == "")
+            {
+                <img src="~/Anh/avatar.png" style="height:200px;width:200px;margin:10px" />
+            }
+            else
+            {
+                <img src="~/Anh/@Model.Anh" style="height:200px;width:200px;margin:10px" />
+            }
         </div>
         <div class="Profile-name">
             <div class="Profile__icon">
@@ -66,6 +73,12 @@
             <h4>Địa chỉ:</h4>
             <div class="label">
                 @Model.DiaChi
+            </div>
+        </div>
+        <div class="row">
+            <h4>Email: </h4>
+            <div class="label">
+                @Model.Email
             </div>
         </div>
         <div class="row">

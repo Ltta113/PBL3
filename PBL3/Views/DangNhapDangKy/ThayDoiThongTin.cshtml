@@ -7,7 +7,7 @@
 @section styles{
     <link href="~/Content/ThayDoiThongTin.css" rel="stylesheet" />
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("ThayDoiThongTin","DangNhapDangKy", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="main-container">
         <h2>
@@ -53,7 +53,21 @@
             @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
         </div>
+        <div class="row">
+            <label for="information">Email:</label>
+            <br>
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="row">
+            <label for="information">Ảnh đại diện:</label>
+            <br>
+            <img src="~/Anh/@Model.Anh" style="height:200px;width:200px;margin:10px" id="preview" />
+            <br>
+            <input type="file" id="uploadhinh" name="uploadhinh" accept="image/*" />
 
+            @Html.ValidationMessageFor(model => model.Anh, "", new { @class = "text-danger" })
+        </div>
 
         <div class="body__button">
             <section>
@@ -68,7 +82,7 @@
                 <span class="overlay"></span>
 
                 <div class="modal-box">
-                    <i class="fa-regular fa-circle-check"style="font-size: 70px; color: #4070f4;"></i>
+                    <i class="fa-regular fa-circle-check" style="font-size: 70px; color: #4070f4;"></i>
                     <h2>Completed!</h2>
                     <h3>Chỉnh sửa thông tin thành công</h3>
 
@@ -79,7 +93,14 @@
                 </div>
             </section>
         </div>
-
+        <script>
+            uploadhinh.onchange = evt => {
+                const [file] = uploadhinh.files
+                if (file) {
+                    preview.src = URL.createObjectURL(file);
+                }
+            }
+        </script>
 
     </div>
 }

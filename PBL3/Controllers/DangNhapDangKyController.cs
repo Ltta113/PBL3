@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Web;
@@ -45,6 +46,8 @@ namespace PBL3.Controllers
                 user.GioiTinh = dangky.GioiTinh;
                 user.SDT = dangky.SDT;
                 user.DiaChi = dangky.DiaChi;
+                user.Email= dangky.Email;
+                user.Anh = "";
                 db.Users.Add(user);
                 db.SaveChanges();
 
@@ -219,12 +222,19 @@ namespace PBL3.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ThayDoiThongTin([Bind(Include = "ID_User,Ten,NgaySinh,DiaChi,GioiTinh,SDT")] User user)
+        public ActionResult ThayDoiThongTin([Bind(Include = "ID_User,Ten,NgaySinh,DiaChi,GioiTinh,SDT,Email,Anh")] User user, HttpPostedFileBase uploadhinh)
         {
 
             if (ModelState.IsValid)
             {
                 Session["Name"] = user.Ten;
+                if (uploadhinh != null || uploadhinh.ContentLength > 0)
+                {
+                    string hinh = uploadhinh.FileName.ToString();
+                    var path = Path.Combine(Server.MapPath("~/Anh"), hinh);
+                    uploadhinh.SaveAs(path);
+                    user.Anh = hinh;
+                }
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 Response.Redirect("~/Thong-tin-ca-nhan");
