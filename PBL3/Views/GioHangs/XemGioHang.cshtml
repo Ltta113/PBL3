@@ -89,22 +89,9 @@
                     <a href="~/GioHangs/HuyGioHang" class="button btn-danger "> Hủy giỏ hàng </a>
                     @if (Model.Items.Count(p => p.Status == true) != 0)
                     {
-                        <button type="button" class="button btn-save">
+                        <button type="button" class="button btn-save" onclick="window.location.href='/MuaHangs/XacNhanGioHang'">
                             Đặt mua
                         </button>
-                        <span class="overlay"></span>
-
-                        <div class="modal-box">
-                            <i class="fa-regular fa-circle-check" style=" font-size: 70px; color: #4070f4;"></i>
-                            <h2>Completed!</h2>
-                            <h3>Mua hàng thành công!</h3>
-
-                            <div class="buttons">
-                                <a href="~/MuaHangs/DatMua" class="button-back"> Xác nhận </a>
-
-
-                            </div>
-                        </div>
                     }
                     else
                     {

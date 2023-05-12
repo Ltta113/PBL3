@@ -48,8 +48,8 @@
           <Property Name="ID_User" Type="int" />
           <Property Name="NgayBan" Type="datetime" />
           <Property Name="Status" Type="int" />
-          <Property Name="TenNguoiNhan" Type="nvarchar" MaxLength="255" />
-          <Property Name="DiaChi" Type="nvarchar" MaxLength="255" />
+          <Property Name="TenNguoiNhan" Type="nvarchar(max)" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
           <Property Name="Sdt" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="KhuyenMai">
@@ -296,8 +296,8 @@
           <Property Name="Status" Type="Int32" />
           <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_ChiTietHoaDon_HoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
           <NavigationProperty Name="User" Relationship="Self.FK_HoaDon_User" FromRole="HoaDon" ToRole="User" />
-          <Property Name="TenNguoiNhan" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TenNguoiNhan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Sdt" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="KhuyenMai">

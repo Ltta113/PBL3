@@ -55,6 +55,12 @@ namespace PBL3.Controllers
                 //sanpham.ID_SP = Convert.ToInt32(form["idSanPham"]);
                 Session["SLMua"] = Convert.ToInt32(form["SoLuongSanPham"]);
                 //return RedirectToAction("Xacnhan", "MuaHangs", new {id = sanpham.ID_SP });
+                int id = Convert.ToInt32(Session["ID_Account"]);
+                var user = db.Users.Where(p => p.ID_User == id).FirstOrDefault();
+                ViewBag.TenNguoiNhan = user.Ten;
+                ViewBag.DiaChi = user.DiaChi;
+                ViewBag.SDT = user.SDT;
+                ViewBag.Email = user.Email;
                 return View(sanpham);
             }
             else
@@ -63,7 +69,27 @@ namespace PBL3.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-        public ActionResult DatMua()
+        public ActionResult XacNhanGioHang()
+        {
+            if (Session["ID_Account"].Equals("") == false)
+            {
+                GioHangs giohang = Session["Giohang"] as GioHangs;
+                //return RedirectToAction("Xacnhan", "MuaHangs", new {id = sanpham.ID_SP });
+                int id = Convert.ToInt32(Session["ID_Account"]);
+                var user = db.Users.Where(p => p.ID_User == id).FirstOrDefault();
+                ViewBag.TenNguoiNhan = user.Ten;
+                ViewBag.DiaChi = user.DiaChi;
+                ViewBag.SDT = user.SDT;
+                ViewBag.Email = user.Email;
+                return View(giohang);
+            }
+            else
+            {
+                Response.Redirect("~/dang-nhap");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        public ActionResult DatMua(FormCollection form)
         {
 
             GioHangs giohang = Session["Giohang"] as GioHangs;
@@ -73,6 +99,9 @@ namespace PBL3.Controllers
                 hoadon.ID_User = Convert.ToInt32(Session["ID_Account"]);
                 hoadon.NgayBan = DateTime.Now;
                 hoadon.Status = 0;
+                hoadon.DiaChi = form["DiaChi"];
+                hoadon.TenNguoiNhan = form["TenNguoiNhan"];
+                hoadon.Sdt = form["Sdt"];
                 db.HoaDons.Add(hoadon);
                 foreach (var item in giohang.Items)
                 {

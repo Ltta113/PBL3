@@ -35,10 +35,16 @@
 <table class="table">
     <tr>
         <th>
-            Tên khách hàng
+            Tên người nhận
         </th>
         <th>
             Ngày lập hóa đơn
+        </th>
+        <th>
+            Địa chỉ nhận
+        </th>
+        <th>
+            SDT
         </th>
         <th>
             Trạng thái
@@ -50,10 +56,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Ten)
+                @Html.DisplayFor(modelItem => item.TenNguoiNhan)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NgayBan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sdt)
             </td>
             <td>
                 @if (item.Status == 0)
