@@ -151,13 +151,16 @@ a{
     white-space: nowrap;
     border: 1px solid #359DD9
 }
+    .category-menu__items a {
+        display: block;
+    }
 .category-menu__items:hover {
     background-color: rgb(53, 157, 217);
     cursor: pointer;
 }
 .category-menu__items:hover a {
     color: white;
-    display: block;
+    
     width: 100%;
 }
 

@@ -9,7 +9,7 @@
     <link href="~/Content/ChiTiet.css" rel="stylesheet" />
 }
 
-@using (Html.BeginForm("MuaNgay", "MuaHangs", FormMethod.Post))
+@using (Html.BeginForm("XacNhan", "MuaHangs", FormMethod.Post))
 {
     <div class="container" style="margin-bottom: 100px;">
         <ul class="container__category-menu">
@@ -88,27 +88,14 @@
                             <section>
                                 @if (Session["ID_Account"].Equals("") == false)
                                 {
-                                    <button type="button" class="btn1 btn-save">
+                                    <button type="submit" class="btn1 btn-save">
 
                                         <i class="fa-solid fa-wallet fa-xl" style="margin-right: 15px;">
                                         </i>Mua ngay
 
                                     </button>
 
-                                    <span class="overlay"></span>
-
-                                    <div class="modal-box">
-                                        <i class="fa-regular fa-circle-question" style=" font-size: 70px; color: #4070f4;"></i>
-                                        <h2>Bạn có chắc muốn mua sản phẩm này không ?</h2>
-
-                                        <div class="buttons">
-                                            <button type="submit" class="btn1 btn-submit"> Xác nhận </button>
-                                        @*<div class="buttons">*@
-                                            <button type="button" class="btn1 btn-danger" onclick="window.location.href='Chi-tiet-san-pham-@Model.ID_SP'">Hủy bỏ</button>
-
-                                        @*</div>*@
-                                        </div>
-                                    </div>
+                                    
                                 }
                                 else
                                 {

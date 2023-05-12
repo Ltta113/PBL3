@@ -23,6 +23,9 @@ namespace PBL3.Controllers
                 hoadon.ID_User = Convert.ToInt32(Session["ID_Account"]);
                 hoadon.NgayBan = DateTime.Now;
                 hoadon.Status = 0;
+                hoadon.DiaChi = form["DiaChi"];
+                hoadon.TenNguoiNhan = form["TenNguoiNhan"];
+                hoadon.Sdt = form["Sdt"];
                 db.HoaDons.Add(hoadon);
                 ChiTietHoaDon chitiethoadon = new ChiTietHoaDon();
                 chitiethoadon.ID_HoaDon = hoadon.ID_HoaDon;
@@ -37,6 +40,22 @@ namespace PBL3.Controllers
                 db.SaveChanges();
                 int idHoaDon = hoadon.ID_HoaDon; // Lấy giá trị ID_HoaDon sau khi thêm vào cơ sở dữ liệu
                 return RedirectToAction("Index", "ChiTietHoaDones", new { id = idHoaDon });
+            }
+            else
+            {
+                Response.Redirect("~/dang-nhap");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        public ActionResult XacNhan(FormCollection form)
+        {
+            if (Session["ID_Account"].Equals("") == false)
+            {
+                SanPham sanpham = db.SanPhams.Find(Convert.ToInt32(form["idSanPham"]));
+                //sanpham.ID_SP = Convert.ToInt32(form["idSanPham"]);
+                Session["SLMua"] = Convert.ToInt32(form["SoLuongSanPham"]);
+                //return RedirectToAction("Xacnhan", "MuaHangs", new {id = sanpham.ID_SP });
+                return View(sanpham);
             }
             else
             {

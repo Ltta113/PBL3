@@ -195,6 +195,9 @@
     <Compile Include="Models\SanPham.cs">
       <DependentUpon>PBL3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>PBL3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>PBL3.tt</DependentUpon>
     </Compile>
@@ -341,6 +344,7 @@
     <Content Include="Views\ChiTietHoaDones\Details.cshtml" />
     <Content Include="Views\ChiTietHoaDones\Index.cshtml" />
     <Content Include="Views\TrangKhuyenMai\Index.cshtml" />
+    <Content Include="Views\MuaHangs\XacNhan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

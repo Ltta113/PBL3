@@ -48,6 +48,9 @@
           <Property Name="ID_User" Type="int" />
           <Property Name="NgayBan" Type="datetime" />
           <Property Name="Status" Type="int" />
+          <Property Name="TenNguoiNhan" Type="nvarchar" MaxLength="255" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sdt" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="KhuyenMai">
           <Key>
@@ -293,6 +296,9 @@
           <Property Name="Status" Type="Int32" />
           <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_ChiTietHoaDon_HoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
           <NavigationProperty Name="User" Relationship="Self.FK_HoaDon_User" FromRole="HoaDon" ToRole="User" />
+          <Property Name="TenNguoiNhan" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Sdt" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="KhuyenMai">
           <Key>
@@ -537,6 +543,9 @@
           <EntitySetMapping Name="HoaDons">
             <EntityTypeMapping TypeName="CuaHangDienMayModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="Sdt" ColumnName="Sdt" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TenNguoiNhan" ColumnName="TenNguoiNhan" />
                 <ScalarProperty Name="ID_HoaDon" ColumnName="ID_HoaDon" />
                 <ScalarProperty Name="ID_User" ColumnName="ID_User" />
                 <ScalarProperty Name="NgayBan" ColumnName="NgayBan" />
