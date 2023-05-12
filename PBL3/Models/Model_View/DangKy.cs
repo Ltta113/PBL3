@@ -26,7 +26,11 @@ namespace PBL3.Models.Model_View
         [MinLength(10, ErrorMessage = "Số điện thoại không đúng")]
         [Phone(ErrorMessage = "Số điện thoại không đúng")]
         public string SDT { get; set; }
-        [RegularExpression("^[a-zA-Z0-9_\\.-]+@gmail.com",ErrorMessage = "Email không hợp lệ")]
+
+        [Required(ErrorMessage = "Không được để trống")]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@gmail.com", ErrorMessage = "E-mail không hợp lệ")]
         public string Email { get; set; }
+        public string Anh { get; set; }
+
     }
 }

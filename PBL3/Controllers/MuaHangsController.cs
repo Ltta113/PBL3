@@ -57,7 +57,7 @@ namespace PBL3.Controllers
                 db.HoaDons.Add(hoadon);
                 foreach (var item in giohang.Items)
                 {
-                    if (item.Status == true || item.SoLuong != 0)
+                    if (item.Status == true && item.SoLuong != 0)
                     {
                         ChiTietHoaDon chitiethoadon = new ChiTietHoaDon();
                         chitiethoadon.ID_HoaDon = hoadon.ID_HoaDon;
