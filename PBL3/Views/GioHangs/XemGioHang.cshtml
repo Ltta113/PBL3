@@ -32,6 +32,7 @@
                         if (item.NoiDungKhuyenMai < 100)
                         {
                             total = Convert.ToDouble(item.SanPhamGioHang.GiaBan) * (1 - Convert.ToDouble(item.NoiDungKhuyenMai) / 100);
+                            total = total * Convert.ToDouble(item.SoLuong);
                         }
                         else
                         {
@@ -44,7 +45,7 @@
                     }
                     if(item.Status == true)
                     {
-                        total1 = total1 + total; 
+                        total1 = total1 + total;
                     }
                     <tr>
                         <td style="text-align: left; display: flex; align-items: center">

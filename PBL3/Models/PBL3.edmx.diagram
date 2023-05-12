@@ -21,6 +21,7 @@
         <AssociationConnector Association="CuaHangDienMayModel.FK_GioHang_User" ManuallyRouted="false" />
         <AssociationConnector Association="CuaHangDienMayModel.FK_HoaDon_User" ManuallyRouted="false" />
         <AssociationConnector Association="CuaHangDienMayModel.FK_SanPham_KhuyenMai" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CuaHangDienMayModel.sysdiagram" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
