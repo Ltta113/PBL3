@@ -34,7 +34,7 @@ namespace PBL3.Controllers
                 var check = db.Accounts.Where(p => p.Username == dangky.Username.Replace(" ", "")).FirstOrDefault();
                 if (check == null)
                 {
-                    int nam = dangky.NgaySinh.Value.Year;
+                    
                     if (dangky.NgaySinh.Value.Year <= DateTime.Now.Year - 18)
                     {
                         Account account = new Account();
@@ -60,7 +60,7 @@ namespace PBL3.Controllers
                     {
                         ViewBag.ErrorTuoi = "<p class='text-danger'> " + "  Bạn phải đủ 18 tuổi để đăng ký tài khoản" + "</p>";
                         return View();
-                    }    
+                    }
                 }
                 else
                 {
@@ -236,21 +236,30 @@ namespace PBL3.Controllers
 
             if (ModelState.IsValid)
             {
-                Session["Name"] = user.Ten;
-                if (uploadhinh == null)
+                
+                if (user.NgaySinh.Value.Year <= DateTime.Now.Year - 18)
                 {
-                    user.Anh = user.Anh;
+                    Session["Name"] = user.Ten;
+                    if (uploadhinh == null)
+                    {
+                        user.Anh = user.Anh;
+                    }
+                    else if (uploadhinh != null || uploadhinh.ContentLength > 0)
+                    {
+                        string hinh = uploadhinh.FileName.ToString();
+                        var path = Path.Combine(Server.MapPath("~/Anh"), hinh);
+                        uploadhinh.SaveAs(path);
+                        user.Anh = hinh;
+                    }
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    Response.Redirect("~/Thong-tin-ca-nhan");
                 }
-                else if (uploadhinh != null || uploadhinh.ContentLength > 0)
+                else
                 {
-                    string hinh = uploadhinh.FileName.ToString();
-                    var path = Path.Combine(Server.MapPath("~/Anh"), hinh);
-                    uploadhinh.SaveAs(path);
-                    user.Anh = hinh;
+                    ViewBag.ErrorTuoi = "<p class='text-danger'> " + "  Bạn phải đủ 18 tuổi để đăng ký tài khoản" + "</p>";
+                    return View(user);
                 }
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                Response.Redirect("~/Thong-tin-ca-nhan");
             }
             ViewBag.ID_User = new SelectList(db.Accounts, "ID_Account", "Username", user.ID_User);
 

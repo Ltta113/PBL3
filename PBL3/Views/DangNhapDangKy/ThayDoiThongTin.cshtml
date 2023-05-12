@@ -26,6 +26,7 @@
             <br>
             @Html.TextBoxFor(model => model.NgaySinh, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
             @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+            @Html.Raw(ViewBag.ErrorTuoi)
         </div>
         <div class="row">
             <label for="information">Giới tính:</label>
