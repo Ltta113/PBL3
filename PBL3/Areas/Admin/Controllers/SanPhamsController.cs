@@ -132,6 +132,8 @@ namespace PBL3.Areas.Admin.Controllers
             else if (uploadhinh != null || uploadhinh.ContentLength > 0)
             {
                 string hinh = uploadhinh.FileName.ToString();
+                var path = Path.Combine(Server.MapPath("~/Anh"), hinh);
+                uploadhinh.SaveAs(path);
                 sanPham.Anh = hinh;
             }
             if (ModelState.IsValid)
