@@ -7,10 +7,10 @@
 
 <h2>Cập nhật khuyến mãi</h2>
 
-@using (Html.BeginForm("Edit","KhuyenMais",FormMethod.Post))
+@using (Html.BeginForm("Edit", "KhuyenMais", FormMethod.Post))
 {
-
-    <div class="form-horizontal">
+    <hr />
+    <div class="form-horizontal px-5">
         @Html.HiddenFor(model => model.ID_KM)
         <div class="form-group">
             <p>@Html.Raw(ViewBag.Error) </p>
@@ -83,7 +83,7 @@
             </div>
         </div>
 
-        <div class="form-group" style="display: flex; padding-top: 20px">
+        <div class="form-group" style="display: flex; padding: 20px 0">
             <div class="col-md-offset-2 text-right px-4">
                 <button type="submit" value="Save" class="btn btn-md btn-success"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
             </div>

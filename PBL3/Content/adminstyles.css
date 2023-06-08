@@ -90,6 +90,9 @@
         scroll-behavior: smooth;
     }
 }
+.form-group label {
+    font-weight: bold;
+}
 
 body {
     margin: 0;
@@ -12457,7 +12460,7 @@ body {
         position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        
         min-width: 0;
         flex-grow: 1;
         min-height: calc(100vh - 56px);

@@ -3,13 +3,41 @@
     align-items: center;
     justify-content: center;
 }
+.main-container{
+    display: flex;
+    margin-top: 60px;
+}
 
+.avatar{
+    margin-right: 150px;
+}
+.avatar-img{
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+    .avatar-img img {
+
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+    }
+.avatar .row >input {
+    width: 300px;
+}
 .row > input {
-    background: #F9FAFB;
     width: 400px;
-    border: 2px solid #E5E7EB;
+    border: 2px solid #F0BB59;
     border-radius: 8px;
-    height: 32px;
+    padding: 5px;
+}
+.row > select {
+    width: 400px;
+    border: 2px solid #F0BB59;
+    border-radius: 8px;
+    padding: 5px;
 }
 .row{
     padding-bottom:15px;
@@ -17,11 +45,14 @@
 .row > label {
     font-weight: bold;
 }
-
+.row label{
+    margin-bottom: 5px;
+}
 .body__button {
     width: 450px;
     text-align: center;
-    padding-bottom: 15px;
+    padding: 15px 0;
+    margin: auto;
 }
 
 .button {

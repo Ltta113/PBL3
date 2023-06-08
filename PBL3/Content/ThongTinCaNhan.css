@@ -26,9 +26,17 @@
 }
 
 .Profile-avatar {
-    width: fit-content;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
 }
-
+    .Profile-avatar img {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+    }
 .item--detail {
     padding-top: 70px;
 }
@@ -68,6 +76,6 @@ h4 {
 
 .name {
     
-    padding-bottom: 15px;
+    padding: 15px;
     /* position: absolute; */
 }

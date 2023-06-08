@@ -48,7 +48,7 @@
                             else
                             {
                                 <div class="item--price">
-                                    <div class="item--price old">@Html.DisplayFor(modelItem => item.GiaBan)</div>
+                                    <div class="item--price old">@String.Format("{0:N0}đ", item.GiaBan)</div>
                                     @{
                                         double total = 0.0;
                                         if (item.KhuyenMai.LoaiKM == 0 && item.KhuyenMai.KetThucKM >= DateTime.Now)

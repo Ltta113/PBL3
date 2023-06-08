@@ -12,7 +12,7 @@
 
 <p>
     <div class="col-md-offset-2 text-right">
-        <a href="/Admin/SanPhams/Create" class="btn btn-sm btn-info"> <i class="fa-solid fa-plus"></i> Thêm mới</a>
+        <a href="/Admin/SanPhams/Create" class="btn btn-group-lg btn-info"> <i class="fa-solid fa-plus"></i> Thêm mới</a>
 
     </div>
     <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
@@ -29,19 +29,19 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        <th style="width: 16%">
             Tên sản phẩm
         </th>
         <th style="width: 5%">
             Số lượng
         </th>
-        <th>
+        <th style="width: 8%">
             Giá bán
         </th>
-        <th>
+        <th style="width: 8%">
             Nhãn hiệu
         </th>
-        <th>
+        <th style="width: 7%">
             Mẫu
         </th>
         <th>
@@ -50,13 +50,13 @@
         <th>
             Img
         </th>
-        <th>
+        <th style="width: 6%">
             Trạng thái
         </th>
-        <th>
+        <th style="width: 7%">
             Tên danh mục
         </th>
-        <th>
+        <th style="width: 6%">
             Khuyến mãi
         </th>
         <th></th>
@@ -83,7 +83,7 @@
             <td style="width: 15%">
                 @Html.DisplayFor(modelItem => item.MoTaSP)
             </td>
-            <td style="width: 10%">
+            <td style="width: 10%; word-break: break-all">
                 @Html.DisplayFor(modelItem => item.Anh)
             </td>
             <td>
@@ -96,7 +96,14 @@
                 @Html.DisplayFor(modelItem => item.DanhMucSP.TenDanhMuc)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.KhuyenMai.NoiDungKM)
+                @if (item.KhuyenMai.LoaiKM == 0)
+                {
+                    <div>@String.Format("{0:N0}đ", Convert.ToInt32(item.KhuyenMai.NoiDungKM))</div>
+                }
+                else
+                {
+                    <div>@item.KhuyenMai.NoiDungKM%</div>
+                }
             </td>
             <td>
                 <a href="/Admin/SanPhams/Edit/@item.ID_SP" class="btn btn-sm btn-info"> <i class="fa-solid fa-pen-to-square"></i></a>

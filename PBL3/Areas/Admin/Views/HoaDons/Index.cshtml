@@ -14,10 +14,9 @@
         @{
             List<string> list = new List<string>() { "Chưa xác nhận", "Đã xác nhận", "Đã hủy" };
         }
-        @foreach (string liststatus in list)
-        {
-            <li class="category-menu__items" >@Html.ActionLink(liststatus, "Index", "HoaDons", new { @status = liststatus },null)</li>
-        }
+        <li class="category-menu__items" style="background-color: #e7aa2e">@Html.ActionLink("Chưa xác nhận", "Index", "HoaDons", new { @status = "Chưa xác nhận" }, null)</li>
+        <li class="category-menu__items" style="background-color: #1bbe73">@Html.ActionLink("Đã xác nhận", "Index", "HoaDons", new { @status = "Đã xác nhận" }, null)</li>
+        <li class="category-menu__items" style="background-color: #e74b2e">@Html.ActionLink("Đã hủy", "Index", "HoaDons", new { @status = "Đã hủy" }, null)</li>
 
     </ul>
     <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
@@ -61,7 +60,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.NgayBan)
             </td>
-            <td>
+            <td style="width: 40%">
                 @Html.DisplayFor(modelItem => item.DiaChi)
             </td>
             <td>
