@@ -27,41 +27,42 @@
         }
     </div>
 </p>
-<table class="table">
-    <tr>
-        <th style="width: 16%">
-            Tên sản phẩm
-        </th>
-        <th style="width: 5%">
-            Số lượng
-        </th>
-        <th style="width: 8%">
-            Giá bán
-        </th>
-        <th style="width: 8%">
-            Nhãn hiệu
-        </th>
-        <th style="width: 7%">
-            Mẫu
-        </th>
-        <th>
-            Mô tả
-        </th>
-        <th>
-            Img
-        </th>
-        <th style="width: 6%">
-            Trạng thái
-        </th>
-        <th style="width: 7%">
-            Tên danh mục
-        </th>
-        <th style="width: 6%">
-            Khuyến mãi
-        </th>
-        <th></th>
-    </tr>
-
+<table class="table mt-3" style="border: 2px solid">
+    <thead style="border: 1px solid">
+        <tr style="background-color: aliceblue; vertical-align: middle">
+            <th style="width: 16%">
+                Tên sản phẩm
+            </th>
+            <th style="width: 5%">
+                Số lượng
+            </th>
+            <th style="width: 8%">
+                Giá bán
+            </th>
+            <th style="width: 8%">
+                Nhãn hiệu
+            </th>
+            <th style="width: 7%">
+                Mẫu
+            </th>
+            <th>
+                Mô tả
+            </th>
+            <th>
+                Img
+            </th>
+            <th style="width: 6%">
+                Trạng thái
+            </th>
+            <th style="width: 7%">
+                Danh mục
+            </th>
+            <th style="width: 6%">
+                Khuyến mãi
+            </th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach (var item in Model)
     {
         <tr>
