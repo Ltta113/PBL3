@@ -13,7 +13,7 @@
     <div class="Profile">
         <h3>Thông tin khách hàng:</h3>
         <div class="Profile-avatar">
-            @if (Model.Anh == "")
+            @if (Model.Anh == null)
             {
                 <img src="~/Anh/avatar.png" style="height:200px;width:200px;margin:10px" />
             }
