@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using PBL3.Models;
@@ -23,9 +24,31 @@ namespace PBL3.Controllers
                 hoadon.ID_User = Convert.ToInt32(Session["ID_Account"]);
                 hoadon.NgayBan = DateTime.Now;
                 hoadon.Status = 0;
-                hoadon.DiaChi = form["DiaChi"];
-                hoadon.TenNguoiNhan = form["TenNguoiNhan"];
-                hoadon.Sdt = form["Sdt"];
+                int id1 = Convert.ToInt32(Session["ID_Account"]);
+                var user = db.Users.Where(p => p.ID_User == id1).FirstOrDefault();
+                if (form["DiaChi"] != "")
+                    hoadon.DiaChi = form["DiaChi"];
+                else
+                    hoadon.DiaChi = user.DiaChi;
+                if (form["TenNguoiNhan"] != "")
+                    hoadon.TenNguoiNhan = form["TenNguoiNhan"];
+                else
+                    hoadon.TenNguoiNhan = user.Ten;
+                if (!string.IsNullOrEmpty(form["Sdt"]))
+                {
+                    if (Regex.IsMatch(form["Sdt"], @"^\d{10}$"))
+                    {
+                        hoadon.Sdt = form["Sdt"];
+                    }
+                    else
+                    {
+                        hoadon.Sdt = user.SDT;
+                    }
+                }
+                else
+                {
+                    hoadon.Sdt = user.SDT;
+                }
                 db.HoaDons.Add(hoadon);
                 ChiTietHoaDon chitiethoadon = new ChiTietHoaDon();
                 chitiethoadon.ID_HoaDon = hoadon.ID_HoaDon;
@@ -109,10 +132,21 @@ namespace PBL3.Controllers
                     hoadon.TenNguoiNhan = form["TenNguoiNhan"];
                 else
                     hoadon.TenNguoiNhan = user.Ten;
-                if (form["Sdt"] != "")
-                     hoadon.Sdt = form["Sdt"];
+                if (!string.IsNullOrEmpty(form["Sdt"]))
+                {
+                    if (Regex.IsMatch(form["Sdt"], @"^\d{10}$"))
+                    {
+                        hoadon.Sdt = form["Sdt"];
+                    }
+                    else
+                    {
+                        hoadon.Sdt = user.SDT;
+                    }
+                }
                 else
+                {
                     hoadon.Sdt = user.SDT;
+                }
                 db.HoaDons.Add(hoadon);
                 foreach (var item in giohang.Items)
                 {

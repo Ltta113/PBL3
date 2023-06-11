@@ -81,9 +81,21 @@
             </h4>
 
             <div class="input">
-                <input type="text" class="form-control form-control-user"
-                       name="TenNguoiNhan" value="@ViewBag.TenNguoiNhan">
+                <input type="text" class="form-control form-control-user" name="TenNguoiNhan" value="@ViewBag.TenNguoiNhan" onblur="checkInputTNN(this)">
+                <span id="tennguoinhan-error" style="color: red; display: none;"> Nếu để trống sẽ trùng với tên đã đăng ký.</span>
             </div>
+
+            <script>
+                function checkInputTNN(input) {
+                    var diachiError = document.getElementById("tennguoinhan-error");
+                    var inputValue = input.value.trim();
+                    if (inputValue.length == 0) {
+                        diachiError.style.display = "inline";
+                    } else {
+                        diachiError.style.display = "none";
+                    }
+                }
+            </script>
         </div>
 
         <div class="row-info">
@@ -92,9 +104,21 @@
                 <span style="color: red;">*</span>
             </h4>
             <div class="input">
-                <input type="text" class="form-control form-control-user"
-                       name="DiaChi" value="@ViewBag.DiaChi">
+                <input type="text" class="form-control form-control-user" name="DiaChi" value="@ViewBag.DiaChi" onblur="checkInputDC(this)">
+                <span id="diachi-error" style="color: red; display: none;"> Nếu để trống sẽ trùng với địa chỉ đã đăng ký.</span>
             </div>
+
+            <script>
+                function checkInputDC(input) {
+                    var diachiError = document.getElementById("diachi-error");
+                    var inputValue = input.value.trim();
+                    if (inputValue.length == 0) {
+                        diachiError.style.display = "inline";
+                    } else {
+                        diachiError.style.display = "none";
+                    }
+                }
+            </script>
         </div>
         <div class="row-info">
             <h4>
@@ -103,8 +127,24 @@
             </h4>
 
             <div class="input">
-                <input type="text" class="form-control form-control-user"
-                       name="Sdt" value="@ViewBag.SDT">
+                <input type="text" class="form-control form-control-user" name="Sdt" value="@ViewBag.SDT" maxlength="10" oninput="checkInputSDT(this)">
+                <span id="sdt-error" style="color: red; display: none;"> Số điện thoại phải có đúng 10 kí tự số. Nếu không đúng định dạng thì sẽ nhận số điện thoại đã đăng ký</span>
+                <script>
+                    function checkInputSDT(input) {
+                        var maxLength = 10;
+                        var sdtError = document.getElementById("sdt-error");
+                        var inputValue = input.value.trim();
+                        if (inputValue.length > maxLength) {
+                            input.value = inputValue.slice(0, maxLength);
+                            sdtError.style.display = "inline";
+                        } else if (!/^\d{10}$/.test(inputValue)) {
+                            sdtError.style.display = "inline";
+                        } else {
+                            sdtError.style.display = "none";
+                        }
+                    }
+                </script>
+
             </div>
         </div>
 
