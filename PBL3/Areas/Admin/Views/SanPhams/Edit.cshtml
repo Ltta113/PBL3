@@ -83,7 +83,7 @@
         <div class="form-group">
             <label class="py-1">Ảnh sản phẩm</label>
             <div class="col-md-5 py-1">
-                <img src="~/Anh/@Model.Anh" style="height:200px;width:200px;margin:10px" />
+                <img src="~/Anh/@Model.Anh" style="height:200px;width:200px;margin:10px" id="preview"/>
                 <input type="file" id="uploadhinh" name="uploadhinh" accept="image/*" value="C:/Users/LENOVO/OneDrive - The University of Technology/Desktop/PBL3.1/PBL3/PBL3/Anh/@Model.Anh" />
                 @Html.ValidationMessageFor(model => model.Anh, "", new { @class = "text-danger" })
             </div>
@@ -114,6 +114,14 @@
             </div>
         </div>
     </div>
+    <script>
+        uploadhinh.onchange = evt => {
+            const [file] = uploadhinh.files
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+            }
+        }
+    </script>
 }
 
 

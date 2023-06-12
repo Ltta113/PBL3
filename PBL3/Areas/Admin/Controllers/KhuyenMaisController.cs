@@ -41,6 +41,11 @@ namespace PBL3.Areas.Admin.Controllers
                     return View();
 
                 }
+                else if(khuyenMai.KetThucKM.Value.Year < 1900 || khuyenMai.BatDauKM.Value.Year < 1900)
+                {
+                    ViewBag.Error = "<p class='text-danger'> " + " Ngày không hợp lệ" + "</p>";
+                    return View();
+                }
                 else if (khuyenMai.KetThucKM < khuyenMai.BatDauKM)
                 {
                     ViewBag.Error = "<p class='text-danger'> " + " Ngày kết thúc nhỏ hơn ngày bắt đầu" + "</p>";
@@ -89,6 +94,11 @@ namespace PBL3.Areas.Admin.Controllers
                     ViewBag.Error = "<p class='text-danger'> " + " Ngày kết thúc lớn hơn ngày hôm nay" + "</p>";
                     return View(khuyenMai);
 
+                }
+                else if (khuyenMai.KetThucKM.Value.Year < 1900 || khuyenMai.BatDauKM.Value.Year < 1900)
+                {
+                    ViewBag.Error = "<p class='text-danger'> " + " Ngày không hợp lệ" + "</p>";
+                    return View();
                 }
                 else if (khuyenMai.KetThucKM < khuyenMai.BatDauKM)
                 {

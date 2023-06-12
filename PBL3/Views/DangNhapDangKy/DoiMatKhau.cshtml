@@ -50,7 +50,7 @@
                                             <h1 class="h4 text-gray-900 mb-4" style="font-family: 'Quicksand'; font-style: italic; font-weight: bold;">Đổi mật khẩu</h1>
                                         </div>
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        <p>@Html.Raw(ViewBag.Error) </p>
+                                        
                                         <form class="user">
                                             <div class="row">
                                                 <div class="col-form-label">Mật khẩu cũ</div>
@@ -59,6 +59,7 @@
                                             <div class="form-group">
                                                 @Html.EditorFor(model => model.OldPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Mật khẩu cũ", type = "password" } })
                                                 @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger" })
+                                                <p>@Html.Raw(ViewBag.ErrorMKC) </p>
                                             </div>
 
                                             <div class="row">
@@ -68,6 +69,7 @@
                                             <div class="form-group">
                                                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Mật khẩu mới", type = "password" } })
                                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                                <p>@Html.Raw(ViewBag.ErrorMKM) </p>
                                             </div>
 
                                             <div class="row">

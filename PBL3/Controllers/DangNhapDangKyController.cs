@@ -35,7 +35,7 @@ namespace PBL3.Controllers
                 if (check == null)
                 {
                     
-                    if (dangky.NgaySinh.Value.Year <= DateTime.Now.Year - 18)
+                    if (dangky.NgaySinh.Value.Year <= DateTime.Now.Year - 18 && dangky.NgaySinh.Value.Year > 1900)
                     {
                         Account account = new Account();
                         account.Username = dangky.Username.Replace(" ", "");
@@ -55,6 +55,11 @@ namespace PBL3.Controllers
                         db.SaveChanges();
 
                         Response.Redirect("~/dang-nhap");
+                    }
+                    else if (dangky.NgaySinh.Value.Year <= 1900 || dangky.NgaySinh.Value.Year > DateTime.Now.Year)
+                    {
+                        ViewBag.ErrorTuoi = "<p class='text-danger'> " + "  Năm sinh không hợp lệ" + "</p>";
+                        return View();
                     }
                     else
                     {
@@ -175,15 +180,22 @@ namespace PBL3.Controllers
                 string mkc = Session["Password"].ToString().Replace(" ", "");
                 if (dmk.OldPassword.Equals(mkc) == true)
                 {
-                    string name = Session["Username"].ToString();
-                    Session["Password"] = dmk.Password;
-                    Account account = db.Accounts.Where(p => p.Username == name).FirstOrDefault();
-                    account.Password = dmk.Password;
-                    db.Entry(account).State = EntityState.Modified;
-                    db.SaveChanges();
-                    Response.Redirect("~/Trang-chu");
+                    if (dmk.OldPassword.Equals(dmk.Password) == false)
+                    {
+                        string name = Session["Username"].ToString();
+                        Session["Password"] = dmk.Password;
+                        Account account = db.Accounts.Where(p => p.Username == name).FirstOrDefault();
+                        account.Password = dmk.Password;
+                        db.Entry(account).State = EntityState.Modified;
+                        db.SaveChanges();
+                        Response.Redirect("~/Trang-chu"); 
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMKM = "<p class='text-danger'> " + "Mật khẩu mới trùng mật khẩu cũ" + "</p>";
+                    }
                 }
-                else ViewBag.Error = "<p class='text-danger'> " + "Mật khẩu cũ không không đúng" + "</p>";
+                else ViewBag.ErrorMKC = "<p class='text-danger'> " + "Mật khẩu cũ không đúng" + "</p>";
 
             }
             else ViewBag.Error = "<p class='text-danger'> " + "Lỗi dữ liệu" + "</p>";

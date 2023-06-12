@@ -19,9 +19,12 @@ namespace PBL3.Models.Model_View
         public string ConfirmPassword { get; set; }
         [Required(ErrorMessage = "Không được bỏ trống tên người dùng ")]
         public string Ten { get; set; }
-        public DateTime? NgaySinh { get; set; }  
+        [Required(ErrorMessage = "Không được bỏ trống ")]
+        public DateTime? NgaySinh { get; set; }
+        [Required(ErrorMessage = "Không được bỏ trống ")]
         public string DiaChi { get; set; }
         public bool GioiTinh { get; set; }
+        [Required(ErrorMessage = "Không được bỏ trống ")]
         [MaxLength(10, ErrorMessage = "Số điện thoại không đúng")]
         [MinLength(10, ErrorMessage = "Số điện thoại không đúng")]
         [Phone(ErrorMessage = "Số điện thoại không đúng")]
